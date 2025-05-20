@@ -1,6 +1,8 @@
 <x-app-layout>
     <div x-data="{ sidebarOpen: false }" class="flex h-screen">
         <!-- Sidebar -->
+
+
         <div
             :class="sidebarOpen ? 'w-48' : 'w-16'"
             class="bg-gray-800 text-white transition-all duration-300 flex flex-col items-center py-4 space-y-6 overflow-hidden"
@@ -11,7 +13,7 @@
                 <a href="#" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                     <span>📊</span> <span x-show="sidebarOpen">Dashboard</span>
                 </a>
-                <a href="#" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
+                <a href="{{ route('user.courses.index')}}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                     <span>📚</span> <span x-show="sidebarOpen">Courses</span>
                 </a>
                 <a href="#" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
@@ -81,11 +83,12 @@
                     @if(count($registered_courses) > 0)
                         <ul class="list-disc list-inside space-y-1 text-gray-700">
                             @foreach($registered_courses as $course)
-                                <li>{{ $course->name }}</li>
-                                                        <p class="text-gray-500">You are not registered in any courses yet. {{ $course->count() }}</p>
+                                <li>{{ $course->title }}</li>
 
                             @endforeach
                         </ul>
+                        Total: {{ $registered_courses->count() }}
+
                     @else
                     <p class="text-gray-500">You are not registered in any courses yet. Total: {{ $registered_courses->count() }}</p>
 

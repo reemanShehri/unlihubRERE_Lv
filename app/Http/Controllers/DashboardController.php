@@ -24,7 +24,7 @@ class DashboardController extends Controller
         $lectures_count = Lecture::count();
 
         // جلب المساقات اللي مسجل فيها المستخدم الحالي
-        $registered_courses = $user->courses()->get();
+        $registered_courses = $user->student->courses()->get();
 
         // باقي البيانات
         $collegeLabels = ['Engineering', 'Science', 'Medicine'];

@@ -21,6 +21,7 @@ Route::get('/', function () {
 
 
 
+use App\Http\Controllers\User\Course2Controller;
 use App\Http\Controllers\StudentDetailController;
 use App\Http\Controllers\Admin\UniversityController;
 
@@ -43,6 +44,15 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 
 
 // });
+
+Route::middleware(['auth', 'verified'])->prefix('user')->group(function () {
+    Route::get('/courses', [Course2Controller::class, 'index'])->name('user.courses.index');
+    Route::post('/courses/register', [Course2Controller::class, 'register'])->name('user.courses.register');
+    Route::delete('user/courses/unregister', [Course2Controller::class, 'unregister'])->name('user.courses.unregister');
+
+
+});
+
 
 
 // Profile routes
