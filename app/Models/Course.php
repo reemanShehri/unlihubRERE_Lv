@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Image;
 use App\Models\Major;
 use App\Models\Student;
@@ -26,14 +27,14 @@ public function major()
 }
 
 
+public function students()
+{
+    return $this->belongsToMany(User::class, 'course_student', 'course_id', 'student_id')
+                ->withTimestamps();
+}
 
 
-    public function students()
-    {
-        return $this->belongsToMany(Student::class);
-    }
 
-   
 
     public function lectures()
     {

@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Post;
+use App\Models\Course;
 use App\Models\Comment;
 use App\Models\Student;
 use App\Models\Notification;
@@ -71,5 +72,13 @@ public function notifications()
 {
     return $this->morphMany(Notification::class, 'notifiable');
 }
+
+
+public function courses()
+{
+    return $this->belongsToMany(Course::class, 'course_student', 'student_id', 'course_id')
+                ->withTimestamps();
+}
+
 
 }

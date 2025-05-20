@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Image;
 use App\Models\Major;
 use App\Models\Course;
+use App\Models\College;
 use App\Models\University;
 use Illuminate\Database\Eloquent\Model;
 
@@ -38,6 +39,12 @@ public function major()
 public function courses()
 {
     return $this->belongsToMany(Course::class);
+}
+
+
+public function college()
+{
+    return $this->belongsTo(College::class);
 }
 
 

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Major;
+use App\Models\Student;
 use App\Models\University;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,5 +24,10 @@ public function majors()
     return $this->hasMany(Major::class);
 }
 
+
+public function students()
+{
+    return $this->hasMany(Student::class);
+}
 
 }

@@ -9,26 +9,56 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LectureController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\UniversityController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
+use App\Http\Controllers\StudentDetailController;
+use App\Http\Controllers\Admin\UniversityController;
+
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
+
+
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::patch('/profile/extra', [ProfileController::class, 'updateExtra'])->name('profile.update.extra');
+
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+//     //student
+//     Route::get('/student-details/create', [StudentDetailController::class, 'create'])->name('student-details.create');
+//     Route::post('/student-details', [StudentDetailController::class, 'store'])->name('student-details.store');
+
+
+// });
+
+
+// Profile routes
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('/profile/photo', [ProfileController::class, 'updatePhoto'])->name('profile.photo.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Academic info routes
+    Route::get('/student-details/create', [StudentDetailController::class, 'create'])->name('student-details.create');
+    Route::post('/student-details', [StudentDetailController::class, 'store'])->name('student-details.store');
+    Route::get('/student-details/edit', [StudentDetailController::class, 'edit'])->name('student-details.edit');
+    Route::put('/student-details/update', [StudentDetailController::class, 'update'])->name('student-details.update');
 });
+
 
 // routes/web.php
 Route::middleware(['auth', IsAdmin::class])
