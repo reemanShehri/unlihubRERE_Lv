@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Comment;
+use App\Models\CommentLike;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
@@ -22,6 +23,14 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function likes()
+{
+    return $this->hasMany(CommentLike::class);
+}
+
+
+
 
     // 📝 علاقة مع Post
     public function post()

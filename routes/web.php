@@ -24,6 +24,7 @@ Route::get('/', function () {
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\User\Post2Controller;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\CommentLikeController;
 use App\Http\Controllers\User\Course2Controller;
 use App\Http\Controllers\StudentDetailController;
 use App\Http\Controllers\User\Comment2Controller;
@@ -93,6 +94,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('user/profile', [User2Controller::class, 'edit'])->name('user.profile.edit');
     Route::patch('user/profile/update', [User2Controller::class, 'update'])->name('user.profile.update');
+
+
+    Route::post('/comments/{comment}/like', [CommentLikeController::class, 'toggleLike'])->name('comments.toggleLike');
 
 
 });

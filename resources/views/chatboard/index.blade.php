@@ -182,7 +182,7 @@
             <h4 class="font-semibold text-gray-700 mb-3">Comments ({{ $post->comments->count() }})</h4>
 
             <!-- List Comments -->
-            <ul class="space-y-4 max-h-64 overflow-y-auto">
+            {{-- <ul class="space-y-4 max-h-64 overflow-y-auto">
               @foreach ($post->comments as $comment)
               <li class="flex space-x-4">
                 <div
@@ -191,12 +191,52 @@
                 </div>
                 <div class="bg-gray-100 rounded-lg p-3 flex-1">
                   <p class="text-sm font-semibold text-gray-800">{{ $comment->user->name }}</p>
-                  <p class="text-gray-700 text-sm whitespace-pre-line">{{ $comment->content }}</p>
+                  <p class="text-gray-700 text-sm whitespace-pre-line">{{ $comment->body }}</p>
                   <p class="text-xs text-gray-500 mt-1">{{ $comment->created_at->diffForHumans() }}</p>
                 </div>
               </li>
               @endforeach
+            </ul> --}}
+
+
+            <ul class="space-y-4 max-h-64 overflow-y-auto">
+                @foreach ($post->comments as $comment)
+                    <li class="flex space-x-4">
+                        <div
+                            class="flex-shrink-0 h-8 w-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-medium">
+                            {{ strtoupper(substr($comment->user->name, 0, 1)) }}
+                        </div>
+                        <div class="bg-gray-100 rounded-lg p-3 flex-1">
+                            <p class="text-sm font-semibold text-gray-800">{{ $comment->user->name }}</p>
+                            <p class="text-gray-700 text-sm whitespace-pre-line">{{ $comment->content }}</p>
+                            <p class="text-xs text-gray-500 mt-1">{{ $comment->created_at->diffForHumans() }}</p>
+
+                            {{-- زر لايك --}}
+                        {{-- <form action="{{ route('comments.like', $comment->id) }}" method="POST" class="inline">
+                                @csrf
+                                <button type="submit" class="text-sm text-blue-600 hover:underline mt-1">
+                                    ❤️ Like ({{ $comment->likes->count()?? 0 }})
+                                </button>
+                            </form> --}}
+
+                        <form action="{{ route('comments.toggleLike', $comment->id) }}" method="POST">
+                                @csrf
+                                <button
+                                class="like-btn text-blue-500 hover:underline text-sm"
+                                data-comment-id="{{ $comment->id }}"
+                            >
+                                ❤️ <span class="like-count">{{ $comment->likes->count() }}</span>
+                            </button>
+
+                            </form> 
+
+
+
+                        </div>
+                    </li>
+                @endforeach
             </ul>
+
 
             <!-- Add New Comment -->
             <form method="POST" action="{{ route('comments.store', $post->id) }}" class="mt-4 flex space-x-3">
@@ -314,5 +354,8 @@
       }
     }
   </script>
+
+
+
 
 </x-app-layout>
