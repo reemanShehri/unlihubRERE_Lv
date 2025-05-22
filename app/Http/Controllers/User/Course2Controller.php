@@ -15,6 +15,7 @@ class Course2Controller extends Controller
     public function index()
     {
         $user = auth()->user();
+        // $course = Course::findOrFail($courseId);
 
         // المساقات المسجلة
         $registeredCourses = $user->student->courses;

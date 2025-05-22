@@ -1,4 +1,8 @@
 <x-app-layout>
+
+       <!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
     <div class="max-w-md mx-auto p-6 bg-white rounded shadow mt-10">
         <h2 class="text-xl font-semibold mb-4">Update Academic Information</h2>
         <form method="POST" action="{{ route('student-details.update') }}">

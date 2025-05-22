@@ -1,4 +1,6 @@
 <x-guest-layout>
+           <!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
     <form method="POST" action="{{ route('register') }}">
         @csrf
 

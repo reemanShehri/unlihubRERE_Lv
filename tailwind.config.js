@@ -3,6 +3,7 @@ import forms from '@tailwindcss/forms';
 
 /** @type {import('tailwindcss').Config} */
 export default {
+    darkMode: 'class',
     content: [
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
@@ -19,3 +20,14 @@ export default {
 
     plugins: [forms],
 };
+
+module.exports = {
+    content: [
+      "./index.html",
+      "./src/**/*.{vue,js,ts,jsx,tsx}",
+    ],
+    safelist: [
+      'bg-[#000080]'
+    ],
+  }
+

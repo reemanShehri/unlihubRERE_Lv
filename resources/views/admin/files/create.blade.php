@@ -1,4 +1,6 @@
 <x-app-layout>
+           <!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">Upload New File Link</h2>
     </x-slot>

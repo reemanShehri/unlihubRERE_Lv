@@ -1,6 +1,10 @@
 <!-- resources/views/student-details/create.blade.php -->
 
 <x-app-layout>
+
+       <!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
     <div class="max-w-md mx-auto p-6 bg-white rounded shadow mt-10">
         <h2 class="text-xl font-semibold mb-4">Set Up Your Student Profile</h2>
         <form method="POST" action="{{ route('student-details.store') }}">

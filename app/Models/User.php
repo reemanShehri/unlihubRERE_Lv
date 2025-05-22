@@ -27,6 +27,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+         'bio',
     ];
 
     /**
@@ -78,6 +80,12 @@ public function courses()
 {
     return $this->belongsToMany(Course::class, 'course_student', 'student_id', 'course_id')
                 ->withTimestamps();
+}
+
+
+public function likes()
+{
+    return $this->hasMany(Like::class);
 }
 
 

@@ -1,4 +1,6 @@
 <x-app-layout>
+           <!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
     <x-slot name="header">
         <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">Edit File</h2>
     </x-slot>

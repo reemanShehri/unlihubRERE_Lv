@@ -1,4 +1,6 @@
 <x-guest-layout>
+           <!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
     <!-- Session Status -->
     <x-auth-session-status class="mb-6" :status="session('status')" />
 

@@ -1,4 +1,6 @@
 <x-app-layout>
+           <!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
     <x-slot name="header">
         <h2 class="text-xl font-semibold text-gray-800 leading-tight">All Lectures</h2>
     </x-slot>

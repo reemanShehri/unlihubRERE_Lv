@@ -15,6 +15,8 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $course = $user->courses;
+        $lectures = $user->lectures;
 
         if (!$user->student) {
             return redirect()->route('student-details.create');
@@ -41,6 +43,8 @@ class DashboardController extends Controller
             'collegeCounts' => $collegeCounts,
             'activityDays' => $activityDays,
             'activityCounts' => $activityCounts,
+            'course' => $course,
+            'lectures' => $lectures,
         ]);
     }
 

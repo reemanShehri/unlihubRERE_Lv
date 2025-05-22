@@ -1,4 +1,6 @@
 <x-app-layout>
+       <!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
     <div x-data="{ sidebarOpen: false }" class="flex h-screen">
         <!-- Sidebar -->
         <div
@@ -14,7 +16,8 @@
                 <a href="{{ route('user.courses.index') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                     <span>📚</span> <span x-show="sidebarOpen">Courses</span>
                 </a>
-                <a href="#" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
+                <a href="{{ route('user.courses.lectures', $registeredCourses->first
+                ()->id) }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                     <span>🎥</span> <span x-show="sidebarOpen">Lectures</span>
                 </a>
                 <a href="#" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
@@ -33,7 +36,7 @@
                 <button @click="sidebarOpen = !sidebarOpen" class="text-xl text-gray-800 focus:outline-none">
                     ☰
                 </button>
-                <span class="font-semibold text-gray-600">Welcome, {{ Auth::user()->name }}</span>
+                {{-- <span class="font-semibold text-gray-600">Welcome, {{ Auth::user()->name }}</span> --}}
             </div>
 
             <!-- Page Content -->

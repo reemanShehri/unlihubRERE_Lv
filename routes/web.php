@@ -2,7 +2,9 @@
 
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MajorController;
+use App\Http\Controllers\User2Controller;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CollegeController;
 use App\Http\Controllers\CommentController;
@@ -12,8 +14,6 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\PostController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\AdminController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,8 +21,14 @@ Route::get('/', function () {
 
 
 
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\User\Post2Controller;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\User\Course2Controller;
 use App\Http\Controllers\StudentDetailController;
+use App\Http\Controllers\User\Comment2Controller;
+use App\Http\Controllers\User\Lecture2Controller;
+use App\Http\Controllers\User\SettingsController;
 use App\Http\Controllers\Admin\UniversityController;
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
@@ -49,6 +55,8 @@ Route::middleware(['auth', 'verified'])->prefix('user')->group(function () {
     Route::get('/courses', [Course2Controller::class, 'index'])->name('user.courses.index');
     Route::post('/courses/register', [Course2Controller::class, 'register'])->name('user.courses.register');
     Route::delete('user/courses/unregister', [Course2Controller::class, 'unregister'])->name('user.courses.unregister');
+    Route::get('/courses/{course}/lectures', [Lecture2Controller::class, 'index'])->name('user.courses.lectures');
+
 
 
 });
@@ -67,6 +75,26 @@ Route::middleware('auth')->group(function () {
     Route::post('/student-details', [StudentDetailController::class, 'store'])->name('student-details.store');
     Route::get('/student-details/edit', [StudentDetailController::class, 'edit'])->name('student-details.edit');
     Route::put('/student-details/update', [StudentDetailController::class, 'update'])->name('student-details.update');
+
+    //
+
+    Route::get('/chatboard', [Post2Controller::class, 'index'])->name('chatboard.index');
+    Route::post('/posts', [Post2Controller::class, 'store'])->name('posts.store');
+    Route::post('/posts/{post}/comments', [Comment2Controller::class, 'store'])->name('comments.store');
+
+    Route::post('/posts/{post}/like', [LikeController::class, 'toggle'])->name('posts.like');
+
+
+    Route::get('/settings', [SettingsController::class, 'index'])->name('user.settings.index');
+    Route::put('/settings/update', [SettingsController::class, 'update'])->name('settings.update');
+
+
+
+
+    Route::get('user/profile', [User2Controller::class, 'edit'])->name('user.profile.edit');
+    Route::patch('user/profile/update', [User2Controller::class, 'update'])->name('user.profile.update');
+
+
 });
 
 
@@ -106,6 +134,9 @@ Route::middleware('auth', IsAdmin::class)->prefix('admin')->name('admin.')->grou
     Route::get('/admins/{user}/edit', [AdminController::class, 'editAdmin'])->name('admins.edit');
     Route::put('/admins/{user}', [AdminController::class, 'updateAdmin'])->name('admins.update');
 });
+
+
+
 
 
 require __DIR__.'/auth.php';
