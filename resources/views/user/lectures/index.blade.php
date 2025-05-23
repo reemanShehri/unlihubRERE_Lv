@@ -65,7 +65,12 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($lectures as $lecture)
                 <div class="bg-white rounded shadow p-4">
-                    <img src="https://images.unsplash.com/photo-1584697964230-81a85fdded57?auto=format&fit=crop&w=800&q=80" alt="Lecture Image" class="rounded mb-4 w-full h-40 object-cover">
+
+
+                    <img src="{{ asset('images/image1.png') }}"
+                    alt="Lecture Image"
+                    class="rounded mb-4 w-full h-40 object-cover">
+
 
                     {{-- <img src="https://source.unsplash.com/400x200/?lecture,education&sig={{ $loop->index }}" alt="Lecture Image" class="rounded mb-4 w-full h-40 object-cover"> --}}
                     <h2 class="text-xl font-bold mb-2">{{ $lecture->title }}</h2>

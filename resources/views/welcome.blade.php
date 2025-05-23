@@ -2,12 +2,12 @@
        <!-- Tailwind CSS CDN -->
        <script src="https://cdn.tailwindcss.com"></script>
 <!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+{{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> --}}
 
 <!-- Optional JavaScript; choose one of the two! -->
 
 <!-- Option 1: Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoH5bZg0aI6xz8Fjz4x1YYJ1ZISbB0bE+1Z8SGvtQv0QetQ" crossorigin="anonymous"></script>
+{{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoH5bZg0aI6xz8Fjz4x1YYJ1ZISbB0bE+1Z8SGvtQv0QetQ" crossorigin="anonymous"></script> --}}
 
 <html x-data="{
         currentLang: localStorage.getItem('lang') || 'ar',
@@ -183,9 +183,12 @@
                 </div>
 
                 <!-- Image/Illustration Section -->
-                <div class="relative rounded-xl overflow-hidden bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900 dark:to-purple-900 lg:w-1/2 flex items-center justify-center p-8">
-                    <img src="https://illustrations.popsy.co/amber/student.svg" alt="Student Illustration" class="w-full h-auto max-h-96 object-contain">
-                    <div class="absolute inset-0 rounded-xl shadow-[inset_0px_0px_0px_1px_rgba(0,0,0,0.05)] dark:shadow-[inset_0px_0px_0px_1px_rgba(255,255,255,0.1)]"></div>
+                <div class="relative rounded-xl overflow-hidden bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900 dark:to-purple-900 lg:w-1/2 flex items-center justify-center p-8 h-full">
+                    <img
+                        src="{{ asset('images/image.png') }}"
+                        alt="Lecture Image"
+                        class="rounded-lg object-contain w-full h-full max-h-[400px]"
+                    >
                 </div>
             </main>
         </div>
