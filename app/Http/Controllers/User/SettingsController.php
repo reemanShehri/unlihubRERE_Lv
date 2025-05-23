@@ -13,7 +13,8 @@ class SettingsController extends Controller
     public function index()
     {
         $user = Auth::user(); // المستخدم الحالي
-        return view('user.Settings.index', compact('user'));
+        $registered_courses = $user->student->courses;
+        return view('user.Settings.index', compact('user', 'registered_courses'));
     }
 
     public function update(Request $request)
@@ -36,7 +37,7 @@ class SettingsController extends Controller
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'bio' => $request->bio,
-             
+
         ]);
 
         return redirect()->route('user.settings.index')->with('success', 'Settings updated successfully!');

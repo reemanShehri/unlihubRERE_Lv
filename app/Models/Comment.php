@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Reply;
 use App\Models\Comment;
 use App\Models\CommentLike;
 use Illuminate\Database\Eloquent\Model;
@@ -38,13 +39,19 @@ class Comment extends Model
         return $this->belongsTo(Post::class);
     }
     public function replies()
-{
-    return $this->hasMany(Comment::class, 'parent_id');
-}
+    {
+        return $this->hasMany(Reply::class)->whereNull('parent_id'); // لاستبعاد الردود الفرعية
+    }
 
 public function parent()
 {
     return $this->belongsTo(Comment::class, 'parent_id');
+}
+
+
+public function CommentReplies()
+{
+    return $this->hasMany(Reply::class);
 }
 
 }

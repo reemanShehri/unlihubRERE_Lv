@@ -24,9 +24,16 @@
                 <a href="{{ route('user.courses.index') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2 px-2">
                     <span>📚</span> <span x-show="sidebarOpen">Courses</span>
                 </a>
-                <a href="#" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2 px-2">
-                    <span>🎥</span> <span x-show="sidebarOpen">Lectures</span>
+                @if($registered_courses && $registered_courses->isNotEmpty())
+                <a href="{{ route('user.courses.lectures', $registered_courses->first()->id) }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
+                    <span>🎥 </span> <span x-show="sidebarOpen">Lectures</span>
                 </a>
+            @else
+                <a href="#" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2 disabled" aria-disabled="true" tabindex="-1">
+                    <span>🎥</span>
+                </a>
+            @endif
+
                 <a href="{{ route('chatboard.index') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                     <span>💬</span> <span x-show="sidebarOpen">Chat</span>
                 </a>

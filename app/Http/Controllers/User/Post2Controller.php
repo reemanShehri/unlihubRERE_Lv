@@ -14,9 +14,10 @@ class Post2Controller extends Controller
 {
     $posts = Post::with(['user', 'comments.user'])->latest()->paginate(10);
     $user = auth()->user();
-    $registered_courses = $user->courses; // أو حسب العلاقة الموجودة عندك
+    $registered_courses = $user->student->courses; // أو حسب العلاقة الموجودة عندك
 
-    return view('chatboard.index', compact('posts','registered_courses'));
+    return view('chatboard.index',
+    compact('posts','registered_courses'));
 }
 
 public function store(Request $request)
@@ -50,7 +51,8 @@ public function store(Request $request)
     }
 
     // حفظ الرابط
-    $post->link = $request->link;
+    $post->link = $request->input('link');
+
 
     $post->save();
 

@@ -27,19 +27,34 @@ class Course2Controller extends Controller
         return view('user.courses.index', compact('registeredCourses', 'suggestedCourses'));
     }
 
-    public function register(Request $request)
+//     public function register(Request $request)
+// {
+//     $courseId = $request->input('course_id');
+//     $user = auth()->user();
+
+//     // فرضاً عندك علاقة many-to-many بين users و courses
+//     // $user->courses()->attach($courseId);
+
+//     $user->courses()->syncWithoutDetaching([$courseId]);
+
+
+//     return redirect()->back()->with('success', 'Course registered successfully!');
+// }
+
+
+public function register(Request $request)
 {
+    $user = Auth::user();
     $courseId = $request->input('course_id');
-    $user = auth()->user();
 
-    // فرضاً عندك علاقة many-to-many بين users و courses
-    // $user->courses()->attach($courseId);
-
-    $user->courses()->syncWithoutDetaching([$courseId]);
-
+    // تأكد من عدم تسجيل الطالب لنفس الكورس مرتين
+    if (!$user->student->courses->contains($courseId)) {
+        $user->student->courses()->attach($courseId);
+    }
 
     return redirect()->back()->with('success', 'Course registered successfully!');
 }
+
 
 public function unregister(Request $request)
 {
@@ -48,10 +63,13 @@ public function unregister(Request $request)
     ]);
 
     $user = Auth::user();
-    $user->courses()->detach($request->course_id);
+    // $user->courses()->detach($request->course_id);
+    $user->student->courses()->detach($request->course_id);
+
 
     return redirect()->back()->with('success', 'Course unregistered successfully.');
 }
+
 
 
 

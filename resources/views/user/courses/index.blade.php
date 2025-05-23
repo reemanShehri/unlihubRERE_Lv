@@ -10,20 +10,24 @@
             <h2 x-show="sidebarOpen" class="text-xl font-bold">UniHub</h2>
 
             <nav class="flex flex-col space-y-4 w-full items-center">
-                <a href="#" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
+                <a href="{{ route('dashboard') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                     <span>📊</span> <span x-show="sidebarOpen">Dashboard</span>
                 </a>
                 <a href="{{ route('user.courses.index') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                     <span>📚</span> <span x-show="sidebarOpen">Courses</span>
                 </a>
-                <a href="{{ route('user.courses.lectures', $registeredCourses->first
-                ()->id) }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
-                    <span>🎥</span> <span x-show="sidebarOpen">Lectures</span>
-                </a>
-                <a href="#" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
+
+            @if($registeredCourses && $registeredCourses->isNotEmpty())
+            <a href="{{ route('user.courses.lectures', $registeredCourses->first()->id) }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
+                <span>🎥</span><span x-show="sidebarOpen">Lectures</span>
+            @else
+     <a href="#" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2 disabled">
+              @endif
+
+                <a href="{{ route('chatboard.index') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                     <span>💬</span> <span x-show="sidebarOpen">Chat</span>
                 </a>
-                <a href="#" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
+                <a href="{{ route('user.settings.index') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                     <span>⚙️</span> <span x-show="sidebarOpen">Settings</span>
                 </a>
             </nav>
@@ -56,13 +60,15 @@
                                     </div>
                                     <div class="flex flex-col items-end space-y-2">
                                         <span class="text-sm text-gray-500">{{ $course->code }}</span>
-
                                         <form method="POST" action="{{ route('user.courses.unregister') }}">
                                             @csrf
                                             @method('DELETE')
                                             <input type="hidden" name="course_id" value="{{ $course->id }}">
                                             <button class="text-sm text-red-600 hover:underline">❌ Remove</button>
                                         </form>
+
+
+
                                     </div>
                                 </li>
                             @endforeach

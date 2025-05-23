@@ -10,15 +10,22 @@
     >
         <h2 x-show="sidebarOpen" class="text-xl font-bold">UniHub</h2>
         <nav class="flex flex-col space-y-4 w-full items-center">
-            <a href="#" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
+            <a href="{{ route('chatboard.index') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                 <span>📊</span> <span x-show="sidebarOpen">Dashboard</span>
             </a>
             <a href="{{ route('user.courses.index') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                 <span>📚</span> <span x-show="sidebarOpen">Courses</span>
             </a>
-            <a href="{{ route('user.courses.lectures', $registered_courses->first()->id) }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
-                <span>🎥</span> <span x-show="sidebarOpen">Lectures</span>
-            </a>
+            @if($registered_courses && $registered_courses->isNotEmpty())
+                <a href="{{ route('user.courses.lectures', $registered_courses->first()->id) }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
+                    <span>🎥 </span> <span x-show="sidebarOpen">Lectures</span>
+                </a>
+            @else
+                <a href="#" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2 disabled" aria-disabled="true" tabindex="-1">
+                    <span>🎥</span><span x-show="sidebarOpen"></span>
+                </a>
+            @endif
+
             <a href="{{ route('chatboard.index') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                 <span>💬</span> <span x-show="sidebarOpen">Chat</span>
             </a>
@@ -82,17 +89,33 @@
             </label>
 
             <!-- Link Input Toggle -->
-            <label for="link" class="flex items-center cursor-pointer text-indigo-600 hover:text-indigo-800">
+            {{-- <label for="link" class="flex items-center cursor-pointer text-indigo-600 hover:text-indigo-800">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 015.656 5.656l-1.414 1.414a4 4 0 01-5.656-5.656l1.414-1.414zM7.172 13.828a4 4 0 01-5.656-5.656l1.414-1.414a4 4 0 015.656 5.656L7.172 13.828z" />
               </svg>
               Link
-            </label>
+            </label> --}}
+
+            <div x-data="{ showLinkInput: false }">
+                <!-- Link Input Toggle -->
+                {{-- <label @click="showLinkInput = !showLinkInput" class="flex items-center cursor-pointer text-indigo-600 hover:text-indigo-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 015.656 5.656l-1.414 1.414a4 4 0 01-5.656-5.656l1.414-1.414zM7.172 13.828a4 4 0 01-5.656-5.656l1.414-1.414a4 4 0 015.656 5.656L7.172 13.828z" />
+                    </svg>
+                    Link
+                </label> --}}
+
+                <!-- Input Field -->
+                <div x-show="showLinkInput" class="mt-2">
+                    <input type="url" name="link" id="link" placeholder="Enter link here..." class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400">
+                </div>
+            </div>
+
           </div>
 
           <!-- Link Input -->
-          <input type="url" name="link" id="link" placeholder="https://example.com"
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent hidden" />
+          <input type="url" name="link" id="link" placeholder="to add link : https://example.com"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent " />
 
           <!-- Image Preview -->
           <div id="imagePreviewContainer" class="mb-4 hidden">
@@ -208,8 +231,36 @@
                         </div>
                         <div class="bg-gray-100 rounded-lg p-3 flex-1">
                             <p class="text-sm font-semibold text-gray-800">{{ $comment->user->name }}</p>
-                            <p class="text-gray-700 text-sm whitespace-pre-line">{{ $comment->content }}</p>
+                            <p class="text-gray-700 text-sm whitespace-pre-line">{{ $comment->body }}</p>
                             <p class="text-xs text-gray-500 mt-1">{{ $comment->created_at->diffForHumans() }}</p>
+
+
+                            @foreach ($comment->replies as $reply)
+    <div class="ml-8 pl-4 border-l-2 border-gray-200">
+        <p>{{ $reply->body }}</p>
+        <small>By: {{ $reply->user->name }}</small>
+
+        <!-- زر الرد على هذا الرد (يدعم parent_id) -->
+        <button onclick="toggleReplyForm('{{ $reply->id }}')" class="...">Reply</button>
+
+        <!-- فورم الرد (مخفي بالبداية) -->
+        <div id="reply-form-{{ $reply->id }}" class="hidden">
+            <form method="POST" action="{{ route('replies.store', $comment->id) }}">
+                @csrf
+                <input type="hidden" name="parent_id" value="{{ $reply->id }}">
+                <textarea name="body" placeholder="Reply to this..." class="..."></textarea>
+                <button type="submit" class="...">Send</button>
+            </form>
+        </div>
+
+        <!-- عرض الردود الفرعية (إذا كانت موجودة) -->
+        @foreach ($reply->replies as $nestedReply)
+            @include('partials.reply', ['reply' => $nestedReply])
+        @endforeach
+    </div>
+@endforeach
+
+
 
                             {{-- زر لايك --}}
                         {{-- <form action="{{ route('comments.like', $comment->id) }}" method="POST" class="inline">
@@ -218,17 +269,31 @@
                                     ❤️ Like ({{ $comment->likes->count()?? 0 }})
                                 </button>
                             </form> --}}
+                            <div class="flex items-center gap-4 mt-2"> <!-- محتوى التعليق الأساسي هنا -->
 
-                        <form action="{{ route('comments.toggleLike', $comment->id) }}" method="POST">
-                                @csrf
-                                <button
-                                class="like-btn text-blue-500 hover:underline text-sm"
-                                data-comment-id="{{ $comment->id }}"
-                            >
-                                ❤️ <span class="like-count">{{ $comment->likes->count() }}</span>
-                            </button>
+                                <!-- زر الإعجاب -->
+                                <form action="{{ route('comments.toggleLike', $comment->id) }}" method="POST" class="flex items-center">
+                                    @csrf
+                                    <button type="submit" class="flex items-center text-blue-500 hover:text-blue-700 text-sm">
+                                        ❤️ <span class="like-count ml-1">{{ $comment->likes->count() }}</span>
+                                    </button>
+                                </form>
 
-                            </form> 
+                                <!-- فورم الرد (مختصر) -->
+                                <form method="POST" action="{{ route('replies.store', $comment->id) }}" class="flex items-center gap-2">
+                                    @csrf
+                                    <textarea
+        name="body"
+        placeholder="Write reply..."
+        rows="1"
+        class="text-sm px-2 py-1 border rounded focus:outline-none focus:ring-1 focus:ring-blue-500 w-full resize-none overflow-hidden"
+        oninput="this.style.height = 'auto'; this.style.height = (this.scrollHeight) + 'px';"
+    ></textarea>
+                                    <button type="submit" class="text-sm px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+                                        Reply
+                                    </button>
+                                </form>
+                            </div>
 
 
 
@@ -239,7 +304,7 @@
 
 
             <!-- Add New Comment -->
-            <form method="POST" action="{{ route('comments.store', $post->id) }}" class="mt-4 flex space-x-3">
+            {{-- <form method="POST" action="{{ route('comments.store', $post->id) }}" class="mt-4 flex space-x-3">
               @csrf
               <input type="text" name="content" placeholder="Write a comment..."
                 class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required />
@@ -247,7 +312,20 @@
                 class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-lg font-medium transition-colors duration-200">
                 Comment
               </button>
-            </form>
+            </form> --}}
+
+
+            <form method="POST" action="{{ route('comments.store', $post) }}" class="mt-4 flex space-x-3">
+                @csrf
+                <input type="text" name="body" placeholder="Write a comment..."
+                  class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required />
+                <button type="submit"
+                  class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-lg font-medium transition-colors duration-200">
+                  Comment
+                </button>
+              </form>
+
+
           </section>
 
         </article>

@@ -9,15 +9,32 @@
     >
         <h2 x-show="sidebarOpen" class="text-xl font-bold">UniHub</h2>
         <nav class="flex flex-col space-y-4 w-full items-center">
-            <a href="#" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
+            <a href=" {{ route('dashboard') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                 <span>📊</span> <span x-show="sidebarOpen">Dashboard</span>
             </a>
             <a href="{{ route('user.courses.index') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                 <span>📚</span> <span x-show="sidebarOpen">Courses</span>
             </a>
+
+{{--
+            @if($registered_courses && $registered_courses->isNotEmpty())
             <a href="{{ route('user.courses.lectures', $registered_courses->first()->id) }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
-                <span>🎥</span> <span x-show="sidebarOpen">Lectures</span>
-            </a>
+                <span>🎥</span>
+                 @else
+     <a href="{{ route('user.courses.lectures', $registered_courses->first()->id) }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2 disabled">
+              @endif --}}
+
+
+              @if($registered_courses && $registered_courses->isNotEmpty())
+              <a href="{{ route('user.courses.lectures', $registered_courses->first()->id) }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
+                  <span>🎥 </span> <span x-show="sidebarOpen">Lectures</span>
+              </a>
+          @else
+              <a href="#" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2 disabled" aria-disabled="true" tabindex="-1">
+                  <span>🎥</span><span x-show="sidebarOpen">Lectures</span>
+              </a>
+          @endif
+
             <a href="{{ route('chatboard.index') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                 <span>💬</span> <span x-show="sidebarOpen">Chat</span>
             </a>

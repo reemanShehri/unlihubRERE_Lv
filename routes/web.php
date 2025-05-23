@@ -4,6 +4,7 @@ use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MajorController;
+use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\User2Controller;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CollegeController;
@@ -13,7 +14,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\FileController;
-use App\Http\Controllers\Admin\PostController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,6 +21,7 @@ Route::get('/', function () {
 
 
 
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\User\Post2Controller;
 use App\Http\Controllers\Admin\AdminController;
@@ -81,7 +82,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/chatboard', [Post2Controller::class, 'index'])->name('chatboard.index');
     Route::post('/posts', [Post2Controller::class, 'store'])->name('posts.store');
-    Route::post('/posts/{post}/comments', [Comment2Controller::class, 'store'])->name('comments.store');
+    Route::post('/posts/{post}/comments', [Comment2Controller::class, 'storeC'])->name('comments.store');
 
     Route::post('/posts/{post}/like', [LikeController::class, 'toggle'])->name('posts.like');
 
@@ -98,7 +99,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/comments/{comment}/like', [CommentLikeController::class, 'toggleLike'])->name('comments.toggleLike');
 
-
+    Route::post('/comments/{comment}/replies', [ReplyController::class, 'store'])->name('replies.store');
 });
 
 

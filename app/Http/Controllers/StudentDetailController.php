@@ -18,36 +18,82 @@ class StudentDetailController extends Controller
         $universities = University::all();
         $majors = Major::all();
         if (Auth::user()->role === 'admin') {
-            abort(403, 'Unauthorized action.'); // أو رجّعي redirect مثلاً
+             abort(403, 'Unauthorized action.'); // أو رجّعي redirect مثلاً
+            // return redirect()->route('admin.dashboard');
+
         }
 
         $colleges = College::all(); // Fetch colleges from the College model
         return view('student-details.create', compact('universities', 'majors', 'colleges'));
     }
 
-    public function store(Request $request)
-    {
-        if (Auth::user()->role === 'admin') {
-            abort(403, 'Unauthorized action.');
-        }
 
+
+    // public function store(Request $request)
+    // {
+    //     $user = Auth::user();
+
+    //     // إذا كان المستخدم **ليس** أدمن، نتحقق من الحقول
+    //     if ($user->role !== 'admin') {
+    //         $request->validate([
+    //             'university_id' => 'required|exists:universities,id',
+    //             'major_id' => 'required|exists:majors,id',
+    //             'college_id' => 'required|exists:colleges,id',
+    //         ]);
+    //     } else {
+    //         // إذا كان أدمن، نتحقق فقط إن كانت الحقول موجودة فهي صحيحة
+    //         $request->validate([
+    //             'university_id' => 'nullable|exists:universities,id',
+    //             'major_id' => 'nullable|exists:majors,id',
+    //             'college_id' => 'nullable|exists:colleges,id',
+    //         ]);
+    //     }
+
+    //     Student::create([
+    //         'user_id' => $user->id,
+    //         'university_id' => $request->university_id,
+    //         'major_id' => $request->major_id,
+    //         'college_id' => $request->college_id,
+    //     ]);
+
+    //     return redirect()->route('dashboard');
+    // }
+
+
+    public function store(Request $request)
+{
+    $user = Auth::user();
+
+    // التحقق من الصلاحيات وحقول البيانات
+    if ($user->role !== 'admin') {
         $request->validate([
             'university_id' => 'required|exists:universities,id',
             'major_id' => 'required|exists:majors,id',
-            'college_id' => 'required|exists:colleges,id', // Validate college_id
+            'college_id' => 'required|exists:colleges,id',
         ]);
-
-        Student::create([
-            'user_id' => Auth::id(),
-            'university_id' => $request->university_id,
-            'major_id' => $request->major_id,
-            'college_id' => $request->college_id, // Store college_id
+    } else {
+        $request->validate([
+            'university_id' => 'nullable|exists:universities,id',
+            'major_id' => 'nullable|exists:majors,id',
+            'college_id' => 'nullable|exists:colleges,id',
         ]);
-
-        return redirect()->route('dashboard'); // او اي صفحة بعد الاضافة
     }
 
+    // إنشاء سجل الطالب (فقط إذا لم يكن أدمن أو إذا كانت الحقول موجودة)
+    if ($user->role !== 'admin' || ($request->university_id && $request->major_id && $request->college_id)) {
+        Student::create([
+            'user_id' => $user->id,
+            'university_id' => $request->university_id,
+            'major_id' => $request->major_id,
+            'college_id' => $request->college_id,
+        ]);
+    }
 
+    // إعادة التوجيه حسب الصلاحية
+    return $user->role === 'admin'
+        ? redirect()->route('admin.dashboard')  // للأدمن
+        : redirect()->route('dashboard');       // للطلاب
+}
 
     public function edit()
 {
