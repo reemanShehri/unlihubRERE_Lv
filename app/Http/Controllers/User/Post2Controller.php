@@ -59,4 +59,60 @@ public function store(Request $request)
     return redirect()->back()->with('success', 'Post created successfully!');
 }
 
+
+
+public function myPosts()
+{
+    $posts = auth()->user()->posts()->latest()->get();
+
+    return view('chatboard.my-posts', compact('posts'));
+}
+
+
+public function destroy(Post $post)
+{
+    if ($post->user_id !== auth()->id()) {
+        abort(403);
+    }
+
+    $post->delete();
+    return redirect()->route('posts.mine')->with('success', 'تم حذف المنشور.');
+}
+
+
+   // Show form to edit a specific post
+   public function edit($id)
+   {
+       $post = Post::findOrFail($id);
+
+       // Optional: authorize that the user owns the post
+       if ($post->user_id !== auth()->id()) {
+           abort(403); // Forbidden
+       }
+
+       return view('chatboard.edit', compact('post'));
+   }
+
+   // Update the post
+   public function update(Request $request, $id)
+   {
+       $request->validate([
+           'content' => 'required|string|max:1000',
+       ]);
+
+       $post = Post::findOrFail($id);
+
+       // Optional: authorize that the user owns the post
+       if ($post->user_id !== auth()->id()) {
+           abort(403);
+       }
+
+       $post->content = $request->content;
+       $post->save();
+
+       return redirect()->route('posts.mine')->with('success', 'Post updated successfully.');
+   }
+
+
+
 }

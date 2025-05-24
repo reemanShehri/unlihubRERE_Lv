@@ -2,18 +2,18 @@
 
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\User2Controller;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ChatGPTController;
 use App\Http\Controllers\CollegeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LectureController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Admin\FileController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,6 +21,9 @@ Route::get('/', function () {
 
 
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\showUsersController;
+use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\User\Post2Controller;
@@ -29,15 +32,17 @@ use App\Http\Controllers\CommentLikeController;
 use App\Http\Controllers\User\Course2Controller;
 use App\Http\Controllers\StudentDetailController;
 use App\Http\Controllers\User\Comment2Controller;
-use App\Http\Controllers\User\Lecture2Controller;
-use App\Http\Controllers\User\SettingsController;
-use App\Http\Controllers\Admin\UniversityController;
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
 
+use App\Http\Controllers\User\Lecture2Controller;
+use App\Http\Controllers\User\SettingsController;
+use App\Http\Controllers\Admin\UniversityController;
+
+Route::post('/ask', [ChatGPTController::class, 'askToChatGPT']);
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -100,6 +105,28 @@ Route::middleware('auth')->group(function () {
     Route::post('/comments/{comment}/like', [CommentLikeController::class, 'toggleLike'])->name('comments.toggleLike');
 
     Route::post('/comments/{comment}/replies', [ReplyController::class, 'store'])->name('replies.store');
+
+
+    Route::get('/my-posts', [ Post2Controller::class, 'myPosts'])->name('posts.mine');
+    // routes/web.php
+Route::get('/posts/{post}/edit', [Post2Controller::class, 'edit'])->name('posts.edit');
+Route::put('/posts/{post}', [Post2Controller::class, 'update'])->name('posts.update');
+Route::delete('/posts/{post}', [Post2Controller::class, 'destroy'])->name('posts.destroy');
+
+
+
+Route::patch('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])
+    ->name('notifications.markAsRead')
+    ->middleware('auth');
+
+
+
+
+Route::get('/users', [showUsersController::class, 'index'])->name('users.index');
+Route::get('/users/{user}', [showUsersController::class, 'show'])->name('users.show');
+
+Route::post('/users/search', [showUsersController::class, 'search'])->name('users.search');
+
 });
 
 
@@ -142,6 +169,35 @@ Route::middleware('auth', IsAdmin::class)->prefix('admin')->name('admin.')->grou
 
 
 
+Route::get('/chat', [ChatGPTController::class, 'showChatPage']);
+
+
+Route::post('/chat', [ChatGPTController::class, 'chat']);
+
+
+
+
+
+
+use App\Models\Message;
+
+
+Route::post('/save-message', function(Request $request) {
+    $request->validate([
+        'user_id' => 'required|exists:users,id',
+        'message' => 'required|string'
+    ]);
+
+    $user = User::find($request->user_id);
+
+    Message::create([
+        'user_id' => $user->id,
+        'email' => $user->email,
+        'message' => $request->message
+    ]);
+
+    return response()->json(['status' => 'saved', 'email' => $user->email]);
+});
 
 
 require __DIR__.'/auth.php';

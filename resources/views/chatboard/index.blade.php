@@ -16,6 +16,13 @@
             <a href="{{ route('user.courses.index') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                 <span>📚</span> <span x-show="sidebarOpen">Courses</span>
             </a>
+
+            <a href="{{ route('users.index') }}"
+            class="block px-4 py-2 hover:bg-gray-200 rounded">
+            <span>👥</span>
+            <span x-show="sidebarOpen">Users</span>
+         </a>
+
             @if($registered_courses && $registered_courses->isNotEmpty())
                 <a href="{{ route('user.courses.lectures', $registered_courses->first()->id) }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                     <span>🎥 </span> <span x-show="sidebarOpen">Lectures</span>
@@ -61,6 +68,14 @@
         <h1 class="text-2xl font-bold text-gray-800">ChatBoard</h1>
         <div class="text-sm text-gray-500">{{ now()->format('l, F j, Y') }}</div>
       </div>
+      <div>
+
+        <a href="{{ route('posts.mine') }}"
+        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm">
+         My Posts
+     </a>
+
+    </div>
 
       <!-- Create New Post -->
       <section class="bg-white p-6 rounded-lg shadow border border-gray-200">

@@ -16,6 +16,14 @@
                 <span>📚</span> <span x-show="sidebarOpen">Courses</span>
             </a>
 
+
+
+            <a href="{{ route('users.index') }}" 
+            class="block px-4 py-2 hover:bg-gray-200 rounded">
+            <span>👥</span>
+            <span x-show="sidebarOpen">Users</span>
+         </a>
+
 {{--
             @if($registered_courses && $registered_courses->isNotEmpty())
             <a href="{{ route('user.courses.lectures', $registered_courses->first()->id) }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
@@ -58,35 +66,7 @@
                     {{ __("You're logged in, ") . Auth::user()->name . "!" }}
                 </div>
 
-                <!-- Stats Cards -->
-                {{-- <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="bg-white p-4 rounded shadow text-center">
-                        <h4 class="text-lg font-semibold">Courses Count</h4>
-                        <p class="text-2xl text-indigo-600 mt-2">{{ $courses_count }}</p>
-                    </div>
-                    <div class="bg-white p-4 rounded shadow text-center">
-                        <h4 class="text-lg font-semibold">Lecture Count</h4>
-                        <p class="text-2xl text-indigo-600 mt-2">{{ $lectures_count }}</p>
-                    </div>
-                    <div class="bg-white p-4 rounded shadow text-center">
-                        <h4 class="text-lg font-semibold">University</h4>
-                        <p class="text-lg mt-2 text-gray-700">
-                            {{ \App\Models\University::find(Auth::user()->student->university_id)->name ?? 'Not set' }}
-                        </p>
-                    </div>
-                    <div class="bg-white p-4 rounded shadow text-center">
-                        <h4 class="text-lg font-semibold">Major</h4>
-                        <p class="text-lg mt-2 text-gray-700">
-                            {{ Auth::user()->student->major->name ?? 'Not set' }}
-                        </p>
-                    </div>
-                    <div class="bg-white p-4 rounded shadow text-center">
-                        <h4 class="text-lg font-semibold">College</h4>
-                        <p class="text-lg mt-2 text-gray-700">
-                            {{ Auth::user()->student->college->name ?? 'Not set' }}
-                        </p>
-                    </div>
-                </div> --}}
+
 
 {{--  --}}
 
@@ -137,21 +117,7 @@
                 <!-- Charts -->
 
                 <!-- Charts -->
-{{-- <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <div class="bg-white p-4 rounded shadow">
-        <h4 class="text-lg font-semibold mb-2">Courses by College</h4>
-        <div class="w-full h-60">
-            <canvas id="coursesByCollegeChart" class="w-full h-full"></canvas>
-        </div>
-    </div>
 
-    <div class="bg-white p-4 rounded shadow">
-        <h4 class="text-lg font-semibold mb-2">Weekly User Activity</h4>
-        <div class="w-full h-60">
-            <canvas id="weeklyActivityChart" class="w-full h-full"></canvas>
-        </div>
-    </div>
-</div> --}}
 
 
 

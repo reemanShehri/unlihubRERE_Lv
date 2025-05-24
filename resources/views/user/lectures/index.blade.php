@@ -36,6 +36,13 @@
             <a href="{{ route('user.courses.index') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2 px-2">
                 <span>📚</span> <span x-show="sidebarOpen">Courses</span>
             </a>
+
+            <a href="{{ route('users.index') }}"
+            class="block px-4 py-2 hover:bg-gray-200 rounded">
+            <span>👥</span>
+            <span x-show="sidebarOpen">Users</span>
+         </a>
+         
             @if($registeredCourses && $registeredCourses->isNotEmpty())
             <a href="{{ route('user.courses.lectures', $registeredCourses->first()->id) }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                 <span>🎥</span>

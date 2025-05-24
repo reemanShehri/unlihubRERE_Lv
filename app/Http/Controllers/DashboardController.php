@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\College;
 use App\Models\Lecture;
+use App\Models\UserActivity;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -15,7 +18,7 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $course = $user->courses;
+        $course = $user->student->courses;
         $lectures = $user->lectures;
 
         if (!$user->student) {
@@ -29,12 +32,21 @@ class DashboardController extends Controller
         $registered_courses = $user->student->courses()->get();
 
         // باقي البيانات
-        $collegeLabels = ['Engineering', 'Science', 'Medicine'];
-        $collegeCounts = [4, 2, 3];
+        $colleges = College::withCount('courses')->get();
+        $collegeLabels = $colleges->pluck('name');
+        $collegeCounts = $colleges->pluck('courses_count');
 
-        $activityDays = ['Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
-        $activityCounts = [1, 2, 3, 4, 2, 0, 1];
+          // Weekly User Activity (assuming there's a 'user_activities' table with a 'created_at' timestamp)
+    $activity = UserActivity::select(
+        DB::raw("DAYNAME(created_at) as day"),
+        DB::raw("COUNT(*) as count")
+    )
+    ->groupBy('day')
+    ->orderByRaw("FIELD(day, 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday')")
+    ->get();
 
+    $activityDays = $activity->pluck('day');
+    $activityCounts = $activity->pluck('count');
         return view('dashboard', [
             'courses_count' => $courses_count,
             'lectures_count' => $lectures_count,
