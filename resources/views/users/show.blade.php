@@ -26,7 +26,38 @@
                                 <span>{{ $user->email }}</span>
                                 <button class="ml-4 text-blue-500 hover:text-blue-700 transition"
                                         onclick="document.getElementById('message-modal').classList.remove('hidden')">
-                                    <i class="fas fa-paper-plane mr-1"></i>Send Message
+                                    <i class="fas fa-paper-plane mr-1"></i>@if ($user->phone)
+                                    @php
+                                    $phoneWith972 = auth()->user()->getFormattedPhoneForWhatsApp();
+                                
+                                    if (substr($phoneWith972, 0, 3) === '972') {
+                                        $phoneWith970 = '970' . substr($phoneWith972, 3);
+                                    } elseif (substr($phoneWith972, 0, 3) === '970') {
+                                        $phoneWith970 = $phoneWith972; // الرقم أصلاً 970
+                                        $phoneWith972 = '972' . substr($phoneWith972, 3); // جرب العكس
+                                    } else {
+                                        // لو الرقم بدون كود دولة، نضيف 972 و970
+                                        $phoneWith970 = '970' . $phoneWith972;
+                                        $phoneWith972 = '972' . $phoneWith972;
+                                    }
+                                @endphp
+                                
+                                <div class="space-y-2">
+                                    <a href="https://wa.me/{{ $phoneWith972 }}" target="_blank" 
+                                       class="text-green-600 hover:underline font-bold">
+                                       (+ 972)
+                                    </a>
+                                
+                                    <a href="https://wa.me/{{ $phoneWith970 }}" target="_blank" 
+                                       class="text-green-600 hover:underline font-bold">
+                                       (+ 970)
+                                    </a>
+                                </div>
+                                
+                                </div>
+                                
+                                @endif
+                                
                                 </button>
                             </div>
                         </div>
@@ -303,29 +334,35 @@
         sendBtn.addEventListener('click', function () {
             const subject = document.querySelector('input[placeholder="Enter subject..."]').value.trim();
             const message = document.querySelector('textarea').value.trim();
+            const recipientEmail = 'support@example.com'; // استبدل هذا بالإيميل المستهدف
 
             if (!message) {
                 alert("Please type a message.");
                 return;
             }
 
-            axios.post('/api/save-message', {
+            axios.post('/api/send-email', {
                 user_id: {{ auth()->id() ?? 'null' }},
+                recipient_email: recipientEmail,
                 subject: subject,
-                message: message
+                message: message,
+                user_email: '{{ auth()->user()->email ?? "guest" }}' // إضافة إيميل المستخدم
             })
             .then(response => {
-                alert("Message sent!");
-                document.getElementById('message-modal').classList.add('hidden');
+                if (response.data.success) {
+                    alert("Email sent successfully!");
+                    document.getElementById('message-modal').classList.add('hidden');
+                } else {
+                    alert("Failed to send email: " + response.data.message);
+                }
             })
             .catch(error => {
                 console.error(error);
-                alert("Something went wrong.");
+                alert("Something went wrong. Please try again later.");
             });
         });
     });
 </script>
-
 
 
 </x-app-layout>

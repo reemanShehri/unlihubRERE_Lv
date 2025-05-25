@@ -39,6 +39,10 @@
             <a href="{{ route('user.settings.index') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                 <span>⚙️</span> <span x-show="sidebarOpen">Settings</span>
             </a>
+
+            <a href="{{ route('uni') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
+                <span>🏫</span> <span x-show="sidebarOpen">Universities</span>
+            </a>
         </nav>
     </div>
 

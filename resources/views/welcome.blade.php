@@ -252,13 +252,13 @@
                         </p>
                     </div>
                     <div class="flex gap-4">
-                        <a href="#" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+                        <a href="{{ route('terms') }}" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
                            x-text="currentLang === 'ar' ? 'الشروط والأحكام' : 'Terms & Conditions'">
                         </a>
-                        <a href="#" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+                        <a href="{{ route('privacy') }}" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
                            x-text="currentLang === 'ar' ? 'سياسة الخصوصية' : 'Privacy Policy'">
                         </a>
-                        <a href="#" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+                        <a href="{{ route('pages.contact') }}" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
                            x-text="currentLang === 'ar' ? 'تواصل معنا' : 'Contact Us'">
                         </a>
                     </div>

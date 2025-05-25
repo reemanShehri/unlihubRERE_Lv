@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy</title>
+
+  <!-- Google Fonts: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-tr from-indigo-50 via-white to-indigo-50 text-gray-900">
+
+  <div class="max-w-4xl mx-auto px-6 py-16 sm:py-20">
+    <nav class="hidden md:flex space-x-8">
+        <a href="{{ url('/') }}" class="text-dark hover:text-primary">Home</a>
+        <a href="{{ route('terms') }}" class="text-dark hover:text-primary">Terms</a>
+        <a href="{{ route('pages.contact') }}" class="text-primary font-medium">Contact</a>
+        <a href="#" class="{{ route('privacy') }}">Privacy</a>
+    </nav>
+    <!-- Title -->
+    <h1 class="text-5xl font-extrabold text-indigo-700 mb-10 tracking-tight drop-shadow-md">
+      Privacy Policy
+    </h1>
+    <p class="text-xl text-gray-600 mb-14 border-l-4 border-indigo-500 pl-6 italic drop-shadow-sm">
+      This Privacy Policy explains how we collect, use, and protect your personal information when you use our application.
+    </p>
+
+    <!-- Section Template with icon -->
+    <section class="mb-14 p-8 bg-white rounded-3xl shadow-lg border border-indigo-200 hover:shadow-2xl transition-shadow duration-300">
+      <div class="flex items-center mb-6 space-x-4 rtl:space-x-reverse">
+        <!-- Icon: Document Text -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m-6-8h6M13 5h6a2 2 0 012 2v14a2 2 0 01-2 2h-6a2 2 0 01-2-2V7a2 2 0 012-2z" />
+        </svg>
+        <h2 class="text-3xl font-semibold text-indigo-700">
+          1. Information We Collect
+        </h2>
+      </div>
+      <ul class="list-disc list-inside space-y-3 text-gray-700 text-lg leading-relaxed">
+        <li>Name and Email address used during registration.</li>
+        <li>Messages or content you submit via our forms.</li>
+        <li>Technical data like browser type, IP address, device information.</li>
+      </ul>
+    </section>
+
+    <section class="mb-14 p-8 bg-white rounded-3xl shadow-lg border border-indigo-200 hover:shadow-2xl transition-shadow duration-300">
+      <div class="flex items-center mb-6 space-x-4 rtl:space-x-reverse">
+        <!-- Icon: Cog -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-6a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <h2 class="text-3xl font-semibold text-indigo-700">
+          2. How We Use Your Information
+        </h2>
+      </div>
+      <p class="mb-4 text-gray-700 text-lg leading-relaxed">
+        We use the collected data to:
+      </p>
+      <ul class="list-disc list-inside space-y-3 text-gray-700 text-lg leading-relaxed">
+        <li>Provide and maintain our services.</li>
+        <li>Send important updates or notifications.</li>
+        <li>Improve user experience and troubleshoot issues.</li>
+      </ul>
+    </section>
+
+    <section class="mb-14 p-8 bg-white rounded-3xl shadow-lg border border-indigo-200 hover:shadow-2xl transition-shadow duration-300">
+      <div class="flex items-center mb-6 space-x-4 rtl:space-x-reverse">
+        <!-- Icon: Shield Check -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5 2v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5a9 9 0 0118 0z" />
+        </svg>
+        <h2 class="text-3xl font-semibold text-indigo-700">
+          3. How We Protect Your Data
+        </h2>
+      </div>
+      <p class="text-gray-700 text-lg leading-relaxed">
+        We implement industry-standard security measures to protect your data from unauthorized access or misuse.
+      </p>
+    </section>
+
+    <section class="mb-14 p-8 bg-white rounded-3xl shadow-lg border border-indigo-200 hover:shadow-2xl transition-shadow duration-300">
+      <div class="flex items-center mb-6 space-x-4 rtl:space-x-reverse">
+        <!-- Icon: External Link -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M18 13v6a2 2 0 01-2 2H6a2 2 0 01-2-2v-6m14-8h-6a2 2 0 00-2 2v6m8-8L10 14" />
+        </svg>
+        <h2 class="text-3xl font-semibold text-indigo-700">
+          4. Third-Party Services
+        </h2>
+      </div>
+      <p class="text-gray-700 text-lg leading-relaxed">
+        We may use third-party tools (like analytics or messaging APIs), but we ensure these services are compliant with privacy regulations.
+      </p>
+    </section>
+
+    <section class="mb-14 p-8 bg-white rounded-3xl shadow-lg border border-indigo-200 hover:shadow-2xl transition-shadow duration-300">
+      <div class="flex items-center mb-6 space-x-4 rtl:space-x-reverse">
+        <!-- Icon: User Circle -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A9 9 0 1118.879 6.196 9 9 0 015.121 17.804zM15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        <h2 class="text-3xl font-semibold text-indigo-700">
+          5. Your Rights
+        </h2>
+      </div>
+      <ul class="list-disc list-inside space-y-3 text-gray-700 text-lg leading-relaxed">
+        <li>You have the right to access, update, or delete your personal data.</li>
+        <li>You can contact us anytime for privacy-related requests.</li>
+      </ul>
+    </section>
+
+    <section class="mb-14 p-8 bg-white rounded-3xl shadow-lg border border-indigo-200 hover:shadow-2xl transition-shadow duration-300">
+      <div class="flex items-center mb-6 space-x-4 rtl:space-x-reverse">
+        <!-- Icon: Mail -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16 12H8m8 4H8m4-8H8m12 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2v-6m16-6H4a2 2 0 00-2 2v2a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2z" />
+        </svg>
+        <h2 class="text-3xl font-semibold text-indigo-700">
+          6. Contact Us
+        </h2>
+      </div>
+      <p class="text-gray-700 text-lg leading-relaxed">
+        If you have any questions about this Privacy Policy, please contact us at:
+      </p>
+      <p class="mt-3 text-indigo-600 font-semibold text-lg select-text">
+        email@example.com
+      </p>
+    </section>
+
+    <!-- Last Updated -->
+    <p class="text-sm text-gray-500 mt-16 text-center italic select-none">
+      Last updated: May 24, 2025
+    </p>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <h4 class="font-semibold mb-4">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="{{ url('/') }}" class="text-gray-400 hover:text-white">Home</a></li>
+            <li><a href="{{ route('terms') }}" class="text-gray-400 hover:text-white">Terms</a></li>
+            <li><a href="{{ route('privacy') }}" class="text-gray-400 hover:text-white">Privacy</a></li>
+            <li><a href="{{ route('pages.contact') }}" class="text-gray-400 hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-4">Services</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white">Consulting</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Development</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Marketing</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Support</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-4">Connect</h4>
+          <div class="flex space-x-4">
+            <a href="https://www.facebook.com/reman.el.shehri/" class="social-icon bg-gray-700 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-600">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://x.com/ReemanShehri" class="social-icon bg-gray-700 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-400">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.instagram.com/reman_shehri/?__pwa=1" class="social-icon bg-gray-700 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-pink-600">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/reeman-shehri-15a15b248/" class="social-icon bg-gray-700 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+        <p>&copy; 2025 Your Company. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

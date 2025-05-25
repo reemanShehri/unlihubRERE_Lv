@@ -1,9 +1,11 @@
 <?php
 
+use App\Models\Message;
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\User2Controller;
@@ -12,8 +14,10 @@ use App\Http\Controllers\ChatGPTController;
 use App\Http\Controllers\CollegeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LectureController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\StudentController;
+
+use App\Http\Controllers\User\Lecture2Controller;
+use App\Http\Controllers\User\SettingsController;
+use App\Http\Controllers\Admin\UniversityController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,26 +25,26 @@ Route::get('/', function () {
 
 
 
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\showUsersController;
 use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\auth\Page2Controller;
 use App\Http\Controllers\User\Post2Controller;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\CommentLikeController;
-use App\Http\Controllers\User\Course2Controller;
-use App\Http\Controllers\StudentDetailController;
-use App\Http\Controllers\User\Comment2Controller;
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
 
-use App\Http\Controllers\User\Lecture2Controller;
-use App\Http\Controllers\User\SettingsController;
-use App\Http\Controllers\Admin\UniversityController;
+use App\Http\Controllers\User\Course2Controller;
+use App\Http\Controllers\StudentDetailController;
+use App\Http\Controllers\User\Comment2Controller;
 
 Route::post('/ask', [ChatGPTController::class, 'askToChatGPT']);
 
@@ -127,6 +131,12 @@ Route::get('/users/{user}', [showUsersController::class, 'show'])->name('users.s
 
 Route::post('/users/search', [showUsersController::class, 'search'])->name('users.search');
 
+
+
+Route::get('/uni', [Page2Controller::class, 'uni'])->name('uni');
+
+Route::get('/my-university', [Page2Controller::class, 'myUniversity'])->name('universitiesMy');
+
 });
 
 
@@ -179,7 +189,6 @@ Route::post('/chat', [ChatGPTController::class, 'chat']);
 
 
 
-use App\Models\Message;
 
 
 Route::post('/save-message', function(Request $request) {
@@ -198,6 +207,28 @@ Route::post('/save-message', function(Request $request) {
 
     return response()->json(['status' => 'saved', 'email' => $user->email]);
 });
+
+
+
+
+Route::get('/page/{slug}', [PageController::class, 'show'])->name('pages.show');
+
+// صفحات ثابتة
+Route::get('/contact', [PageController::class, 'contact'])->name('pages.contact');
+Route::post('/contact', [PageController::class, 'submitContact'])->name('pages.contact.submit');
+
+
+Route::get('/terms', [PageController::class, 'terms'])->name('terms');
+
+Route::get('/privacy', [PageController::class, 'privacy'])->name('privacy');
+
+
+
+Route::get('language/{lang}', function ($lang) {
+    session(['locale' => $lang]);
+    App::setLocale($lang);
+    return back();
+})->name('language');
 
 
 require __DIR__.'/auth.php';

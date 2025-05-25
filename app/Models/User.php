@@ -92,5 +92,36 @@ public function likes()
 
 
 
+    // ... كود الموديل الحالي
+
+    public function getFormattedPhoneForWhatsApp()
+    {
+        $phone = $this->phone ?? '';
+    
+        if (empty($phone)) {
+            return null;
+        }
+    
+        // إزالة أي شيء غير رقم
+        $phone = preg_replace('/\D+/', '', $phone);
+    
+        // إزالة أول صفر إذا موجود
+        if (substr($phone, 0, 1) === '0') {
+            $phone = substr($phone, 1);
+        }
+    
+        // إذا يبدأ بـ 970 أو 972 يرجع الرقم كما هو
+        if (substr($phone, 0, 3) === '970' || substr($phone, 0, 3) === '972') {
+            return $phone;
+        }
+    
+        // إذا لا يبدأ بالكود يرجع مع 972 بشكل افتراضي
+        return '972' . $phone;
+    }
+    
+
+
+
+
 
 }

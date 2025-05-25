@@ -34,4 +34,34 @@ class User2Controller extends Controller
 
         return redirect()->back()->with('status', 'تم تحديث البيانات بنجاح!');
     }
+
+
+
+    public function getFormattedPhoneForWhatsApp()
+{
+    // رقم الهاتف الخام من الحقل
+    $phone = $this->phone ?? ''; // افترض أن الحقل اسمه phone
+
+    // إذا الرقم فارغ ارجع فارغ
+    if (empty($phone)) {
+        return null;
+    }
+
+    // إزالة المسافات والرموز غير الرقمية (اختياري)
+    $phone = preg_replace('/\D+/', '', $phone);
+
+    // إزالة أول صفر إذا موجود
+    if (str_starts_with($phone, '0')) {
+        $phone = substr($phone, 1);
+    }
+
+    // إضافة كود الدولة إذا لم يكن موجود
+    if (!str_starts_with($phone, '972') && !str_starts_with($phone, '970')) {
+        // افتراضياً نضيف 972 (يمكن تعدل حسب بلد المستخدم)
+        $phone = '972' . $phone;
+    }
+
+    return $phone;
+}
+
 }
