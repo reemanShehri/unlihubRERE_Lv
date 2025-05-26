@@ -248,7 +248,7 @@
                     <div class="mb-4 md:mb-0">
                         <span class="text-xl font-bold unihub-text-gradient">UniHub</span>
                         <p class="text-sm text-gray-500 dark:text-gray-400 mt-1"
-                           x-text="currentLang === 'ar' ? 'منصة الطلاب الجامعيين © 2023' : 'University Students Platform © 2023'">
+                           x-text="currentLang === 'ar' ? 'منصة الطلاب الجامعيين © 2025' : 'University Students Platform © 2025R'">
                         </p>
                     </div>
                     <div class="flex gap-4">

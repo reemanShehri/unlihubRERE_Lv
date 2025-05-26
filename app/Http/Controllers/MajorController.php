@@ -62,6 +62,7 @@ class MajorController extends Controller
     {
         //
         $colleges = College::all();
+        $major = Major::with('college')->findOrFail($id);
         return view('admin.majors.edit', compact('major', 'colleges'));
     }
 
@@ -71,6 +72,7 @@ class MajorController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $major = Major::findOrFail($id); 
         $request->validate([
             'name' => 'required|string|max:255|unique:majors,name,' . $major->id,
             'college_id' => 'required|exists:colleges,id',

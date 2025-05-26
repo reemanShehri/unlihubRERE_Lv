@@ -15,8 +15,10 @@ class University extends Model
         'name', 'country', 'official_website', 'student_portal',
         'moodle_link', 'facebook_page', 'telegram_group',
     ];
-    
 
+
+
+    
     public function students()
 {
     return $this->hasMany(Student::class);

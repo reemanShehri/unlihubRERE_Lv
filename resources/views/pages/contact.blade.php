@@ -58,7 +58,7 @@
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <a href="#" class="text-2xl font-bold text-primary">
-                    <span class="text-dark">Pro</span>Connect
+                    <span class="text-dark">Uni</span>Connect
                 </a>
                 <nav class="hidden md:flex space-x-8">
                     <a href="{{ url('/') }}" class="text-dark hover:text-primary">Home</a>
@@ -231,7 +231,7 @@
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-xl font-bold mb-4">ProConnect</h3>
+                    <h3 class="text-xl font-bold mb-4">UniConnect</h3>
                     <p class="text-gray-400">
                         Connecting you with professional solutions for all your business needs.
                     </p>
@@ -273,7 +273,7 @@
                 </div>
             </div>
             <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2025R ProConnect. All rights reserved.</p>
+                <p>&copy; 2025R UniConnect. All rights reserved.</p>
             </div>
         </div>
     </footer>
