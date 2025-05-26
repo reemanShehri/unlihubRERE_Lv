@@ -3,6 +3,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
     <!-- Session Status -->
     <x-auth-session-status class="mb-6" :status="session('status')" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('im.png') }}">
 
     <div class="unihub-auth-container">
         <div class="unihub-auth-header">
