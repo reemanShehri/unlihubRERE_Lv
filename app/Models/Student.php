@@ -14,6 +14,7 @@ class Student extends Model
 {
     //
     protected $guarded =[];
+    protected $table = 'students';
 
 
     public function image()
@@ -23,7 +24,7 @@ class Student extends Model
 
 public function user()
 {
-    return $this->belongsTo(User::class);
+    return $this->belongsTo(User::class, 'user_id'); // تحديد المفتاح الأجنبي صراحة
 }
 
 public function university()
@@ -38,7 +39,7 @@ public function major()
 
 public function courses()
 {
-    return $this->belongsToMany(Course::class);
+    return $this->belongsToMany(Course::class, 'course_student', 'student_id', 'course_id');
 }
 
 

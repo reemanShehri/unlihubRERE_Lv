@@ -29,7 +29,7 @@
                                     <i class="fas fa-paper-plane mr-1"></i>@if ($user->phone)
                                     @php
                                     $phoneWith972 = auth()->user()->getFormattedPhoneForWhatsApp();
-                                
+
                                     if (substr($phoneWith972, 0, 3) === '972') {
                                         $phoneWith970 = '970' . substr($phoneWith972, 3);
                                     } elseif (substr($phoneWith972, 0, 3) === '970') {
@@ -41,23 +41,23 @@
                                         $phoneWith972 = '972' . $phoneWith972;
                                     }
                                 @endphp
-                                
+
                                 <div class="space-y-2">
-                                    <a href="https://wa.me/{{ $phoneWith972 }}" target="_blank" 
+                                    <a href="https://wa.me/{{ $phoneWith972 }}" target="_blank"
                                        class="text-green-600 hover:underline font-bold">
                                        (+ 972)
                                     </a>
-                                
-                                    <a href="https://wa.me/{{ $phoneWith970 }}" target="_blank" 
+
+                                    <a href="https://wa.me/{{ $phoneWith970 }}" target="_blank"
                                        class="text-green-600 hover:underline font-bold">
                                        (+ 970)
                                     </a>
                                 </div>
-                                
+
                                 </div>
-                                
+
                                 @endif
-                                
+
                                 </button>
                             </div>
                         </div>
@@ -129,6 +129,22 @@
     <p class="text-gray-700">{{ $user->bio ?? 'No bio available' }}</p>
 </div>
 
+<!-- Courses -->
+<div class="mt-4 bg-gray-50 p-5 rounded-lg">
+    <h4 class="font-semibold text-lg text-gray-700 mb-2 flex items-center">
+        <i class="fas fa-book-open mr-2 text-purple-500"></i>
+        Courses
+    </h4>
+    @if(count($courses) > 0)
+        <ul class="list-disc list-inside text-gray-700 space-y-1">
+            @foreach($courses as $course)
+                <li>{{ $course->title }}</li>
+            @endforeach
+        </ul>
+    @else
+        <p class="text-gray-700">No courses available</p>
+    @endif
+</div>
 
                 </div>
             </div>
@@ -140,36 +156,7 @@
 
 
         <!-- AI Assistant Section -->
-        <div class="bg-white shadow-lg rounded-xl overflow-hidden">
-            <div class="p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
-                <h3 class="text-xl font-bold text-gray-800 flex items-center">
-                    <i class="fas fa-robot text-indigo-600 mr-3"></i>
-                    AI Academic Assistant
-                </h3>
-                <p class="text-gray-600 mt-1">Ask me anything about your courses or university life</p>
-            </div>
-
-            <!-- Chat Container -->
-            <div class="p-4">
-                <div id="ai-chat-container" class="h-64 overflow-y-auto mb-4 space-y-3 p-3 bg-gray-50 rounded-lg">
-                    <!-- Messages will appear here -->
-                    <div class="text-center text-gray-500 py-10" id="empty-chat">
-                        <i class="fas fa-comments text-3xl mb-2 text-gray-300"></i>
-                        <p>Start a conversation with your AI assistant</p>
-                    </div>
-                </div>
-
-                <div class="flex space-x-2">
-                    <input type="text" id="ai-message-input"
-                           class="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                           placeholder="Ask about your courses...">
-                    <button id="ai-send-btn"
-                            class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition flex items-center">
-                        <i class="fas fa-paper-plane mr-2"></i> Send
-                    </button>
-                </div>
-            </div>
-        </div>
+      
     </div>
 
     <!-- Message Modal -->

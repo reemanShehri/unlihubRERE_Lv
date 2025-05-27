@@ -49,7 +49,6 @@ class showUsersController extends Controller
 //     return view('users.index', compact('users', 'majors'));
 // }
 
-
 public function index(Request $request)
 {
     $users = User::query()
@@ -73,6 +72,7 @@ public function index(Request $request)
                 $q->where('major_id', $major);
             });
         })
+        ->with(['student.courses']) // Include the courses the student is enrolled in
         ->orderBy('created_at', 'desc')
         ->paginate(15);
 
@@ -83,8 +83,6 @@ public function index(Request $request)
         ]);
     }
 
-
-
     $majors = Major::all();
     return view('users.index', compact('users', 'majors'));
 }
@@ -94,7 +92,9 @@ public function index(Request $request)
     // عرض صفحة البروفايل لمستخدم معين
     public function show(User $user)
     {
-        return view('users.show', compact('user'));
+
+        $courses = $user->student->courses ?? [];
+        return view('users.show', compact('user', 'courses'));
     }
 
 

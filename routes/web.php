@@ -3,6 +3,8 @@
 use App\Models\Message;
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\APIController;
+use App\Http\Controllers\ParController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PageController;
@@ -12,12 +14,10 @@ use App\Http\Controllers\User2Controller;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ChatGPTController;
 use App\Http\Controllers\CollegeController;
+
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LectureController;
-
-use App\Http\Controllers\User\Lecture2Controller;
-use App\Http\Controllers\User\SettingsController;
-use App\Http\Controllers\Admin\UniversityController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,7 +25,6 @@ Route::get('/', function () {
 
 
 
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\showUsersController;
@@ -36,15 +35,18 @@ use App\Http\Controllers\auth\Page2Controller;
 use App\Http\Controllers\User\Post2Controller;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\CommentLikeController;
+use App\Http\Controllers\User\Course2Controller;
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
 
-use App\Http\Controllers\User\Course2Controller;
 use App\Http\Controllers\StudentDetailController;
 use App\Http\Controllers\User\Comment2Controller;
+use App\Http\Controllers\User\Lecture2Controller;
+use App\Http\Controllers\User\SettingsController;
+use App\Http\Controllers\Admin\UniversityController;
 
 Route::post('/ask', [ChatGPTController::class, 'askToChatGPT']);
 
@@ -133,10 +135,17 @@ Route::post('/users/search', [showUsersController::class, 'search'])->name('user
 
 
 
+Route::get('/course/{course}/users', [Course2Controller::class, 'usersWithCourse'])->name('course.users');
+
 Route::get('/uni', [Page2Controller::class, 'uni'])->name('uni');
 
 Route::get('/my-university', [Page2Controller::class, 'myUniversity'])->name('universitiesMy');
 
+
+Route::get('/courses', [ParController::class, 'index'])->name('courses.index');
+
+Route::get('/courses/{course}', [ParController::class, 'show'])->name('courses.show');
+Route::get('/API', [APIController::class, 'API'])->name('API');
 });
 
 

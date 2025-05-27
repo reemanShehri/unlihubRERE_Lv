@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Post;
+use App\Models\Major;
 use App\Models\Course;
 use App\Models\Comment;
 use App\Models\Student;
@@ -59,7 +60,7 @@ class User extends Authenticatable
 
     public function student()
 {
-    return $this->hasOne(Student::class);
+    return $this->hasOne(Student::class ,'user_id');
 }
 
 public function posts()
@@ -78,12 +79,25 @@ public function notifications()
 }
 
 
+// public function courses()
+// {
+//     return $this->belongsToMany(Course::class, 'course_student', 'student_id', 'course_id')
+//                 ->withTimestamps();
+// }
+
+
 public function courses()
 {
-    return $this->belongsToMany(Course::class, 'course_student', 'student_id', 'course_id')
-                ->withTimestamps();
+    // يجب أن تكون هذه العلاقة عبر Student وليس مباشرة
+    return $this->hasOneThrough(
+        Course::class,
+        Student::class,
+        'user_id', // Foreign key on students table
+        'id', // Foreign key on courses table
+        'id', // Local key on users table
+        'id' // Local key on students table
+    );
 }
-
 
 public function likes()
 {
@@ -97,31 +111,35 @@ public function likes()
     public function getFormattedPhoneForWhatsApp()
     {
         $phone = $this->phone ?? '';
-    
+
         if (empty($phone)) {
             return null;
         }
-    
+
         // إزالة أي شيء غير رقم
         $phone = preg_replace('/\D+/', '', $phone);
-    
+
         // إزالة أول صفر إذا موجود
         if (substr($phone, 0, 1) === '0') {
             $phone = substr($phone, 1);
         }
-    
+
         // إذا يبدأ بـ 970 أو 972 يرجع الرقم كما هو
         if (substr($phone, 0, 3) === '970' || substr($phone, 0, 3) === '972') {
             return $phone;
         }
-    
+
         // إذا لا يبدأ بالكود يرجع مع 972 بشكل افتراضي
         return '972' . $phone;
     }
-    
 
 
 
 
+
+    public function major()
+{
+    return $this->belongsTo(Major::class);
+}
 
 }

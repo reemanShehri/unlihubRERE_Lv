@@ -76,6 +76,8 @@
                                             @csrf
                                             @method('DELETE')
                                             <input type="hidden" name="course_id" value="{{ $course->id }}">
+                                            <a href="{{ route('user.courses.lectures', $course->id) }}" class="text-sm text-blue-600 hover:underline mb-2">📹 View Lectures</a>
+                                            {{-- <a href="{{ route('course.users', ['course' => $course->id]) }}" class="text-sm text-blue-600 hover:underline mb-2">📄 Participant Users</a> --}}
                                             <button class="text-sm text-red-600 hover:underline">❌ Remove</button>
                                         </form>
 
@@ -89,6 +91,9 @@
                         <p class="text-gray-500">You haven’t registered for any courses yet.</p>
                     @endif
                 </section>
+
+
+                {{--  --}}
 
                 <!-- 🌟 Suggested Courses -->
                 <section class="bg-white shadow rounded-lg p-6">

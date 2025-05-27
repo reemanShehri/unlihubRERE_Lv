@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\Major;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -69,6 +70,9 @@ public function unregister(Request $request)
 
     return redirect()->back()->with('success', 'Course unregistered successfully.');
 }
+
+
+
 
 
 
