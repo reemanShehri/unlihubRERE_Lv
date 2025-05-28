@@ -150,21 +150,43 @@
                                     <label for="bio" class="block text-sm font-medium text-gray-700">Bio</label>
                                     <textarea id="bio" name="bio" rows="3" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">{{ Auth::user()->bio }}</textarea>
                                 </div>
-                                <div class="flex justify-end">
-                                    <button type="submit" class="bg-indigo-600 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        Save Changes
-                                    </button>
-                                </div>
+                             
                             </form>
                         </div>
 
                         <div class="border-t border-gray-200 pt-6">
                             <h3 class="text-lg font-medium text-gray-900 mb-4">Change Password</h3>
                             <form class="space-y-4">
-                                <div>
+                                <div class="relative">
                                     <label for="current-password" class="block text-sm font-medium text-gray-700">Current Password</label>
-                                    <input type="password" id="current-password" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
-                                </div>
+                                    <input 
+                                      type="password" 
+                                      id="current-password" 
+                                      class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 pr-10 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" 
+                                    />
+                                    <button type="button" 
+                                            id="togglePassword" 
+                                            class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-500 hover:text-gray-700 focus:outline-none" 
+                                            aria-label="Toggle password visibility">
+                                      👁️
+                                    </button>
+                                  </div>
+                                  
+                                  <script>
+                                    const passwordInput = document.getElementById('current-password');
+                                    const toggleBtn = document.getElementById('togglePassword');
+                                  
+                                    toggleBtn.addEventListener('click', () => {
+                                      // لو النوع password حوّله text (يعني أظهر كلمة السر)
+                                      // وإذا text رجّعه password (اخفي كلمة السر)
+                                      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                                      passwordInput.setAttribute('type', type);
+                                  
+                                      // غير أيقونة العيون عشان توضح الحالة
+                                      toggleBtn.textContent = type === 'password' ? '👁️' : '🙈';
+                                    });
+                                  </script>
+                                  
                                 <div>
                                     <label for="new-password" class="block text-sm font-medium text-gray-700">New Password</label>
                                     <input type="password" id="new-password" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
@@ -174,9 +196,28 @@
                                     <input type="password" id="confirm-password" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
                                 </div>
                                 <div class="flex justify-end">
-                                    <button type="button" class="bg-indigo-600 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        Change Password
-                                    </button>
+                                    <div class="flex justify-end">
+                                        <a href="{{ route('profile.edit') }}" class="btn-link">in profile page you can submit</a>
+    
+                                        <style>
+                                        .btn-link {
+                                          display: inline-block;
+                                          padding: 10px 20px;
+                                          background-color: #2c4885; /* لون أزرق */
+                                          color: white;
+                                          font-weight: 500;
+                                          border-radius: 6px;
+                                          text-decoration: none;
+                                          transition: background-color 0.3s ease;
+                                          font-family: Arial, sans-serif;
+                                        }
+                                        
+                                        .btn-link:hover {
+                                          background-color: #294ba9; /* لون أزرق أغمق عند التمرير */
+                                        }
+                                        </style>
+                                                                        
+                                    </div>
                                 </div>
                             </form>
                         </div>
