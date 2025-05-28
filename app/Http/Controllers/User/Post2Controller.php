@@ -39,10 +39,19 @@ public function store(Request $request)
     $post->user_id = auth()->id();
 
     // حفظ الصورة إذا تم رفعها
+    // if ($request->hasFile('image')) {
+    //     $imagePath = $request->file('image')->store('posts/images', 'public');
+    //     $post->image_path = $imagePath;
+    // }
+
     if ($request->hasFile('image')) {
-        $imagePath = $request->file('image')->store('posts/images', 'public');
-        $post->image_path = $imagePath;
+        $image = $request->file('image');
+        $imageName = time() . '_' . $image->getClientOriginalName();
+        $destinationPath = public_path('images/posts/images');
+        $image->move($destinationPath, $imageName);
+        $post->image_path = 'posts/images/' . $imageName;  // بدون 'images/' لأنه مضاف في Blade
     }
+    
 
     // حفظ الملف إذا تم رفعه
     if ($request->hasFile('file')) {
