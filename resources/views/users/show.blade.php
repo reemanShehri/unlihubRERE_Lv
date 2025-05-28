@@ -4,6 +4,17 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <x-slot name="header">
+        
+        @if ($user->profile_photo_path)
+        <img src="{{ asset('images/profile_photos/' . $user->profile_photo_path) }}"
+        alt="Profile Image"
+        class="w-24 h-24 rounded-full border-4 border-blue-500 object-cover">
+@else
+    <img src="https://ui-avatars.com/api/?name={{ urlencode($user->name) }}&background=0D8ABC&color=fff" 
+         alt="Default Avatar"
+         class="w-20 h-20 rounded-full object-cover border border-gray-300">
+@endif
+
         <h2 class="font-semibold text-2xl text-gray-900 leading-tight">
             <i class="fas fa-user-circle mr-2"></i>{{ $user->name }}'s Profile
         </h2>

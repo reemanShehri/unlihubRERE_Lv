@@ -100,6 +100,7 @@
                     class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition duration-300 border border-gray-100"
                 >
                     <!-- Card Header -->
+                    
                     <div
                         class="bg-gradient-to-r from-indigo-50 to-blue-50 p-4 flex items-center justify-between"
                     >
