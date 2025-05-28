@@ -19,12 +19,6 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LectureController;
 use App\Http\Controllers\ProfileController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\showUsersController;
@@ -37,16 +31,25 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\CommentLikeController;
 use App\Http\Controllers\User\Course2Controller;
 
-Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
-
 
 use App\Http\Controllers\StudentDetailController;
 use App\Http\Controllers\User\Comment2Controller;
 use App\Http\Controllers\User\Lecture2Controller;
 use App\Http\Controllers\User\SettingsController;
 use App\Http\Controllers\Admin\UniversityController;
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
+
+
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
+
 
 Route::post('/ask', [ChatGPTController::class, 'askToChatGPT']);
 

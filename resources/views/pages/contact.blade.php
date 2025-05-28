@@ -57,14 +57,14 @@
     <header class="bg-white shadow-sm">
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <a href="#" class="text-2xl font-bold text-primary">
-                    <span class="text-dark">Uni</span>Connect
+                <a href="{{ url('/') }}" class="text-2xl font-bold text-primary">
+                    <span class="text-dark">Uni</span>Hub
                 </a>
                 <nav class="hidden md:flex space-x-8">
                     <a href="{{ url('/') }}" class="text-dark hover:text-primary">Home</a>
                     <a href="{{ route('terms') }}" class="text-dark hover:text-primary">Terms</a>
                     <a href="{{ route('pages.contact') }}" class="text-primary font-medium">Contact</a>
-                    <a href="{{ route('privacy') }}" class="text-primary font-medium">Privacy</a>
+                    <a href="{{ route('privacy') }}" class="text-dark hover:text-primary">Privacy</a>
                 </nav>
                 <button class="md:hidden text-dark">
                     <i class="fas fa-bars text-xl"></i>
@@ -152,21 +152,21 @@
                     <h2 class="text-2xl font-bold text-dark mb-4">Our Location</h2>
                     <p class="text-gray-600 mb-6">
                         <i class="fas fa-map-marker-alt text-primary mr-2"></i>
-                        123 Business Avenue, Tech District, Digital City 54321
+                       Gaza strip 
                     </p>
                     <p class="text-gray-600 mb-6">
                         <i class="fas fa-clock text-primary mr-2"></i>
                         Monday - Friday: 9:00 AM - 6:00 PM
                     </p>
-                    <p class="text-gray-600 mb-6">
+                    {{-- <p class="text-gray-600 mb-6">
                         <i class="fas fa-phone-alt text-primary mr-2"></i>
                         +1 (555) 123-4567
-                    </p>
-                    <div class="flex space-x-4">
+                    </p> --}}
+                    {{-- <div class="flex space-x-4">
                         <a href="#" class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-opacity-90 transition">
                             Get Directions
                         </a>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="bg-gray-200 min-h-64 lg:min-h-full">
                     <!-- Map Placeholder -->
@@ -231,7 +231,7 @@
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-xl font-bold mb-4">UniConnect</h3>
+                    <h3 class="text-xl font-bold mb-4">UniHub</h3>
                     <p class="text-gray-400">
                         Connecting you with professional solutions for all your business needs.
                     </p>

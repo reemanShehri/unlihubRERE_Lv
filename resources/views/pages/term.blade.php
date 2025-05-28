@@ -67,14 +67,14 @@
   <header class="bg-white shadow-sm">
     <div class="container mx-auto px-6 py-4">
       <div class="flex items-center justify-between">
-        <a href="#" class="text-2xl font-bold text-primary">
+        <a href="{{ url('/') }}" class="text-2xl font-bold text-primary">
           <span class="text-dark">Uni</span>Hub
         </a>
         <nav class="hidden md:flex space-x-8">
             <a href="{{ url('/') }}" class="text-dark hover:text-primary">Home</a>
-            <a href="{{ route('terms') }}" class="text-dark hover:text-primary">Terms</a>
-            <a href="{{ route('pages.contact') }}" class="text-primary font-medium">Contact</a>
-            <a href="#" class="{{ route('privacy') }}">Privacy</a>
+            <a href="{{ route('terms') }}" class="text-primary font-medium">Terms</a>
+            <a href="{{ route('pages.contact') }}" class="text-dark hover:text-primary">Contact</a>
+            <a href="{{ route('privacy') }}" class="text-dark hover:text-primary">Privacy</a>
         </nav>
 
         <button class="md:hidden text-dark">
