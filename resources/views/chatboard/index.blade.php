@@ -189,7 +189,7 @@
           </div>
 
           @if ($post->image_path)
-          <img src="{{ asset('storage/' . $post->image_path) }}" alt="Post Image"
+          <img src="{{ asset('images/' . $post->image_path) }}" alt="Post Image"
             class="mb-5 rounded max-w-full h-auto max-h-80" />
           @endif
 
