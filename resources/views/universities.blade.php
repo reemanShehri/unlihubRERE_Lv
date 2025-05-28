@@ -14,6 +14,7 @@
                             <div>
                                 <h1 class="text-3xl font-bold mb-2">{{ $student->university->name }}</h1>
                                 <div class="flex items-center mb-6">
+                                    
                                     <span class="bg-white text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
                                         {{ $student->university->country }}
                                     </span>

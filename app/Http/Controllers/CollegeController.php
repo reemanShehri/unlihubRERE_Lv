@@ -11,13 +11,27 @@ class CollegeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-        $colleges = College::all();
-        return view('admin.colleges.index', compact('colleges'));
+    // public function index()
+    // {
+    //     //
+    //     $colleges = College::all();
+    //     return view('admin.colleges.index', compact('colleges'));
 
+    // }
+
+    public function index(Request $request)
+{
+    $query = College::query();
+
+    if ($search = $request->input('search')) {
+        $query->where('name', 'like', "%{$search}%");
     }
+
+    $colleges = $query->orderBy('name')->paginate(10)->withQueryString();
+
+    return view('admin.colleges.index', compact('colleges'));
+}
+
 
     /**
      * Show the form for creating a new resource.

@@ -11,6 +11,18 @@
             + New Post
         </a>
 
+        <form method="GET" action="{{ route('admin.posts.index') }}" class="mb-4 flex items-center space-x-2">
+            <input type="text" name="user_name" value="{{ request('user_name') }}" placeholder="Search by user name" 
+                   class="border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded">Filter</button>
+            <a href="{{ route('admin.posts.index') }}" 
+            class="ml-4 inline-block bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded transition duration-200">
+            Reset
+         </a>
+         
+                 </form>
+        
+
         <div class="bg-white shadow-sm sm:rounded-lg">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead>

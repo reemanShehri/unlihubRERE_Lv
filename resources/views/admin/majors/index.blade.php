@@ -19,6 +19,34 @@
             </a>
         </div>
 
+        <form method="GET" action="{{ route('admin.majors.index') }}" class="mb-4 flex space-x-4">
+            <input
+                type="text"
+                name="major_name"
+                value="{{ request('major_name') }}"
+                placeholder="Search by Major Name"
+                class="border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <input
+                type="text"
+                name="college_name"
+                value="{{ request('college_name') }}"
+                placeholder="Search by College Name"
+                class="border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button
+                type="submit"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+                Filter
+            </button>
+            <a href="{{ route('admin.majors.index') }}" 
+            class="ml-4 inline-block bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded">
+            Reset
+         </a>
+                 </form>
+        
+
         <table class="min-w-full bg-white border border-gray-200 rounded">
             <thead>
                 <tr>

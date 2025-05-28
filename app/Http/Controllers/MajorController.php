@@ -11,12 +11,37 @@ class MajorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-        $majors = Major::with('college')->latest()->paginate(10);
-        return view('admin.majors.index', compact('majors'));
+    // public function index()
+    // {
+    //     //
+    //     $majors = Major::with('college')->latest()->paginate(10);
+    //     return view('admin.majors.index', compact('majors'));
+    // }
+
+  
+
+public function index(Request $request)
+{
+    $query = Major::with('college');
+
+    // فلترة حسب اسم التخصص
+    if ($request->filled('major_name')) {
+        $query->where('name', 'like', '%' . $request->major_name . '%');
     }
+
+    // فلترة حسب اسم الكلية (علاقة college)
+    if ($request->filled('college_name')) {
+        $query->whereHas('college', function ($q) use ($request) {
+            $q->where('name', 'like', '%' . $request->college_name . '%');
+        });
+    }
+
+   
+    $majors = $query->paginate(10)->withQueryString();
+
+    return view('admin.majors.index', compact('majors'));
+}
+
 
     /**
      * Show the form for creating a new resource.

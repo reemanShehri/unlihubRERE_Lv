@@ -18,6 +18,18 @@
                 </div>
             @endif
 
+            <div class="mb-4">
+                <form method="GET" action="{{ route('admin.colleges.index') }}" class="flex space-x-2">
+                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Search by name"
+                           class="border rounded px-4 py-2 w-full max-w-sm" />
+                    <button type="submit"
+                            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Search</button>
+                    <a href="{{ route('admin.colleges.index') }}"
+                       class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400 text-gray-700">Reset</a>
+                </form>
+            </div>
+            
+
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <table class="min-w-full table-auto">
                     <thead class="bg-gray-200">

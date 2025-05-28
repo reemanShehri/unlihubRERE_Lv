@@ -11,12 +11,34 @@ class CourseController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-        $courses = Course::with('major')->paginate(10);
-        return view('admin.courses.index', compact('courses'));
+    // public function index()
+    // {
+    //     //
+    //     $courses = Course::with('major')->paginate(10);
+    //     return view('admin.courses.index', compact('courses'));
+    // }
+
+
+
+public function index(Request $request)
+{
+    $majors = Major::all();
+    
+    $courses = Course::query();
+
+    if ($request->filled('title')) {
+        $courses->where('title', 'like', '%' . $request->title . '%');
     }
+
+    if ($request->filled('major')) {
+        $courses->where('major_id', $request->major);
+    }
+
+    $courses = $courses->paginate(10);
+
+    return view('admin.courses.index', compact('courses', 'majors'));
+}
+
 
     /**
      * Show the form for creating a new resource.

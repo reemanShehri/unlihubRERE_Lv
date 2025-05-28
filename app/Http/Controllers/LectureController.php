@@ -11,12 +11,39 @@ class LectureController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-        $lectures = Lecture::with('course')->latest()->get();
-        return view('admin.lectures.index', compact('lectures'));
+    // public function index()
+    // {
+    //     //
+    //     $lectures = Lecture::with('course')->latest()->get();
+    //     return view('admin.lectures.index', compact('lectures'));
+    // }
+
+
+
+public function index(Request $request)
+{
+  
+    $courses = Course::all();
+
+ 
+    $lectures = Lecture::with('course')->latest();
+
+  
+    if ($request->filled('course_id')) {
+        $lectures->where('course_id', $request->course_id);
     }
+
+    if ($request->filled('title')) {
+        $lectures->where('title', 'like', '%' . $request->title . '%');
+    }
+
+ 
+    $lectures = $lectures->get();
+
+
+    return view('admin.lectures.index', compact('lectures', 'courses'));
+}
+
 
     /**
      * Show the form for creating a new resource.

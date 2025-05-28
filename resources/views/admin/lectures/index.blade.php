@@ -6,9 +6,12 @@
     </x-slot>
 
     <div class="p-6">
-        <a href="{{ route('admin.lectures.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded">+ Add Lecture</a>
-
-        <table class="w-full mt-4 border">
+        <a href="{{ route('admin.lectures.create') }}" 
+        class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded transition duration-300">
+        + Add Lecture
+     </a>
+     
+        {{-- <table class="w-full mt-4 border">
             <thead>
                 <tr>
                     <th class="border px-4 py-2">Title</th>
@@ -38,6 +41,56 @@
                     </tr>
                 @endforeach
             </tbody>
+        </table> --}}
+
+
+        <form method="GET" action="{{ route('admin.lectures.index') }}" class="mb-4">
+            <select name="course_id" class="border px-2 py-1 rounded">
+                <option value="">-- Select Course --</option>
+                @foreach($courses as $course)
+                    <option value="{{ $course->id }}" {{ request('course_id') == $course->id ? 'selected' : '' }}>
+                        {{ $course->title }}
+                    </option>
+                @endforeach
+            </select>
+        
+            <input type="text" name="title" value="{{ request('title') }}" placeholder="Search by lecture title" class="border px-2 py-1 rounded"/>
+        
+            <button type="submit" class="bg-blue-500 text-white px-4 py-1 rounded">Filter</button>
+            <a href="{{ route('admin.lectures.index') }}" 
+            class="ml-2 text-gray-600 underline hover:text-gray-800 transition duration-200">
+            Reset
+         </a>
+                 </form>
+        
+        <table class="min-w-full table-auto">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Course</th>
+                    <th>Lecture Date</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($lectures as $lecture)
+                    <tr>
+                        <td>{{ $lecture->id }}</td>
+                        <td>{{ $lecture->title }}</td>
+                        <td>{{ $lecture->description }}</td>
+                        <td>{{ $lecture->course->title ?? 'No course' }}</td>
+                        <td>{{ $lecture->lecture_date }}</td>
+                        <td><a href="{{ $lecture->link }}" target="_blank" class="text-blue-600 underline">Watch</a></td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="6" class="text-center">No lectures found.</td>
+                    </tr>
+                @endforelse
+            </tbody>
         </table>
+        
     </div>
 </x-app-layout>

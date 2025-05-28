@@ -13,12 +13,31 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-        $posts = Post::with(['user', 'chatBoard'])->latest()->get();
-        return view('admin.posts.index', compact('posts'));
+    // public function index()
+    // {
+    //     //
+    //     $posts = Post::with(['user', 'chatBoard'])->latest()->get();
+    //     return view('admin.posts.index', compact('posts'));
+    // }
+
+
+
+public function index(Request $request)
+{
+  
+    $posts = Post::with(['user', 'chatBoard']);
+
+    if ($request->filled('user_name')) {
+        $posts->whereHas('user', function ($query) use ($request) {
+            $query->where('name', 'like', '%' . $request->user_name . '%');
+        });
     }
+
+    // استعلام ونحصل على النتائج (يمكن استخدام paginate)
+    $posts = $posts->get();
+
+    return view('admin.posts.index', compact('posts'));
+}
 
     /**
      * Show the form for creating a new resource.

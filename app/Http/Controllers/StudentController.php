@@ -13,13 +13,46 @@ class StudentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-        $students = Student::all();
+    // public function index()
+    // {
+    //     //
+    //     $students = Student::all();
 
-        return view('admin.students.index', compact('students'));
+    //     return view('admin.students.index', compact('students'));
+    // }
+
+    public function index(Request $request)
+{
+  
+    $universities = University::all();
+    $majors = Major::all();
+
+  
+    $query = Student::with(['user', 'university', 'major']);
+
+    // فلترة حسب الاسم (اسم المستخدم المرتبط)
+    if ($request->filled('name')) {
+        $name = $request->input('name');
+        $query->whereHas('user', function($q) use ($name) {
+            $q->where('name', 'like', "%{$name}%");
+        });
     }
+
+    // فلترة حسب الجامعة
+    if ($request->filled('university')) {
+        $query->where('university_id', $request->input('university'));
+    }
+
+    // فلترة حسب التخصص
+    if ($request->filled('major')) {
+        $query->where('major_id', $request->input('major'));
+    }
+
+    $students = $query->paginate(10);
+
+    return view('admin.students.index', compact('students', 'universities', 'majors'));
+}
+
 
     /**
      * Show the form for creating a new resource.

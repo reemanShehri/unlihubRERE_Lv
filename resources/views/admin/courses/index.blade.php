@@ -13,6 +13,39 @@
                 {{ session('success') }}
             </div>
         @endif
+        
+
+
+
+        {{--  --}}
+
+         <!-- فورم البحث -->
+         <form method="GET" action="{{ route('admin.courses.index') }}" class="mb-6 flex gap-2 items-center">
+
+            <input 
+                type="text" 
+                name="title" 
+                placeholder="Search by course title..." 
+                value="{{ request('title') }}" 
+                class="border border-gray-300 rounded px-3 py-2 flex-1"
+            />
+
+            <select name="major" class="border border-gray-300 rounded px-3 py-2">
+                <option value="">All Majors</option>
+                @foreach($majors as $major)
+                    <option value="{{ $major->id }}" {{ request('major') == $major->id ? 'selected' : '' }}>
+                        {{ $major->name }}
+                    </option>
+                @endforeach
+            </select>
+
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Search</button>
+
+            <a href="{{ route('admin.courses.index') }}" class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400">Reset</a>
+
+        </form>
+
+        {{--  --}}
 
         <table class="min-w-full bg-white border border-gray-200">
             <thead>
