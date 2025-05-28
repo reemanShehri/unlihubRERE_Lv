@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\File;
 
 use App\Http\Requests\ProfileUpdateRequest;
 
@@ -93,20 +94,33 @@ public function update(ProfileUpdateRequest $request): RedirectResponse
 
 
 
-public function updatePhoto(Request $request): RedirectResponse
+
+
+public function updatePhoto(Request $request)
 {
     $request->validate([
-        'profile_photo' => 'required|image|max:2048',
+        'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);
 
-    $path = $request->file('profile_photo')->store('profile-photos', 'public');
+    $user = Auth::user();
 
-    $request->user()->update([
-        'profile_photo_path' => $path,
-    ]);
+    // حذف الصورة القديمة لو موجودة
+    if ($user->profile_photo_path && File::exists(public_path('images/profile_photos/' . $user->profile_photo_path))) {
+        File::delete(public_path('images/profile_photos/' . $user->profile_photo_path));
+    }
 
-    return back()->with('status', 'photo-updated');
+    // حفظ الصورة الجديدة
+    $image = $request->file('profile_photo');
+    $imageName = time() . '_' . $image->getClientOriginalName();
+    $image->move(public_path('images/profile_photos'), $imageName);
+
+    // تحديث مسار الصورة في جدول المستخدم
+    $user->profile_photo_path = $imageName;
+    $user->save();
+
+    return redirect()->back()->with('success', 'تم تحديث صورة البروفايل.');
 }
+
 
     /**
      * Update the user's profile information.

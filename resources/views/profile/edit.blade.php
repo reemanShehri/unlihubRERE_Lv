@@ -1,10 +1,16 @@
 <x-app-layout>
-       <!-- Tailwind CSS CDN -->
-<script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    {{-- الهيدر المعدل لعرض الصورة مع الاسم --}}
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }} - {{ Auth::user()->name }}
-        </h2>
+        <div class="flex items-center space-x-4">
+            <img src="{{ Auth::user()->profile_photo_url ?? 'https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name) }}"
+                 class="w-12 h-12 rounded-full object-cover border border-gray-300 shadow" alt="Profile Photo">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Profile') }} - {{ Auth::user()->name }}
+            </h2>
+        </div>
     </x-slot>
 
     <div class="py-12 bg-gray-100">

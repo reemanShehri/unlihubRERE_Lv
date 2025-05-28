@@ -142,4 +142,15 @@ public function likes()
     return $this->belongsTo(Major::class);
 }
 
+
+public function getProfilePhotoUrlAttribute()
+{
+    if ($this->profile_photo_path) {
+        return asset('images/profile_photos/' . $this->profile_photo_path);
+    }
+
+    return 'https://ui-avatars.com/api/?name=' . urlencode($this->name);
+}
+
+
 }
