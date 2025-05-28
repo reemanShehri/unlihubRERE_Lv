@@ -19,10 +19,10 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
-        $courses = null;
+        $course = null;
 
         if ($user->student) {
-        $courses = $user->student->courses;
+        $course = $user->student->courses;
     }
     $lectures = $user->lectures ?? collect();
 
