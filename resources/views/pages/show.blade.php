@@ -157,7 +157,7 @@
       </div>
       <p class="text-gray-700 text-lg leading-relaxed">
         If you have any questions about this Privacy Policy or wish to make a request, please contact us at:  
-        <br><strong class="text-indigo-600">support@unihub.com</strong>
+        <br><strong class="text-indigo-600">admin@unihub.com</strong>
       </p>
     </section>
   </main>
