@@ -25,7 +25,7 @@ use App\Http\Controllers\showUsersController;
 use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\auth\Page2Controller;
+use App\Http\Controllers\Auth\Page2Controller;
 use App\Http\Controllers\User\Post2Controller;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\CommentLikeController;
