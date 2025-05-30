@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\APIController;
 use App\Http\Controllers\ParController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\FreeController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\MajorController;
@@ -13,12 +14,12 @@ use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\User2Controller;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ChatGPTController;
-use App\Http\Controllers\CollegeController;
 
+use App\Http\Controllers\CollegeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LectureController;
-use App\Http\Controllers\ProfileController;
 
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\showUsersController;
@@ -29,9 +30,9 @@ use App\Http\Controllers\Auth\Page2Controller;
 use App\Http\Controllers\User\Post2Controller;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\CommentLikeController;
+
+
 use App\Http\Controllers\User\Course2Controller;
-
-
 use App\Http\Controllers\StudentDetailController;
 use App\Http\Controllers\User\Comment2Controller;
 use App\Http\Controllers\User\Lecture2Controller;
@@ -149,6 +150,9 @@ Route::get('/courses', [ParController::class, 'index'])->name('courses.index');
 
 Route::get('/courses/{course}', [ParController::class, 'show'])->name('courses.show');
 Route::get('/API', [APIController::class, 'API'])->name('API');
+Route::get('/Free', [FreeController::class, 'index'])->name('Free');
+
+
 });
 
 

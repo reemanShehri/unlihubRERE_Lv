@@ -18,7 +18,7 @@
 
 
 
-            <a href="{{ route('users.index') }}" 
+            <a href="{{ route('users.index') }}"
             class="block px-4 py-2 hover:bg-gray-200 rounded">
             <span>👥</span>
             <span x-show="sidebarOpen">Users</span>
@@ -53,6 +53,10 @@
             <a href="{{ route('uni') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                 <span>🏫</span> <span x-show="sidebarOpen">Universities</span>
             </a>
+            <a href="{{ route('Free') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
+                <span>📖</span> <span x-show="sidebarOpen">Free Courses</span>
+            </a>
+
         </nav>
     </div>
 

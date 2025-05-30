@@ -64,12 +64,14 @@
 <body class="min-h-screen">
 
   <!-- Header -->
-  <header class="bg-white shadow-sm">
+  {{-- <header class="bg-white shadow-sm">
     <div class="container mx-auto px-6 py-4">
       <div class="flex items-center justify-between">
         <a href="{{ url('/') }}" class="text-2xl font-bold text-primary">
           <span class="text-dark">Uni</span>Hub
         </a>
+
+
         <nav class="hidden md:flex space-x-8">
             <a href="{{ url('/') }}" class="text-dark hover:text-primary">Home</a>
             <a href="{{ route('terms') }}" class="text-primary font-medium">Terms</a>
@@ -82,7 +84,41 @@
         </button>
       </div>
     </div>
+  </header> --}}
+
+  <header class="bg-white shadow-sm">
+    <div class="container mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+
+        <!-- القسم الأيسر: UniHub + Logo -->
+        <div class="flex items-center gap-4 mb-6">
+            <a href="{{ route('admin.dashboard') }}">
+                <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+              </a>
+          <a href="{{ url('/') }}" class="text-2xl font-bold text-primary mt-3">
+            <span class="text-dark">Uni</span>Hub
+          </a>
+
+        </div>
+
+        <!-- القسم الأيمن: روابط التنقل + زر الموبايل -->
+        <div class="flex items-center gap-6">
+          <nav class="hidden md:flex space-x-8">
+            <a href="{{ url('/') }}" class="text-dark hover:text-primary">Home</a>
+            <a href="{{ route('terms') }}" class="text-primary font-medium">Terms</a>
+            <a href="{{ route('pages.contact') }}" class="text-dark hover:text-primary">Contact</a>
+            <a href="{{ route('privacy') }}" class="text-dark hover:text-primary">Privacy</a>
+          </nav>
+
+          <button class="md:hidden text-dark">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
   </header>
+
 
   <!-- Main Content -->
   <main class="container mx-auto px-6 py-16">

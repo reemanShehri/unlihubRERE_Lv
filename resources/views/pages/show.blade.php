@@ -7,7 +7,7 @@
 
   <!-- Google Fonts: Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-  
+
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
@@ -43,12 +43,22 @@
 </style>
 </head>
 <body class="bg-gradient-to-tr from-indigo-50 via-white to-indigo-50 text-gray-900">
-  <header class="bg-white shadow-sm sticky top-0 z-50">
-    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="{{ url('/') }}" class="text-2xl font-bold">
-            <span class="text-gray-900">Uni</span><span class="text-indigo-600">Hub</span>
-          </a>
-          
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+          <div class="flex items-center justify-between">
+
+            <!-- القسم الأيسر: UniHub + Logo -->
+            <div class="flex items-center gap-4 mb-6">
+                <a href="{{ route('admin.dashboard') }}">
+                    <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                  </a>
+                  <a href="{{ url('/') }}" class="text-2xl font-bold mt-3">
+                    <span class="text-dark">Uni</span><span style="color: #5A4BFF;">Hub</span>
+                  </a>
+
+
+            </div>
+
       <nav class="hidden md:flex space-x-8">
         <a href="{{ url('/') }}" class="text-dark hover:text-indigo-600">Home</a>
         <a href="{{ route('terms') }}" class="text-dark hover:text-indigo-600">Terms</a>
@@ -156,7 +166,7 @@
         </h2>
       </div>
       <p class="text-gray-700 text-lg leading-relaxed">
-        If you have any questions about this Privacy Policy or wish to make a request, please contact us at:  
+        If you have any questions about this Privacy Policy or wish to make a request, please contact us at:
         <br><strong class="text-indigo-600">admin@unihub.com</strong>
       </p>
     </section>

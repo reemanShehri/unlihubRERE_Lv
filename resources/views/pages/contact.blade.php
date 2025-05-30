@@ -56,10 +56,18 @@
     <!-- Header Section -->
     <header class="bg-white shadow-sm">
         <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <a href="{{ url('/') }}" class="text-2xl font-bold text-primary">
-                    <span class="text-dark">Uni</span>Hub
-                </a>
+          <div class="flex items-center justify-between">
+
+            <!-- القسم الأيسر: UniHub + Logo -->
+            <div class="flex items-center gap-4 mb-6">
+                <a href="{{ route('admin.dashboard') }}">
+                    <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                  </a>
+              <a href="{{ url('/') }}" class="text-2xl font-bold text-primary mt-3">
+                <span class="text-dark">Uni</span>Hub
+              </a>
+
+            </div>
                 <nav class="hidden md:flex space-x-8">
                     <a href="{{ url('/') }}" class="text-dark hover:text-primary">Home</a>
                     <a href="{{ route('terms') }}" class="text-dark hover:text-primary">Terms</a>
@@ -152,7 +160,7 @@
                     <h2 class="text-2xl font-bold text-dark mb-4">Our Location</h2>
                     <p class="text-gray-600 mb-6">
                         <i class="fas fa-map-marker-alt text-primary mr-2"></i>
-                       Gaza strip 
+                       Gaza strip
                     </p>
                     <p class="text-gray-600 mb-6">
                         <i class="fas fa-clock text-primary mr-2"></i>

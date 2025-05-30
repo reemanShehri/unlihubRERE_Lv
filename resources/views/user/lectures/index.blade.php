@@ -42,7 +42,7 @@
             <span>👥</span>
             <span x-show="sidebarOpen">Users</span>
          </a>
-         
+
             @if($registeredCourses && $registeredCourses->isNotEmpty())
             <a href="{{ route('user.courses.lectures', $registeredCourses->first()->id) }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                 <span>🎥</span>
@@ -62,6 +62,9 @@
 
             <a href="{{ route('uni') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                 <span>🏫</span> <span x-show="sidebarOpen">Universities</span>
+            </a>
+            <a href="{{ route('Free') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
+                <span>📖</span> <span x-show="sidebarOpen">Free Courses</span>
             </a>
         </nav>
     </div>

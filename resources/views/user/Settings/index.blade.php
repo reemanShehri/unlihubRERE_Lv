@@ -30,7 +30,7 @@
                 <span>👥</span>
                 <span x-show="sidebarOpen">Users</span>
              </a>
-             
+
                 @if($registered_courses && $registered_courses->isNotEmpty())
                 <a href="{{ route('user.courses.lectures', $registered_courses->first()->id) }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                     <span>🎥 </span> <span x-show="sidebarOpen">Lectures</span>
@@ -50,6 +50,9 @@
 
                 <a href="{{ route('uni') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                     <span>🏫</span> <span x-show="sidebarOpen">Universities</span>
+                </a>
+                <a href="{{ route('Free') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
+                    <span>📖</span> <span x-show="sidebarOpen">Free Courses</span>
                 </a>
             </nav>
         </div>
@@ -150,7 +153,7 @@
                                     <label for="bio" class="block text-sm font-medium text-gray-700">Bio</label>
                                     <textarea id="bio" name="bio" rows="3" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">{{ Auth::user()->bio }}</textarea>
                                 </div>
-                             
+
                             </form>
                         </div>
 
@@ -159,34 +162,34 @@
                             <form class="space-y-4">
                                 <div class="relative">
                                     <label for="current-password" class="block text-sm font-medium text-gray-700">Current Password</label>
-                                    <input 
-                                      type="password" 
-                                      id="current-password" 
-                                      class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 pr-10 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" 
+                                    <input
+                                      type="password"
+                                      id="current-password"
+                                      class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 pr-10 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                                     />
-                                    <button type="button" 
-                                            id="togglePassword" 
-                                            class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-500 hover:text-gray-700 focus:outline-none" 
+                                    <button type="button"
+                                            id="togglePassword"
+                                            class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-500 hover:text-gray-700 focus:outline-none"
                                             aria-label="Toggle password visibility">
                                       👁️
                                     </button>
                                   </div>
-                                  
+
                                   <script>
                                     const passwordInput = document.getElementById('current-password');
                                     const toggleBtn = document.getElementById('togglePassword');
-                                  
+
                                     toggleBtn.addEventListener('click', () => {
                                       // لو النوع password حوّله text (يعني أظهر كلمة السر)
                                       // وإذا text رجّعه password (اخفي كلمة السر)
                                       const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
                                       passwordInput.setAttribute('type', type);
-                                  
+
                                       // غير أيقونة العيون عشان توضح الحالة
                                       toggleBtn.textContent = type === 'password' ? '👁️' : '🙈';
                                     });
                                   </script>
-                                  
+
                                 <div>
                                     <label for="new-password" class="block text-sm font-medium text-gray-700">New Password</label>
                                     <input type="password" id="new-password" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
@@ -198,7 +201,7 @@
                                 <div class="flex justify-end">
                                     <div class="flex justify-end">
                                         <a href="{{ route('profile.edit') }}" class="btn-link">in profile page you can submit</a>
-    
+
                                         <style>
                                         .btn-link {
                                           display: inline-block;
@@ -211,12 +214,12 @@
                                           transition: background-color 0.3s ease;
                                           font-family: Arial, sans-serif;
                                         }
-                                        
+
                                         .btn-link:hover {
                                           background-color: #294ba9; /* لون أزرق أغمق عند التمرير */
                                         }
                                         </style>
-                                                                        
+
                                     </div>
                                 </div>
                             </form>
