@@ -100,7 +100,7 @@
 
                     </div>
                     <div class="lg:w-1/2">
-                        <img src="{{ asset('images/image.png') }}" alt="">
+                        <img src="{{ asset('images/image22.png') }}" alt="">
                         {{-- <img src="https://img.freepik.com/free-vector/online-tutorials-concept_52683-37481.jpg" alt="Online Learning" class="w-full rounded-xl shadow-lg"> --}}
                     </div>
                 </div>
