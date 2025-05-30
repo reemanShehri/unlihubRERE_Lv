@@ -1,8 +1,10 @@
 <x-app-layout>
 
        <!-- Tailwind CSS CDN -->
+       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.tailwindcss.com"></script>
 <div x-data="{ sidebarOpen: false }" class="flex ">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Sidebar -->
     <div
         :class="sidebarOpen ? 'w-48' : 'w-16'"
@@ -213,59 +215,92 @@
           @endif
 
           <!-- Post Likes -->
-          <div class="mb-6">
+          {{-- <div class="mb-6">
             <form method="POST" action="{{ route('posts.like', $post->id) }}">
               @csrf
-              <button type="submit"
+              <button
                 class="text-indigo-600 hover:text-indigo-800 font-semibold transition-colors duration-150">👍 Like
                 ({{ $post->likes->count() }})</button>
             </form>
-          </div>
+          </div> --}}
+
+{{-- 2 --}}
+           <!-- زر الإعجاب -->
+           <button class="like-btn {{ $post->isLikedBy(auth()->user()) ? 'liked' : '' }}"
+            onclick="toggleLike({{ $post->id }})"
+            data-post-id="{{ $post->id }}">
+        @if($post->isLikedBy(auth()->user()))
+        👎 UnLike
+        @else
+        ❤️/ 👍 Like
+        @endif
+    </button>
+
+    <!-- عدد الإعجابات -->
+    <span class="likes-count" id="likes-count-{{ $post->id }}">
+        {{ $post->likes->count() }}
+    </span>
+
+    <!-- المستخدمون المعجبون -->
+    <div class="liked-users" id="liked-users-{{ $post->id }}"
+         style="{{ $post->likes->count() > 0 ? 'display:block' : 'display:none' }}">
+        <h4>Liked users:</h4>
+        <div class="users-list" id="users-list-{{ $post->id }}">
+            @foreach($post->likes->take(5) as $like)
+                <span class="user-badge">{{ $like->user->name }}</span>
+            @endforeach
+        </div>
+    </div>
 
           <!-- Comments Section -->
           <section class="border-t border-gray-100 pt-4">
             <h4 class="font-semibold text-gray-700 mb-3">Comments ({{ $post->comments->count() }})</h4>
 
-            <!-- List Comments -->
-            {{-- <ul class="space-y-4 max-h-64 overflow-y-auto">
-              @foreach ($post->comments as $comment)
-              <li class="flex space-x-4">
-                <div
-                  class="flex-shrink-0 h-8 w-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-medium">
-                  {{ strtoupper(substr($comment->user->name, 0, 1)) }}
-                </div>
-                <div class="bg-gray-100 rounded-lg p-3 flex-1">
-                  <p class="text-sm font-semibold text-gray-800">{{ $comment->user->name }}</p>
-                  <p class="text-gray-700 text-sm whitespace-pre-line">{{ $comment->body }}</p>
-                  <p class="text-xs text-gray-500 mt-1">{{ $comment->created_at->diffForHumans() }}</p>
-                </div>
-              </li>
-              @endforeach
-            </ul> --}}
-
-
             <ul class="space-y-4 max-h-64 overflow-y-auto">
                 @foreach ($post->comments as $comment)
-                    <li class="flex space-x-4">
-                        <div
-                            class="flex-shrink-0 h-8 w-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-medium">
+                    <li class="flex items-start space-x-4 bg-gray-50 p-3 rounded-lg shadow-sm">
+                        <!-- صورة البروفايل البسيطة -->
+                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg">
                             {{ strtoupper(substr($comment->user->name, 0, 1)) }}
                         </div>
+
+                        <!-- محتوى التعليق + أدوات التحكم -->
+                        <div class="flex-1">
+                            <!-- اسم المستخدم والتعليق -->
+                            <div class="flex justify-between items-center">
+
+
+
                         <div class="bg-gray-100 rounded-lg p-3 flex-1">
                             <p class="text-sm font-semibold text-gray-800">{{ $comment->user->name }}</p>
                             <p class="text-gray-700 text-sm whitespace-pre-line">{{ $comment->body }}</p>
                             <p class="text-xs text-gray-500 mt-1">{{ $comment->created_at->diffForHumans() }}</p>
 
+                                <!-- أدوات التعديل والحذف -->
+                                @if (auth()->id() === $comment->user_id)
+                                    <div class="flex items-end  space-x-2">
+                                        <!-- تعديل -->
+                                        <a href="{{ route('comments.edit', $comment->id) }}" class="text-blue-500 hover:text-blue-700 text-lg" title="تعديل">
+                                            ✏️
+                                        </a>
+                                        <!-- حذف -->
+                                        <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" onsubmit="return confirm('هل أنت متأكد من حذف هذا التعليق؟')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-red-500 hover:text-red-700 text-lg" title="حذف">
+                                                🗑️
+                                            </button>
+                                        </form>
+                                    </div>
+                                @endif
 
                             @foreach ($comment->replies as $reply)
     <div class="ml-8 pl-4 border-l-2 border-gray-200">
         <p>{{ $reply->body }}</p>
         <small>By: {{ $reply->user->name }}</small>
 
-        <!-- زر الرد على هذا الرد (يدعم parent_id) -->
         <button onclick="toggleReplyForm('{{ $reply->id }}')" class="...">Reply</button>
 
-        <!-- فورم الرد (مخفي بالبداية) -->
         <div id="reply-form-{{ $reply->id }}" class="hidden">
             <form method="POST" action="{{ route('replies.store', $comment->id) }}">
                 @csrf
@@ -284,22 +319,79 @@
 
 
 
-                            {{-- زر لايك --}}
-                        {{-- <form action="{{ route('comments.like', $comment->id) }}" method="POST" class="inline">
-                                @csrf
-                                <button type="submit" class="text-sm text-blue-600 hover:underline mt-1">
-                                    ❤️ Like ({{ $comment->likes->count()?? 0 }})
-                                </button>
-                            </form> --}}
+
                             <div class="flex items-center gap-4 mt-2"> <!-- محتوى التعليق الأساسي هنا -->
 
                                 <!-- زر الإعجاب -->
-                                <form action="{{ route('comments.toggleLike', $comment->id) }}" method="POST" class="flex items-center">
+                                {{-- <form action="{{ route('comments.toggleLike', $comment->id) }}" method="POST" class="flex items-center">
                                     @csrf
                                     <button type="submit" class="flex items-center text-blue-500 hover:text-blue-700 text-sm">
                                         ❤️ <span class="like-count ml-1">{{ $comment->likes->count() }}</span>
                                     </button>
-                                </form>
+                                </form> --}}
+
+                                {{-- 22 --}}
+                                <div class="comment-like-section flex items-center">
+                                    <!-- أيقونة الإعجاب -->
+                                    <span class="comment-like-icon {{ $comment->isLikedBy(auth()->user()) ? 'liked' : '' }}"
+                                          onclick="toggleCommentLike({{ $comment->id }})"
+                                          data-comment-id="{{ $comment->id }}"
+                                          title="{{ $comment->isLikedBy(auth()->user()) ? 'Unlike' : 'Like' }}">
+                                        <i class="far fa-heart"></i>
+                                    </span>
+
+                                    <!-- عدد الإعجابات -->
+                                    <form id="like-form-{{ $comment->id }}" action="{{ route('comments.toggleLike', $comment->id) }}" method="POST" onsubmit="likeComment(event, {{ $comment->id }})" class="flex items-center">
+                                        @csrf
+                                        <button type="submit" class="flex items-center text-blue-500 hover:text-blue-700 text-sm">
+                                            ❤️ <span id="like-count-{{ $comment->id }}">{{ $comment->likes->count() }}</span>
+                                        </button>
+                                    </form>
+
+                                                                  </span>
+
+{{--
+
+                                    @if($comment->likes->count() > 0)
+                                        <span class="view-comment-likers ml-2 text-sm text-blue-500 cursor-pointer hover:underline"
+                                              onclick="toggleCommentLikers({{ $comment->id }})">
+                                            View Likers::
+                                        </span>
+                                    @endif
+
+                                    <!-- قائمة المعجبين (مخفية بشكل افتراضي) -->
+                                    <div class="comment-likers-container hidden mt-2 ml-6" id="comment-likers-container-{{ $comment->id }}">
+                                        <div class="comment-likers-list flex flex-wrap gap-2" id="comment-likers-list-{{ $comment->id }}">
+                                            @foreach($comment->likes->take(5) as $like)
+                                                <span class="user-badge text-xs bg-gray-100 px-2 py-1 rounded-full">
+                                                    {{ $like->user->name }}
+                                                </span>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div> --}}
+
+
+                                @if($comment->likes->count() > 0)
+    <span id="view-comment-likers-{{ $comment->id }}"
+          class="ml-2 text-sm text-blue-500 cursor-pointer hover:underline"
+          onclick="toggleCommentLikers({{ $comment->id }})">
+        👀 View Likers
+    </span>
+@endif
+
+<!-- قائمة المعجبين (مخفية بشكل افتراضي) -->
+<div class="hidden mt-2 ml-6" id="comment-likers-container-{{ $comment->id }}">
+    <div class="flex flex-wrap gap-2" id="comment-likers-list-{{ $comment->id }}">
+        @foreach($comment->likes->take(5) as $like)
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded-full">
+                {{ $like->user->name }}
+            </span>
+        @endforeach
+    </div>
+</div>
+
+                                {{-- 22 --}}
 
                                 <!-- فورم الرد (مختصر) -->
                                 <form method="POST" action="{{ route('replies.store', $comment->id) }}" class="flex items-center gap-2">
@@ -431,6 +523,79 @@
             color: #9CA3AF;
             border-color: #E5E7EB;
         }
+
+
+        .like-btn {
+    background-color: #b5ccfa;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.like-btn.liked {
+    background-color: #fd9999;
+}
+
+.likes-count {
+    font-weight: bold;
+}
+
+.liked-users {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+.user-badge {
+    display: inline-block;
+    background-color: #f0f0f0;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+
+/*  */
+
+
+/* أيقونة إعجاب التعليقات */
+.comment-like-icon {
+    color: #9ca3af;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+.comment-like-icon.liked {
+    color: #ef4444;
+}
+
+.comment-like-icon:hover {
+    transform: scale(1.1);
+}
+
+.comment-like-icon.loading {
+    opacity: 0.7;
+}
+
+/* عدد إعجابات التعليقات */
+.comment-likes-count {
+    font-size: 13px;
+    color: #4b5563;
+}
+
+/* حاوية معجبي التعليقات */
+.comment-likers-container {
+    background-color: #f9fafb;
+    padding: 8px;
+    border-radius: 6px;
+    animation: fadeIn 0.3s ease;
+}
+
     </style>
 
 
@@ -456,6 +621,241 @@
   </script>
 
 
+
+
+
+<script>
+function toggleLike(postId) {
+    const likeBtn = $(`button[data-post-id="${postId}"]`);
+
+    $.ajax({
+        url: '/toggle-like',
+        type: 'POST',
+        data: {
+            post_id: postId,
+            _token: $('meta[name="csrf-token"]').attr('content')
+        },
+        beforeSend: function() {
+            likeBtn.prop('disabled', true).addClass('loading');
+        },
+        success: function(response) {
+            if (response.success) {
+                updateLikeUI(postId, response);
+            } else {
+                showError(response.message || 'حدث خطأ غير متوقع');
+            }
+        },
+        error: function(xhr) {
+            const errorMsg = xhr.responseJSON?.message || 'فشل الاتصال بالخادم';
+            showError(errorMsg);
+        },
+        complete: function() {
+            likeBtn.prop('disabled', false).removeClass('loading');
+        }
+    });
+}
+
+function updateLikeUI(postId, data) {
+    const likeBtn = $(`button[data-post-id="${postId}"]`);
+    const likesCount = $(`#likes-count-${postId}`);
+    const likedUsersDiv = $(`#liked-users-${postId}`);
+    const usersListDiv = $(`#users-list-${postId}`);
+
+    likeBtn.text(data.isLiked ? ' 👎 UnLike' : ' ❤️/ 👍 Like')
+           .toggleClass('liked', data.isLiked);
+
+    likesCount.text(data.likesCount);
+
+    if (data.likesCount > 0) {
+        likedUsersDiv.show();
+        usersListDiv.empty();
+        data.likedUsers.forEach(user => {
+            usersListDiv.append(`<span class="user-badge">${user.name}</span>`);
+        });
+    } else {
+        likedUsersDiv.hide();
+    }
+}
+
+function showError(message) {
+    // يمكنك استخدام Toast أو Alert حسب مكتباتك
+    alert(message);
+    console.error('Error:', message);
+}
+</script>
+
+
+{{-- likesComments --}}
+
+<script>
+
+// دالة تبديل الإعجاب للتعليقات
+// function toggleCommentLike(commentId) {
+//     const likeIcon = $(`.comment-like-icon[data-comment-id="${commentId}"]`);
+
+//     $.ajax({
+//         url: `/comments/${commentId}/toggle-like`,
+//         type: 'POST',
+//         data: {
+//             _token: $('meta[name="csrf-token"]').attr('content')
+//         },
+//         beforeSend: function() {
+//             likeIcon.addClass('loading');
+//         },
+//         success: function(response) {
+//             if (response.success) {
+//                 // تحديث الأيقونة
+//                 likeIcon.toggleClass('liked', response.isLiked);
+//                 likeIcon.find('i').toggleClass('far fas');
+//                 likeIcon.attr('title', response.isLiked ? 'Unlike' : 'Like');
+
+//                 // تحديث العدد
+//                 $(`#comment-likes-count-${commentId}`).text(response.likesCount);
+
+//                 // تحديث رابط العرض
+//                 const viewLikers = $(`#comment-${commentId} .view-comment-likers`);
+//                 if (response.likesCount > 0) {
+//                     if (viewLikers.length === 0) {
+//                         $(`#comment-${commentId} .comment-like-section`).append(
+//                             `<span class="view-comment-likers ml-2 text-sm text-blue-500 cursor-pointer hover:underline"
+//                               onclick="toggleCommentLikers(${commentId})">
+//                                 View Likers
+//                              </span>`
+//                         );
+//                     }
+//                 } else {
+//                     viewLikers.remove();
+//                     $(`#comment-likers-container-${commentId}`).hide();
+//                 }
+//             }
+//         },
+//         error: function(xhr) {
+//             console.error('Error:', xhr.responseText);
+//         },
+//         complete: function() {
+//             likeIcon.removeClass('loading');
+//         }
+//     });
+// }
+
+// // دالة عرض معجبي التعليقات
+// function toggleCommentLikers(commentId) {
+//     const container = $(`#comment-likers-container-${commentId}`);
+//     const list = $(`#comment-likers-list-${commentId}`);
+
+//     if (container.is(':visible')) {
+//         container.hide();
+//         return;
+//     }
+
+//     // إذا كانت القائمة فارغة، جلب البيانات
+//     if (list.children().length === 0) {
+//         $.get(`/comments/${commentId}/likers`, function(response) {
+//             if (response.success) {
+//                 list.empty();
+//                 response.likers.forEach(user => {
+//                     list.append(
+//                         `<span class="user-badge text-xs bg-gray-100 px-2 py-1 rounded-full">
+//                             ${user.name}
+//                          </span>`
+//                     );
+//                 });
+//                 container.show();
+//             }
+//         });
+//     } else {
+//         container.show();
+//     }
+// }
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // استمع لكل الفورم الخاصة باللايك
+    document.querySelectorAll('form[id^="like-form-"]').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const commentId = this.id.replace('like-form-', '');
+            const url = this.action;
+            const token = this.querySelector('input[name="_token"]').value;
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({})
+            })
+            .then(response => response.json())
+            .then(data => {
+                // تحديث عدد اللايكات
+                const likeCountSpan = document.querySelector(`#like-button-${commentId} .like-count`);
+                if(likeCountSpan) {
+                    likeCountSpan.textContent = data.likes_count;
+                }
+
+                // تحديث قائمة المعجبين (إذا موجودة)
+                const likersList = document.getElementById(`comment-likers-list-${commentId}`);
+                if (likersList) {
+                    likersList.innerHTML = '';
+                    data.likers.forEach(user => {
+                        const span = document.createElement('span');
+                        span.className = 'text-xs bg-gray-100 px-2 py-1 rounded-full';
+                        span.textContent = user.name;
+                        likersList.appendChild(span);
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    });
+});
+</script>
+
+
+</script>
+
+
+<script>
+    function toggleCommentLikers(commentId) {
+        const container = document.getElementById(`comment-likers-container-${commentId}`);
+        if (container.classList.contains('hidden')) {
+            container.classList.remove('hidden');
+        } else {
+            container.classList.add('hidden');
+        }
+    }
+</script>
+
+
+<script>
+    function likeComment(event, commentId) {
+        event.preventDefault(); // منع الريلود
+
+        const form = document.getElementById(`like-form-${commentId}`);
+        const url = form.action;
+        const csrfToken = form.querySelector('input[name="_token"]').value;
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': csrfToken,
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById(`like-count-${commentId}`).innerText = data.likes_count;
+        })
+        .catch(error => {
+            console.error('Error toggling like:', error);
+        });
+    }
+    </script>
 
 
 </x-app-layout>

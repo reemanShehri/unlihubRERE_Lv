@@ -39,4 +39,43 @@ public function storeC(Request $request, Post $post)
 }
 
 
+public function edit(Comment $comment)
+{
+    if (auth()->id() !== $comment->user_id) {
+        abort(403);
+    }
+
+    return view('commentsU.edit', compact('comment'));
+}
+
+public function update(Request $request, Comment $comment)
+{
+    if (auth()->id() !== $comment->user_id) {
+        abort(403);
+    }
+
+    $request->validate([
+        'body' => 'required|string',
+    ]);
+
+    $comment->update([
+        'body' => $request->body,
+    ]);
+
+    return redirect()->back()->with('success', 'تم تعديل التعليق بنجاح');
+}
+
+
+public function destroy(Comment $comment)
+{
+    if (auth()->id() !== $comment->user_id) {
+        abort(403);
+    }
+
+    $comment->delete();
+
+    return redirect()->back()->with('success', 'تم حذف التعليق');
+}
+
+
 }

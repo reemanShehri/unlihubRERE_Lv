@@ -23,26 +23,11 @@ class Post2Controller extends Controller
 public function store(Request $request)
 {
     $request->validate(['content' => 'required|string']);
-    // Post::create([
-    //     'user_id' => auth()->id(),
-    //     'content' => $request->content,
-
-    //     'image_path' => 'nullable|image|max:2048',    // صورة بحجم أقصى 2 ميجا
-    //     'file_path' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,txt|max:5120', // ملف بحجم أقصى 5 ميجا
-    //     'link' => 'nullable|url',
-    // ]);
-
 
 
     $post = new Post();
     $post->content = $request->content;
     $post->user_id = auth()->id();
-
-    // حفظ الصورة إذا تم رفعها
-    // if ($request->hasFile('image')) {
-    //     $imagePath = $request->file('image')->store('posts/images', 'public');
-    //     $post->image_path = $imagePath;
-    // }
 
     if ($request->hasFile('image')) {
         $image = $request->file('image');
@@ -51,7 +36,7 @@ public function store(Request $request)
         $image->move($destinationPath, $imageName);
         $post->image_path = 'posts/images/' . $imageName;  // بدون 'images/' لأنه مضاف في Blade
     }
-    
+
 
     // حفظ الملف إذا تم رفعه
     if ($request->hasFile('file')) {

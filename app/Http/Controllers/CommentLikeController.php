@@ -8,20 +8,7 @@ use App\Models\CommentLike;
 
 class CommentLikeController extends Controller
 {
-    //
 
-//     public function like(Comment $comment)
-// {
-//     $user = auth()->user();
-
-//     // إذا المستخدم عمل لايك مسبقاً، تجاهله
-//     if (!$comment->likes()->where('user_id', $user->id)->exists()) {
-//         $comment->likes()->create(['user_id' => $user->id]);
-//     }
-
-//     return redirect()->back();
-
-// }
 
 public function like(Comment $comment)
 {
@@ -63,7 +50,11 @@ public function toggleLike(Comment $comment)
         ]);
     }
 
-    return redirect()->back();
+    // return redirect()->back();
+
+    return response()->json([
+        'likes_count' => $comment->likes()->count()
+    ]);
 }
 
 }

@@ -32,6 +32,11 @@ class Comment extends Model
 
 
 
+public function isLikedBy(User $user = null)
+{
+    if (!$user) return false;
+    return $this->likes()->where('user_id', $user->id)->exists();
+}
 
     // 📝 علاقة مع Post
     public function post()

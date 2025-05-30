@@ -98,9 +98,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/chatboard', [Post2Controller::class, 'index'])->name('chatboard.index');
     Route::post('/posts', [Post2Controller::class, 'store'])->name('posts.store');
     Route::post('/posts/{post}/comments', [Comment2Controller::class, 'storeC'])->name('comments.store');
-
+    Route::post('/toggle-like', [LikeController::class, 'toggleLike'])->name('toggle.like');
     Route::post('/posts/{post}/like', [LikeController::class, 'toggle'])->name('posts.like');
 
+    Route::get('/posts/{post}/likers', [LikeController::class, 'likers'])->name('posts.likers');
 
     Route::get('/settings', [SettingsController::class, 'index'])->name('user.settings.index');
     Route::put('/settings/update', [SettingsController::class, 'update'])->name('settings.update');
@@ -113,6 +114,19 @@ Route::middleware('auth')->group(function () {
 
 
     Route::post('/comments/{comment}/like', [CommentLikeController::class, 'toggleLike'])->name('comments.toggleLike');
+
+    Route::post('/comments/{comment}/toggle-like', [CommentLikeController::class, 'toggleLike'])
+     ->name('comments.toggleLike')
+     ->middleware('auth');
+
+Route::get('/comments/{comment}/likers', [CommentLikeController::class, 'getLikers'])
+     ->name('comments.likers');
+     // web.php
+Route::get('/comments/{comment}/edit', [Comment2Controller::class, 'edit'])->name('comments.edit');
+Route::put('/comments/{comment}', [Comment2Controller::class, 'update'])->name('comments.update');
+Route::delete('/comments/{comment}', [Comment2Controller::class, 'destroy'])->name('comments.destroy');
+
+
 
     Route::post('/comments/{comment}/replies', [ReplyController::class, 'store'])->name('replies.store');
 

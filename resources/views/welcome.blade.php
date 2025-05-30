@@ -96,7 +96,7 @@
         <header class="w-full lg:max-w-4xl max-w-[335px] text-sm mb-6">
 
 
-            
+
             @if (Route::has('login'))
                 <nav class="flex items-center justify-end gap-4">
                     @auth
@@ -192,7 +192,7 @@
                 <!-- Image/Illustration Section -->
                 <div class="relative rounded-xl overflow-hidden bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900 dark:to-purple-900 lg:w-1/2 flex items-center justify-center p-8 h-full">
                     <img
-                        src="{{ asset('images/image.png') }}"
+                        src="{{ asset('images/imag.png') }}"
                         alt="Lecture Image"
                         class="rounded-lg object-contain w-full h-full max-h-[400px]"
                     >

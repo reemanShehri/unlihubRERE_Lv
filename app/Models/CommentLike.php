@@ -21,5 +21,7 @@ class CommentLike extends Model
      {
          return $this->belongsTo(Comment::class);
      }
+
+     
     //
 }
