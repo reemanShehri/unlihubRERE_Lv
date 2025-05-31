@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Free Courses - UniHub</title>
+    <link rel="icon" type="image/png" href="{{ asset('im.png') }}">
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Tailwind CSS -->
@@ -41,6 +43,8 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+
+
         .course-card {
             transition: all 0.3s ease;
             height: 100%;
@@ -340,7 +344,7 @@
                     category: "personal",
                     level: "beginner",
                     platform: "coursera",
-                    image: "https://img.freepik.com/free-vector/hand-drawn-people-learning-knowledge_23-2148859681.jpg",
+                    image: "https://schoolizer.com/img/articles_photos/16662683730.jpg",
                     duration: "4 weeks",
                     rating: 4.8,
                     link: "https://www.coursera.org/learn/learning-how-to-learn"
@@ -395,7 +399,7 @@
                     category: "personal",
                     level: "beginner",
                     platform: "edx",
-                    image: "https://img.freepik.com/free-vector/nutritionist-concept-illustration_114360-1429.jpg",
+                    image: "https://static.vecteezy.com/system/resources/previews/019/604/082/original/nutrition-logo-logo-nutrition-logo-free-vector.jpg",
                     duration: "6 weeks",
                     rating: 4.6,
                     link: "https://www.edx.org/course/nutrition-and-health-human-microbiome"
@@ -467,7 +471,7 @@
         category: "programming",
         level: "beginner",
         platform: "kaggle",
-        image: "https://img.freepik.com/free-vector/data-science-isometric-concept_1284-18125.jpg",
+        image: "https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2023/04/raspberry-lanza-editor-codigo-aprender-python-lenguaje-ia-3008158.jpg",
         duration: "4 weeks",
         rating: 4.8,
         link: "https://www.kaggle.com/learn/python"
