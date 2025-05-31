@@ -138,6 +138,12 @@
                             <option value="udemy">Udemy</option>
                             <option value="futurelearn">FutureLearn</option>
                             <option value="khan">Khan Academy</option>
+
+                              <!-- المنصات الجديدة -->
+    <option value="edraak">Edraak</option>
+    <option value="satar"> Satar</option>
+    <option value="kaggle">Kaggle</option>
+    <option value="freelancer">Freelancer Courses </option>
                         </select>
                     </div>
                     <div>
@@ -192,10 +198,24 @@
                     <a href="https://www.khanacademy.org/" target="_blank" class="p-4 hover:bg-gray-50 rounded-lg transition-all">
                         <img src="https://cdn.kastatic.org/images/khan-logo-dark-background.png" alt="Khan Academy" class="platform-logo">
                     </a>
+
+                      <!-- المنصات الجديدة -->
+    <a href="https://www.edraak.org/" target="_blank" class="p-4 hover:bg-gray-50 rounded-lg transition-all">
+        <img src="https://cdn.al-ain.com/images/2018/9/18/127-220539-edrak-school-learning-jordan_700x400.jpeg" alt="edraak" class="platform-logo">
+    </a>
+    <a href="https://satr.codes/" target="_blank" class="p-4 hover:bg-gray-50 rounded-lg transition-all">
+        <img src="https://satr.codes/assets/images/logo.png" alt=" satar" class="platform-logo">
+    </a>
+    <a href="https://www.kaggle.com/learn" target="_blank" class="p-4 hover:bg-gray-50 rounded-lg transition-all">
+        <img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/189_Kaggle_logo_logos-512.png" alt="kaggle" class="platform-logo">
+    </a>
+
+
                 </div>
                 <div class="container mx-auto flex flex-col items-center justify-center px-4">
                     <p class="text-sm text-center">&copy; 2025 UniHub. All rights reserved.</p>
                 </div>
+
 
                 </div>            </div>
         </section>
@@ -358,17 +378,17 @@
                     rating: 4.6,
                     link: "https://www.udemy.com/course/photography-masterclass-complete-beginner-to-advanced-course/"
                 },
-                // {
-                //     id: 15,
-                //     title: "Spanish for Beginners",
-                //     category: "language",
-                //     level: "beginner",
-                //     platform: "udemy",
-                //     image: "https://img.freepik.com/free-vector/hand-drawn-spanish-school-background_23-2149454532.jpg",
-                //     duration: "8 weeks",
-                //     rating: 4.5,
-                //     link: "https://www.udemy.com/course/spanish-for-beginners-level-1/"
-                // },
+                {
+                    id: 15,
+                    title: "Islamic",
+                    category: "Science",
+                    level: "beginner",
+                    platform: "edraak",
+                    image: "https://ar.dawahskills.com/wp-content/uploads/2019/09/%D8%A7%D9%84%D9%81%D9%86-%D8%A7%D9%84%D8%A5%D8%B3%D9%84%D8%A7%D9%85%D9%8A.jpg",
+                    duration: "8 weeks",
+                    rating: 4.5,
+                    link: "https://www.edraak.org/programs/course/iis-vt3_2020/"
+                },
                 {
                     id: 16,
                     title: "Nutrition and Health",
@@ -423,9 +443,125 @@
                     duration: "6 weeks",
                     rating: 4.7,
                     link: "https://www.edx.org/course/entrepreneurship-101-who-is-your-customer"
-                }
-            ];
+                },
 
+
+             // New Satar courses
+    {
+        id: 23,
+        title: "SQL 102",
+        category: "programming",
+        level: "beginner",
+        platform: "satar",
+        image: "https://ebac.mx/blog/wp-content/uploads/2022/09/image1-8.jpg",
+        duration: "6 weeks",
+        rating: 4.7,
+        link: "https://satr.codes/course/APjgdQqVWR/view"
+    },
+
+
+    // New Kaggle courses
+    {
+        id: 25,
+        title: "Python for Data Science",
+        category: "programming",
+        level: "beginner",
+        platform: "kaggle",
+        image: "https://img.freepik.com/free-vector/data-science-isometric-concept_1284-18125.jpg",
+        duration: "4 weeks",
+        rating: 4.8,
+        link: "https://www.kaggle.com/learn/python"
+    },
+    {
+        id: 26,
+        title: "Machine Learning Explainability",
+        category: "programming",
+        level: "intermediate",
+        platform: "kaggle",
+        image: "https://img.freepik.com/free-vector/machine-learning-concept-illustration_114360-8273.jpg",
+        duration: "3 weeks",
+        rating: 4.7,
+        link: "https://www.kaggle.com/learn/machine-learning-explainability"
+    },
+
+    // Freelancer courses
+    {
+        id: 27,
+        title: "Freelancing: Starting Your Journey",
+        category: "freelancer",
+        level: "beginner",
+        platform: "freelancer",
+        image: "https://img.freepik.com/free-vector/freelancer-working-laptop-concept-illustration_114360-7968.jpg",
+        duration: "3 weeks",
+        rating: 4.7,
+        link: "https://youtu.be/pJuAbjIVOWE?si=CbfsrhVED16NypQA"
+    },
+    {
+        id: 28,
+        title: "Building a Winning Portfolio",
+        category: "freelancer",
+        level: "intermediate",
+        platform: "freelancer",
+        image: "https://img.freepik.com/free-vector/portfolio-concept-illustration_114360-7994.jpg",
+        duration: "2 weeks",
+        rating: 4.6,
+        link: "https://youtu.be/UFu7Ydow3TA?si=XaLZp6Gb4WH1_M6P"
+    },
+    {
+        id: 29,
+        title: "Client Communication Mastery",
+        category: "freelancer",
+        level: "intermediate",
+        platform: "freelancer",
+        image: "https://img.freepik.com/free-vector/business-negotiation-concept-illustration_114360-7980.jpg",
+        duration: "3 weeks",
+        rating: 4.8,
+        link: "https://youtu.be/cZ_nqaptW88?si=_i6pRKj1i11ezRmb"
+    },
+    {
+        id: 30,
+        title: "Advanced Freelance Pricing Strategies",
+        category: "freelancer",
+        level: "advanced",
+        platform: "freelancer",
+        image: "https://img.freepik.com/free-vector/money-income-concept-illustration_114360-7969.jpg",
+        duration: "4 weeks",
+        rating: 4.5,
+        link: "https://youtu.be/zkzEwKgKq7U?si=ayxPBTxMyo6JojL2"
+    }
+];
+
+// Update the formatPlatformName function to include new platforms
+function formatPlatformName(platform) {
+    const platforms = {
+        'coursera': 'Coursera',
+        'edx': 'edX',
+        'udemy': 'Udemy',
+        'futurelearn': 'FutureLearn',
+        'khan': 'Khan Academy',
+        'edraak': 'Edraak',
+        'satar': 'Satar',
+        'kaggle': 'Kaggle',
+        'freelancer': 'Freelancer'
+    };
+    return platforms[platform] || platform;
+}
+
+// Update the formatCategoryName function to include freelancer category
+function formatCategoryName(category) {
+    const categories = {
+        'programming': 'Programming',
+        'design': 'Design',
+        'business': 'Business',
+        'marketing': 'Marketing',
+        'language': 'Language',
+        'science': 'Science',
+        'personal': 'Personal Dev',
+        'freelancer': 'Freelancing'
+    };
+    return categories[category] || category;
+}
+// ..
             // Variables for filtering and pagination
             let displayedCourses = 8;
             let filteredCourses = [...coursesData];
