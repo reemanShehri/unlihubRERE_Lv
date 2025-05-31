@@ -12,7 +12,7 @@
     >
         <h2 x-show="sidebarOpen" class="text-xl font-bold">UniHub</h2>
         <nav class="flex flex-col space-y-4 w-full items-center">
-            <a href="{{ route('chatboard.index') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
+            <a href="{{ route('dashboard') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                 <span>📊</span> <span x-show="sidebarOpen">Dashboard</span>
             </a>
             <a href="{{ route('user.courses.index') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
