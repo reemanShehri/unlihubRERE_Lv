@@ -42,7 +42,7 @@
                 <!-- Filter by Major -->
                 <div>
                     <label for="major-filter" class="block text-sm font-medium text-gray-700 mb-1">
-                        <i class="fas fa-graduation-cap mr-1"></i> Major
+                        <i class="fas fa-graduation-cap mr-1"></i> Major ::
                     </label>
                     <select
                         id="major-filter"
