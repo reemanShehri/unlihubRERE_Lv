@@ -100,7 +100,7 @@
                     class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition duration-300 border border-gray-100"
                 >
                     <!-- Card Header -->
-                    
+
                     <div
                         class="bg-gradient-to-r from-indigo-50 to-blue-50 p-4 flex items-center justify-between"
                     >
@@ -251,7 +251,8 @@
             function searchUsers() {
                 const formData = new FormData(searchForm);
 
-                axios.post("{{ route('users.search') }}", formData)
+                // axios.post("{{ route('users.search') }}", formData)
+                 axios.post("{{ secure_url(route('users.search')) }}", formData)
                     .then(response => {
                         const users = response.data.users;
                         usersContainer.innerHTML = '';
@@ -316,7 +317,7 @@
                 <div class="text-gray-600 flex items-center truncate">
                     <i class="fas fa-id-card mr-1 text-indigo-500"></i><span>${user.college_name || 'N/A'}</span>
                 </div>
-               
+
             </div>
         </div>
         <div class="border-t border-gray-100 px-4 py-3 flex justify-end space-x-2">
