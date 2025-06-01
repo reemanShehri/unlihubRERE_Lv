@@ -1,11 +1,12 @@
 <x-app-layout>
        <!-- Tailwind CSS CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
-<div x-data="{ sidebarOpen: false }" class="flex ">
+<div x-data="{ sidebarOpen: false }" class=" flex " >
     <!-- Sidebar -->
     <div
         :class="sidebarOpen ? 'w-48' : 'w-16'"
         class="bg-gray-800 text-white transition-all duration-300 flex flex-col items-center py-4 space-y-6 overflow-y-auto sticky top-0 h-screen"
+        style="background-color: #391473"
     >
         <h2 x-show="sidebarOpen" class="text-xl font-bold">UniHub</h2>
         <nav class="flex flex-col space-y-4 w-full items-center">

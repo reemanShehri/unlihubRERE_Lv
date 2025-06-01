@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100" style="background-color: rgb(175, 185, 187)">
+<nav x-data="{ open: false }" class="bg-white border-b border-gray-100" style="background-color: rgb(247, 254, 255)">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" >
         <div class="flex justify-between h-16">
@@ -36,12 +36,12 @@
                             {{-- <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=cccccc&color=000000" --}}
                                 {{-- alt="Profile" class="w-9 h-9 rounded-full ms-2"> --}}
 
-                                <img 
-                                src="{{ Auth::user()->profile_photo_url ?? 'https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name) . '&background=cccccc&color=000000' }}" 
-                                alt="{{ Auth::user()->name }}" 
-                                class="h-8 w-8 rounded-full object-cover" 
+                                <img
+                                src="{{ Auth::user()->profile_photo_url ?? 'https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name) . '&background=cccccc&color=000000' }}"
+                                alt="{{ Auth::user()->name }}"
+                                class="h-8 w-8 rounded-full object-cover"
                             />
-                            
+
 
 {{-- <img src="{{ Auth::user()->profile_photo_url ?? 'https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name) }}" --}}
 

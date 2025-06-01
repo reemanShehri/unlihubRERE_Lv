@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" {{ $attributes }}>
+{{-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" {{ $attributes }}>
     <!-- Book -->
     <path d="M20 60 Q20 40 40 40 H80 Q100 40 100 60 V90 Q100 110 80 110 H40 Q20 110 20 90 Z" fill="#42A5F5"/>
     <path d="M40 40 V110" stroke="#1E88E5" stroke-width="2"/>
@@ -17,4 +17,10 @@
 
     <!-- Text -->
     <text x="50%" y="95%" text-anchor="middle" fill="#0D47A1" font-size="20" font-family="Arial" font-weight="bold" dy=".3em">UniHub</text>
-</svg>
+</svg> --}}
+
+<div class="logo">
+    {{-- <a href="/"> --}}
+        <img src="{{ asset('image.png') }}" alt="UniHub Logo" class="h-12 w-auto">
+    </a>
+</div>
