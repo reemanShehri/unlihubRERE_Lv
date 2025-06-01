@@ -20,7 +20,7 @@
     <div class="py-6 max-w-7xl mx-auto sm:px-6 lg:px-8">
         <!-- Search and Filters -->
         <div class="mb-6 bg-white p-4 rounded-xl shadow-sm">
-            <form id="search-form" class="grid grid-cols-1 md:grid-cols-4 gap-4" autocomplete="off">
+            <form method="GET" action="{{ route('users.index') }}" id="search-form" class="grid grid-cols-1 md:grid-cols-4 gap-4" autocomplete="off">
                 <!-- Search by Name -->
                 <div class="relative">
                     <label for="name-search" class="block text-sm font-medium text-gray-700 mb-1">
@@ -28,13 +28,15 @@
                     </label>
                     <div class="relative">
                         <input
-                            type="text"
-                            id="name-search"
-                            name="name"
-                            placeholder="Search by user name..."
-                            class="w-full pr-10 pl-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                            style="direction: ltr;"
-                        />
+                        type="text"
+                        id="name-search"
+                        name="name"
+                        placeholder="Search by user name..."
+                        value="{{ request('name') }}"
+                        class="w-full pr-10 pl-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                        style="direction: ltr;"
+                    />
+
                         <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
                     </div>
                 </div>
@@ -45,15 +47,18 @@
                         <i class="fas fa-graduation-cap mr-1"></i> Major ::
                     </label>
                     <select
-                        id="major-filter"
-                        name="major"
-                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500"
-                    >
-                        <option value="">All Majors</option>
-                        @foreach($majors as $major)
-                            <option value="{{ $major->id }}">{{ $major->name }}</option>
-                        @endforeach
-                    </select>
+                    id="major-filter"
+                    name="major"
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500"
+                >
+                    <option value="">All Majors</option>
+                    @foreach($majors as $major)
+                        <option value="{{ $major->id }}" {{ request('major') == $major->id ? 'selected' : '' }}>
+                            {{ $major->name }}
+                        </option>
+                    @endforeach
+                </select>
+
                 </div>
 
                 <!-- Filter by Activity -->
@@ -62,16 +67,17 @@
                         <i class="fas fa-clock mr-1"></i> Last Activity
                     </label>
                     <select
-                        id="activity-filter"
-                        name="activity"
-                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500"
-                    >
-                        <option value="">All Users</option>
-                        <option value="today">Active Today</option>
-                        <option value="week">Active This Week</option>
-                        <option value="month">Active This Month</option>
-                        <option value="inactive">Inactive</option>
-                    </select>
+                    id="activity-filter"
+                    name="activity"
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500"
+                >
+                    <option value="">All Users</option>
+                    <option value="today" {{ request('activity') == 'today' ? 'selected' : '' }}>Active Today</option>
+                    <option value="week" {{ request('activity') == 'week' ? 'selected' : '' }}>Active This Week</option>
+                    <option value="month" {{ request('activity') == 'month' ? 'selected' : '' }}>Active This Month</option>
+                    <option value="inactive" {{ request('activity') == 'inactive' ? 'selected' : '' }}>Inactive</option>
+                </select>
+
                 </div>
 
                 <!-- Control Buttons -->
@@ -169,7 +175,12 @@
                         </div>
                     </div>
 
-                    <!-- Action Buttons -->
+                    <div id="no-results-message" class="no-results-message-class" style="display: none; text-align: center; margin-top: 20px;">
+                        <p style="font-size: 1.2em; color: #555;">
+                            <i class="fas fa-exclamation-circle" style="margin-right: 8px; color: #ffc107;"></i>
+                            No results found. Please try a different search or adjust your filters.
+                        </p>
+                    </div>
                     <div
                         class="border-t border-gray-100 px-4 py-3 flex justify-end space-x-2"
                     >
@@ -217,8 +228,13 @@
         @endif
     </div>
 
+   {{-- <script>
+        // نقل بيانات المستخدمين من PHP إلى JavaScript
+        const initialUsers = @json($users->items()); // تأكد أن $users هو Paginator object
+    </script> --}}
+
     <!-- Search & Filter Script -->
-    <script>
+    {{--  <script>
         document.addEventListener('DOMContentLoaded', function () {
             const searchForm = document.getElementById('search-form');
             const resetBtn = document.getElementById('reset-filters');
@@ -274,8 +290,15 @@
                     });
             }
 
+
+
+            // 22
+
+
+
+
             // Create user card element
- function createUserCard(user) {
+    function createUserCard(user) {
     const div = document.createElement('div');
     function createUserCard(user) {
     console.log('Phone:', user.phone);
@@ -339,5 +362,136 @@
             // Initial load
             searchUsers();
         });
-    </script>
+</script> --}}
+
+
+{{-- true below  as dynamic--}}
+
+{{-- <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("search-form");
+        const nameInput = document.getElementById("name-search");
+        const majorFilter = document.getElementById("major-filter");
+        const activityFilter = document.getElementById("activity-filter");
+        const resetButton = document.getElementById("reset-filters");
+        const searchResultsContainer = document.getElementById("search-results-container"); // Get the results container
+        const noResultsMessage = document.getElementById("no-results-message");
+
+        // Delay submit while typing in name input
+        let typingTimer;
+        const typingDelay = 500; // نصف ثانية
+
+        nameInput.addEventListener("input", function () {
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(() => {
+                form.submit();
+            }, typingDelay);
+        });
+
+        // Submit immediately when selecting from dropdowns
+        majorFilter.addEventListener("change", () => {
+            form.submit();
+        });
+
+        activityFilter.addEventListener("change", () => {
+            form.submit();
+        });
+
+        // Reset filters and submit
+        resetButton.addEventListener("click", function (e) {
+            e.preventDefault(); // نمنع الفورم من إعادة التحميل الفوري
+            nameInput.value = "";
+            majorFilter.selectedIndex = 0;
+            activityFilter.selectedIndex = 0;
+            form.submit();
+        });
+
+
+   // NEW LOGIC: Check for results after page load
+    function checkForResults() {
+        // You need a reliable way to determine if there are results.
+        // Option A: Check if the results container has any children elements (other than whitespace)
+        // This assumes your server-side rendering populates this div.
+        const hasResults = searchResultsContainer.children.length > 0;
+
+        // Option B: If your server-side renders a specific "no results" placeholder that you want to hide,
+        // you'd check for that. Or, if your server sets a data attribute on the container:
+        // const hasResults = searchResultsContainer.dataset.hasResults === 'true';
+
+        if (!hasResults) {
+            <h1> hi</h1>
+            noResultsMessage.style.display = 'block'; // Show the message
+        } else {
+            noResultsMessage.style.display = 'none';  // Hide the message (in case it was shown before)
+
+        }
+    }
+
+    // Call this function when the page loads
+    checkForResults();
+    });
+</script> --}}
+
+<style>
+    .no-results-message {
+        grid-column: 1 / -1;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("search-form");
+    const nameInput = document.getElementById("name-search");
+    const majorFilter = document.getElementById("major-filter");
+    const activityFilter = document.getElementById("activity-filter");
+    const resetButton = document.getElementById("reset-filters");
+    const searchResultsContainer = document.getElementById("search-results-container");
+    const noResultsMessage = document.getElementById("no-results-message");
+
+    let typingTimer;
+    const typingDelay = 500;
+
+    nameInput.addEventListener("input", function () {
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(() => {
+            form.submit();
+        }, typingDelay);
+    });
+
+    majorFilter.addEventListener("change", () => {
+        form.submit();
+    });
+
+    activityFilter.addEventListener("change", () => {
+        form.submit();
+    });
+
+    resetButton.addEventListener("click", function (e) {
+        e.preventDefault();
+        nameInput.value = "";
+        majorFilter.selectedIndex = 0;
+        activityFilter.selectedIndex = 0;
+        form.submit();
+    });
+
+    // NEW LOGIC: Check for results after page load
+    function checkForResults() {
+        // Count how many actual result items (e.g., 'user-card' elements) are inside the container.
+        // Adjust '.user-card' to the actual class/selector of your result items.
+        const actualResultItems = searchResultsContainer.querySelectorAll('.user-card'); // or whatever your result item class is
+        const hasResults = actualResultItems.length > 0;
+
+        if (!hasResults) {
+            noResultsMessage.style.display = 'block'; // Show the message
+        } else {
+            noResultsMessage.style.display = 'block';  // Hide the message
+        }
+    }
+
+    // Call this function when the page loads
+    checkForResults();
+});
+</script>
+
+
 </x-app-layout>

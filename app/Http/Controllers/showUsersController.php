@@ -9,45 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class showUsersController extends Controller
 {
-    // عرض قائمة المستخدمين
-    // public function index()
-    // {
 
-
-    //      // تحديث آخر نشاط للمستخدم الحالي (لو مسجل دخول)
-    // if (Auth::check()) {
-    //     $user = Auth::user();
-    //     // $user->last_active_at = now();
-    //     $user->save();
-    // }
-
-
-    //     // جلب جميع المستخدمين مع صورة البروفايل ووقت آخر نشاط
-    //     $users = User::select('id', 'name')->get();
-
-    //     return view('users.index', compact('users'));
-    // }
-
-
-//     public function index(Request $request)
-// {
-//     $users = User::query()
-//         ->when($request->name, fn($q, $name) => $q->where('name', 'like', "%$name%"))
-//         ->when($request->major, fn($q, $major) => $q->whereHas('student', fn($q) => $q->where('major_id', $major)))
-//         ->when($request->activity === 'today', fn($q) => $q->whereDate('last_active_at', today()))
-//         ->with(['student.major', 'student.university', 'student.college'])
-//         ->paginate(12);
-
-//     if ($request->wantsJson()) {
-//         return response()->json([
-//             'html' => view('users.partials.users_list', compact('users'))->render(),
-//             'count' => $users->count()
-//         ]);
-//     }
-
-//     $majors = Major::all();
-//     return view('users.index', compact('users', 'majors'));
-// }
 
 public function index(Request $request)
 {
