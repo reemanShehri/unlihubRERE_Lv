@@ -27,11 +27,12 @@ use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\Page2Controller;
+use App\Http\Controllers\CourseChatController;
 use App\Http\Controllers\User\Post2Controller;
 use App\Http\Controllers\Admin\AdminController;
+
+
 use App\Http\Controllers\CommentLikeController;
-
-
 use App\Http\Controllers\User\Course2Controller;
 use App\Http\Controllers\StudentDetailController;
 use App\Http\Controllers\User\Comment2Controller;
@@ -165,6 +166,13 @@ Route::get('/courses', [ParController::class, 'index'])->name('courses.index');
 Route::get('/courses/{course}', [ParController::class, 'show'])->name('courses.show');
 Route::get('/API', [APIController::class, 'API'])->name('API');
 Route::get('/Free', [FreeController::class, 'index'])->name('Free');
+
+
+
+
+    Route::get('/courses/{course}/chat', [CourseChatController::class, 'show'])->name('courses.chat.show');
+    Route::post('/courses/{course}/chat', [CourseChatController::class, 'send']);
+    Route::delete('/courses/{course}/chat/{message}', [CourseChatController::class, 'destroy'])->name('courses.chat.destroy');
 
 
 });

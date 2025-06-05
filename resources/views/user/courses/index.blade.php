@@ -74,20 +74,38 @@
                                         <h3 class="text-lg font-bold text-gray-800">{{ $course->title }}</h3>
                                         <p class="text-sm text-gray-600 mt-1">{{ $course->description }}</p>
                                     </div>
-                                    <div class="flex flex-col items-end space-y-2">
+                                    {{-- <div class="flex flex-col items-end space-y-2">
                                         <span class="text-sm text-gray-500">{{ $course->code }}</span>
                                         <form method="POST" action="{{ route('user.courses.unregister') }}">
                                             @csrf
                                             @method('DELETE')
                                             <input type="hidden" name="course_id" value="{{ $course->id }}">
                                             <a href="{{ route('user.courses.lectures', $course->id) }}" class="text-sm text-blue-600 hover:underline mb-2">📹 View Lectures</a>
-                                            {{-- <a href="{{ route('course.users', ['course' => $course->id]) }}" class="text-sm text-blue-600 hover:underline mb-2">📄 Participant Users</a> --}}
                                             <button class="text-sm text-red-600 hover:underline">❌ Remove</button>
                                         </form>
 
 
 
-                                    </div>
+                                    </div> --}}
+
+                                    <div class="flex flex-col items-end space-y-2">
+    <span class="text-sm text-gray-500">{{ $course->code }}</span>
+
+    <a href="{{ route('user.courses.lectures', $course->id) }}" class="text-sm text-blue-600 hover:underline mb-2">📹 View Lectures</a>
+
+    <!-- 🗨️ Course Chat Button -->
+    <a href="{{ route('courses.chat.show', $course->id) }}" class="text-sm text-green-600 hover:underline mb-2">
+        🗨️ Course Chat
+    </a>
+
+    <form method="POST" action="{{ route('user.courses.unregister') }}">
+        @csrf
+        @method('DELETE')
+        <input type="hidden" name="course_id" value="{{ $course->id }}">
+        <button class="text-sm text-red-600 hover:underline">❌ Remove</button>
+    </form>
+</div>
+
                                 </li>
                             @endforeach
                         </ul>
