@@ -10,6 +10,7 @@ class CourseChat extends Model
 {
 
      protected $guarded = [];
+      protected $fillable = ['course_id'];
     //
 
     // app/Models/CourseChat.php
