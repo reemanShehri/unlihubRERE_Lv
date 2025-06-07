@@ -7,18 +7,16 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewMessageNotification extends Notification
+class NewPostNotification extends Notification
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public $content;
-
-    public function __construct($content)
+    public function __construct()
     {
-        $this->content = $content;
+        //
     }
 
     /**
@@ -28,24 +26,12 @@ class NewMessageNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['database'];
+         return ['database', 'broadcast'];
     }
 
     /**
      * Get the mail representation of the notification.
      */
-
-
-     
-    public function toDatabase($notifiable)
-    {
-        return [
-            'title' => ' new notification',
-            'message' => $this->content,
-        ];
-    }
-
-
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
@@ -62,7 +48,8 @@ class NewMessageNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            //
-        ];
+        'message' => 'تم إضافة منشور جديد!',
+        'url' => '/posts/' . $this->post->id,
+    ];
     }
 }

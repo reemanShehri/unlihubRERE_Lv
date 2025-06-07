@@ -7,6 +7,7 @@
 
   <!-- Google Fonts: Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
@@ -172,8 +173,52 @@
     </section>
   </main>
 
+
+
+
+  {{-- نهاية الصفحة --}}
+<div class="bg-gray-900 text-white py-10">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <div>
+            <h4 class="font-semibold mb-4">Quick Links</h4>
+            <ul class="space-y-2">
+                <li><a href="{{ url('/') }}" class="text-gray-400 hover:text-white">Home</a></li>
+                <li><a href="{{ route('terms') }}" class="text-gray-400 hover:text-white">Terms</a></li>
+                <li><a href="{{ route('privacy') }}" class="text-gray-400 hover:text-white">Privacy</a></li>
+                <li><a href="{{ route('pages.contact') }}" class="text-gray-400 hover:text-white">Contact</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h4 class="font-semibold mb-4">Connect</h4>
+            <div class="flex space-x-4">
+                <a href="https://www.facebook.com/reman.el.shehri/" class="bg-gray-700 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-600 transition">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://x.com/ReemanShehri" class="bg-gray-700 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-400 transition">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.instagram.com/reman_shehri/?__pwa=1" class="bg-gray-700 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-pink-600 transition">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/reeman-shehri-15a15b248/" class="bg-gray-700 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-500 transition">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
   <footer class="bg-white border-t py-6 text-center text-sm text-gray-500">
+
+
     © 2025 UniHub. All rights reserved.
-  </footer>
+  </footer> 
 </body>
 </html>

@@ -140,11 +140,22 @@ Route::delete('/posts/{post}', [Post2Controller::class, 'destroy'])->name('posts
 
 
 
-Route::patch('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])
-    ->name('notifications.markAsRead')
-    ->middleware('auth');
+// Route::patch('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])
+//     ->name('notifications.markAsRead')
+//     ->middleware('auth');
 
 
+// Route::get('/notifications/read/{id}', function ($id) {
+// $notification = auth()->user()->unreadNotifications()->where('id', $id)->firstOrFail();
+//     $notification->markAsRead();
+
+//     return redirect($notification->data['link'] ?? '/');
+// })->name('notifications.read');
+//
+
+Route::get('/notifications', function () {
+    return auth()->user()->unreadNotifications;
+});
 
 
 Route::get('/users', [showUsersController::class, 'index'])->name('users.index');

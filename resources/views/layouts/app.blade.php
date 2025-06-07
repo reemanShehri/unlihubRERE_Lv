@@ -42,6 +42,62 @@
 
 
 
+            @auth
+    @php
+        $notifications = auth()->user()->unreadNotifications;
+    @endphp
+
+
+
+
+
+
+    <div class="relative">
+
+
+
+         
+
+        {{-- <button id="notification-button" class="relative">
+            🔔
+            @if($notifications->count())
+                <span class="absolute top-0 right-0 bg-red-600 text-white rounded-full text-xs px-1">
+                    {{ $notifications->count() }}
+                </span>
+            @endif
+        </button> --}}
+
+        <!-- قائمة الإشعارات -->
+        {{-- <div id="notification-dropdown" class="hidden absolute right-0 mt-2 w-80 bg-white shadow-lg rounded-lg z-50">
+           <ul>
+    @forelse ($notifications as $notification)
+        <li class="p-2 border-b hover:bg-gray-100">
+            <a href="{{ route('notifications.read', $notification->id) }}">
+                <strong>{{ $notification->data['title'] ?? 'إشعار' }}</strong><br>
+                <span class="text-sm text-gray-600">
+                    {{ $notification->data['message'] ?? '' }}
+                </span>
+            </a>
+        </li>
+    @empty
+        <li class="p-2 text-gray-500 text-center">لا توجد إشعارات جديدة</li>
+    @endforelse
+</ul>
+
+        </div> --}}
+    </div>
+
+    <script>
+        // إظهار وإخفاء قائمة الإشعارات
+        document.getElementById('notification-button').addEventListener('click', function () {
+            const dropdown = document.getElementById('notification-dropdown');
+            dropdown.classList.toggle('hidden');
+        });
+    </script>
+@endauth
+
+
+
             {{--  --}}
 
             <!-- Notifications Bell Icon -->
@@ -111,4 +167,11 @@
             </main>
         </div>
     </body>
+
+{{--  --}}
+    <script>
+    window.user = @json(auth()->user()); // إذا كان المستخدم مسجلًا
+</script>
+
+{{--  --}}
 </html>

@@ -10,7 +10,6 @@ use App\Models\Comment;
 use App\Models\Student;
 use App\Models\Notification;
 use Illuminate\Notifications\Notifiable;
-use App\Notifications\NewMessageNotification;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -73,10 +72,6 @@ public function comments()
     return $this->hasMany(Comment::class);
 }
 
-public function notifications()
-{
-    return $this->morphMany(NewMessageNotification::class, 'notifiable');
-}
 
 
 // public function courses()

@@ -28,7 +28,7 @@
                        class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400 text-gray-700">Reset</a>
                 </form>
             </div>
-            
+
 
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <table class="min-w-full table-auto">
@@ -42,7 +42,9 @@
                     <tbody>
                         @foreach ($colleges as $college)
                             <tr class="border-t">
-                                <td class="px-6 py-4">{{ $loop->iteration }}</td>
+                                {{-- <td class="px-6 py-4">{{ $loop->iteration }}</td> --}}
+                                <td class="px-6 py-4">{{ $colleges->firstItem() + $loop->index }}</td>
+
                                 <td class="px-6 py-4">{{ $college->name }}</td>
                                 <td class="px-6 py-4">
                                     <a href="{{ route('admin.colleges.edit', $college) }}"
@@ -65,6 +67,10 @@
                         @endif
                     </tbody>
                 </table>
+                <div class="mt-4">
+    {{ $colleges->links('pagination::tailwind') }}
+</div>
+
             </div>
         </div>
     </div>

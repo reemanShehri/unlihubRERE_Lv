@@ -104,6 +104,7 @@ class CollegeController extends Controller
     public function destroy(string $id)
     {
         //
+         $college = College::findOrFail($id);
         $college->delete();
         return redirect()->route('admin.colleges.index')->with('success', 'College deleted successfully.');
     }

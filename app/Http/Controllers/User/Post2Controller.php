@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use App\Models\Post;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Notifications\NewPostNotification;
 
 class Post2Controller extends Controller
 {
@@ -49,6 +51,7 @@ public function store(Request $request)
 
 
     $post->save();
+ auth()->user()->notify(new NewPostNotification($post));
 
     return redirect()->back()->with('success', 'Post created successfully!');
 }
