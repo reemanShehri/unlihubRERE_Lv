@@ -36,6 +36,47 @@
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                 </div>
 
+
+                {{--  --}}
+
+
+                 <!-- Official Website -->
+    <div class="mb-4">
+        <label for="official_website" class="block text-gray-700 text-sm font-bold mb-2">Official Website</label>
+        <input type="url" name="official_website" id="official_website" value="{{ old('official_website', $university->official_website) }}"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+    </div>
+
+    <!-- Student Portal -->
+    <div class="mb-4">
+        <label for="student_portal" class="block text-gray-700 text-sm font-bold mb-2">Student Portal</label>
+        <input type="url" name="student_portal" id="student_portal" value="{{ old('student_portal', $university->student_portal) }}"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+    </div>
+
+    <!-- Moodle Link -->
+    <div class="mb-4">
+        <label for="moodle_link" class="block text-gray-700 text-sm font-bold mb-2">Moodle Link</label>
+        <input type="url" name="moodle_link" id="moodle_link" value="{{ old('moodle_link', $university->moodle_link) }}"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+    </div>
+
+    <!-- Facebook Page -->
+    <div class="mb-4">
+        <label for="facebook_page" class="block text-gray-700 text-sm font-bold mb-2">Facebook Page</label>
+        <input type="url" name="facebook_page" id="facebook_page" value="{{ old('facebook_page', $university->facebook_page) }}"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+    </div>
+
+    <!-- Telegram Group -->
+    <div class="mb-6">
+        <label for="telegram_group" class="block text-gray-700 text-sm font-bold mb-2">Telegram Group</label>
+        <input type="url" name="telegram_group" id="telegram_group" value="{{ old('telegram_group', $university->telegram_group) }}"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+    </div>
+
+{{--  --}}
+
                 <div class="flex items-center justify-between">
                     <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                         Update

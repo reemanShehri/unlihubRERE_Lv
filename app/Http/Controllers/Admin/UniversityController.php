@@ -36,11 +36,24 @@ class UniversityController extends Controller
         $request->validate([
             'name' => 'required|string|max:255|unique:universities,name',
             'country' => 'required|string|max:255',
+
+        'official_website' => 'nullable|url|max:255',
+        'student_portal' => 'nullable|url|max:255',
+        'moodle_link' => 'nullable|url|max:255',
+        'facebook_page' => 'nullable|url|max:255',
+        'telegram_group' => 'nullable|url|max:255',
         ]);
 
         University::create([
             'name' => $request->name,
             'country' => $request->country,
+
+
+        'official_website' => $request->official_website,
+        'student_portal' => $request->student_portal,
+        'moodle_link' => $request->moodle_link,
+        'facebook_page' => $request->facebook_page,
+        'telegram_group' => $request->telegram_group,
         ]);
 
         return redirect()->route('admin.universities.index')
@@ -79,11 +92,23 @@ class UniversityController extends Controller
         $request->validate([
             'name' => 'required|string|max:255|unique:universities,name,' . $university->id,
             'country' => 'required|string|max:255',
+
+        'official_website' => 'nullable|url|max:255',
+        'student_portal' => 'nullable|url|max:255',
+        'moodle_link' => 'nullable|url|max:255',
+        'facebook_page' => 'nullable|url|max:255',
+        'telegram_group' => 'nullable|url|max:255',
         ]);
 
         $university->update([
             'name' => $request->name,
             'country' => $request->country,
+
+        'official_website' => $request->official_website,
+        'student_portal' => $request->student_portal,
+        'moodle_link' => $request->moodle_link,
+        'facebook_page' => $request->facebook_page,
+        'telegram_group' => $request->telegram_group,
         ]);
 
         return redirect()->route('admin.universities.index')

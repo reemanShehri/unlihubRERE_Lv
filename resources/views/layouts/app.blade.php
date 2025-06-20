@@ -44,7 +44,7 @@
 
             @auth
     @php
-        $notifications = auth()->user()->unreadNotifications;
+        // $notifications = auth()->user()->unreadNotifications;
     @endphp
 
 
@@ -56,7 +56,7 @@
 
 
 
-         
+
 
         {{-- <button id="notification-button" class="relative">
             🔔

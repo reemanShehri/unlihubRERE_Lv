@@ -32,6 +32,15 @@
                         <tr>
                             <th class="px-4 py-2 text-left text-sm font-medium text-gray-500">ID</th>
                             <th class="px-4 py-2 text-left text-sm font-medium text-gray-500">Name</th>
+
+                                              <th class="px-4 py-2 text-left font-medium text-gray-600">Country</th>
+                            <th class="px-4 py-2 text-left font-medium text-gray-600">Website</th>
+                            <th class="px-4 py-2 text-left font-medium text-gray-600">Student Portal</th>
+                            <th class="px-4 py-2 text-left font-medium text-gray-600">Moodle</th>
+                            <th class="px-4 py-2 text-left font-medium text-gray-600">Facebook</th>
+                            <th class="px-4 py-2 text-left font-medium text-gray-600">Telegram</th>
+
+
                             <th class="px-4 py-2 text-left text-sm font-medium text-gray-500">Actions</th>
                         </tr>
                     </thead>
@@ -40,6 +49,36 @@
                             <tr>
                                 <td class="px-4 py-2">{{ $university->id }}</td>
                                 <td class="px-4 py-2">{{ $university->name }}</td>
+
+
+                                  <td class="px-4 py-2">{{ $university->country }}</td>
+                                <td class="px-4 py-2">
+                                    @if($university->official_website)
+                                        <a href="{{ $university->official_website }}" class="text-blue-600 hover:underline" target="_blank">Visit</a>
+                                    @endif
+                                </td>
+                                <td class="px-4 py-2">
+                                    @if($university->student_portal)
+                                        <a href="{{ $university->student_portal }}" class="text-blue-600 hover:underline" target="_blank">Portal</a>
+                                    @endif
+                                </td>
+                                <td class="px-4 py-2">
+                                    @if($university->moodle_link)
+                                        <a href="{{ $university->moodle_link }}" class="text-blue-600 hover:underline" target="_blank">Moodle</a>
+                                    @endif
+                                </td>
+                                <td class="px-4 py-2">
+                                    @if($university->facebook_page)
+                                        <a href="{{ $university->facebook_page }}" class="text-blue-600 hover:underline" target="_blank">Facebook</a>
+                                    @endif
+                                </td>
+                                <td class="px-4 py-2">
+                                    @if($university->telegram_group)
+                                        <a href="{{ $university->telegram_group }}" class="text-blue-600 hover:underline" target="_blank">Telegram</a>
+                                    @endif
+                                </td>
+
+                                
                                 <td class="px-4 py-2">
                                     <a href="{{ route('admin.universities.edit', $university) }}" class="text-blue-500">Edit</a>
                                     |

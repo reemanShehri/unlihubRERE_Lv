@@ -11,7 +11,16 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
 
             {{-- Welcome --}}
-            <div class="bg-white shadow-sm sm:rounded-lg p-6 text-gray-900">
+            {{-- <div class="bg-white shadow-sm sm:rounded-lg p-6 text-gray-900"> --}}
+
+                <div class="shadow-sm sm:rounded-lg p-6 text-gray-900"
+     style="
+        background-color: #a3b6ce; /* Tailwind gray-700 */
+        background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png
+'');
+        background-repeat: repeat;
+        color: white;
+    ">
                 <p class="text-lg font-medium mb-4">
                     Welcome, {{ Auth::user()->name }} 👨‍💻!
                 </p>
@@ -46,7 +55,7 @@
             </div>
 
             {{-- Stats Section --}}
-            
+
             <div class="bg-white shadow-sm sm:rounded-lg p-6">
                 <h3 class="text-xl font-semibold mb-4">Statistics Overview</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-gray-800">

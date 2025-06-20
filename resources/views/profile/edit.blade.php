@@ -17,7 +17,15 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
             {{-- صورة البروفايل --}}
-            <div class="bg-white p-6 shadow sm:rounded-lg">
+            {{-- <div class="bg-white p-6 shadow sm:rounded-lg"> --}}
+
+                <div class="p-6 shadow sm:rounded-lg" style="
+    background-image: url('{{ asset('images/image.png') }}');
+    background-repeat: repeat;
+    background-size: auto;
+    background-color: #7670d1; /* رمادي غامق للتباين */
+">
+{{--  --}}
                 <h3 class="text-lg font-semibold mb-4 text-gray-700">Profile Photo</h3>
                 <div class="flex items-center space-x-4">
                     <img src="{{ Auth::user()->profile_photo_url ?? 'https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name) }}"
