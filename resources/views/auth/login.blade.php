@@ -8,7 +8,7 @@
 
     <!-- الخلفية المتحركة -->
     <div id="particles-js" class="fixed inset-0 -z-10 bg-gradient-to-br from-indigo-50 to-purple-50"></div>
-
+    <title>Login - UniHub</title>
     <!-- المخطط الأنيق -->
     <div class="absolute inset-0 -z-10 overflow-hidden">
         <div class="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.6))]"></div>

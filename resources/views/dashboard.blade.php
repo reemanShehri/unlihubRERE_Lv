@@ -8,6 +8,8 @@
         class="bg-gray-800 text-white transition-all duration-300 flex flex-col items-center py-4 space-y-6 overflow-y-auto sticky top-0 h-screen"
         style="background-color: #391473"
     >
+
+     <title>Dashboard- UniHub</title>
         <h2 x-show="sidebarOpen" class="text-xl font-bold">UniHub</h2>
         <nav class="flex flex-col space-y-4 w-full items-center">
             <a href=" {{ route('dashboard') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
