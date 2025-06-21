@@ -14,6 +14,12 @@
         <link rel="shortcut icon" href="{{ asset('im.png') }}" type="image/x-icon">
 <link rel="apple-touch-icon" href="{{ asset('im.png') }}">
 
+
+{{-- dynamic touch --}}
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+{{--  --}}
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->

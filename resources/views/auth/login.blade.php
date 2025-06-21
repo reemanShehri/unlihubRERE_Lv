@@ -1,6 +1,20 @@
 <x-guest-layout>
            <!-- Tailwind CSS CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
+{{--  --}}
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+
+    <!-- الخلفية المتحركة -->
+    <div id="particles-js" class="fixed inset-0 -z-10 bg-gradient-to-br from-indigo-50 to-purple-50"></div>
+
+    <!-- المخطط الأنيق -->
+    <div class="absolute inset-0 -z-10 overflow-hidden">
+        <div class="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.6))]"></div>
+    </div>
+
+    {{--  --}}
     <!-- Session Status -->
     <x-auth-session-status class="mb-6" :status="session('status')" />
     <link rel="icon" type="image/x-icon" href="{{ asset('im.png') }}">

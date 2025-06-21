@@ -1,0 +1,10 @@
+.animate-auto {
+    @apply transition-all duration-300 ease-in-out;
+}
+
+[data-aos] {
+    @apply opacity-0 translate-y-5;
+    &.aos-animate {
+        @apply opacity-100 translate-y-0;
+    }
+}

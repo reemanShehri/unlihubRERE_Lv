@@ -33,6 +33,18 @@
         <!-- Styles / Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <style>
+
+
+[data-aos] {
+        transition-property: opacity, transform;
+    }
+
+    /* تأخير تلقائي للعناصر الفرعية */
+    [data-aos-delay-auto] > * {
+        transition-delay: calc(var(--aos-order) * 100ms);
+    }
+
+
             [x-cloak] { display: none !important; }
             .unihub-gradient {
                 background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #9333ea 100%);
@@ -135,7 +147,7 @@
         </header>
 
         <div class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow">
-            <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-6xl lg:flex-row gap-8">
+            <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-6xl lg:flex-row gap-8"  data-aos="fade-up">
                 <!-- Content Section -->
                 <div class="flex-1 p-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
                     <h1 class="text-3xl lg:text-4xl font-bold mb-4">
@@ -208,7 +220,7 @@
         </div>
 
         <!-- Features Section -->
-        <div id="features" class="w-full lg:max-w-6xl py-12 px-4 sm:px-6 lg:px-8">
+        <div id="features" class="w-full lg:max-w-6xl py-12 px-4 sm:px-6 lg:px-8"   data-aos="fade-up" data-aos-delay="100">
             <div class="text-center mb-12">
                 <h2 class="text-2xl lg:text-3xl font-bold mb-4" x-text="currentLang === 'ar' ? 'مميزات منصة UniHub' : 'UniHub Platform Features'"></h2>
                 <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
@@ -216,7 +228,7 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay-auto >
                 <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                     <div class="w-12 h-12 rounded-lg unihub-gradient flex items-center justify-center mb-4">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -256,7 +268,7 @@
         </div>
 
         <!-- Footer -->
-        <footer class="w-full py-6 border-t border-gray-200 dark:border-gray-800 mt-12">
+        <footer class="w-full py-6 border-t border-gray-200 dark:border-gray-800 mt-12" data-aos="fade-up" data-aos-delay="300" >
             <div class="w-full lg:max-w-6xl px-4 sm:px-6 lg:px-8 mx-auto">
                 <div class="flex flex-col md:flex-row justify-between items-center">
                     <div class="mb-4 md:mb-0">
@@ -279,5 +291,39 @@
                 </div>
             </div>
         </footer>
+
+
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100,
+            delay: 150
+        });
+
+        // إعادة تحميل AOS عند تغيير اللغة
+        document.querySelectorAll('[x-data]').forEach(el => {
+            el.__x.$watch('currentLang', () => {
+                setTimeout(() => AOS.refresh(), 300);
+            });
+        });
+    });
+</script>
+
+<script>
+    // تطبيق تأخير تلقائي على العناصر الفرعية
+    document.querySelectorAll('[data-aos-delay-auto]').forEach(container => {
+        const children = container.children;
+        Array.from(children).forEach((child, index) => {
+            child.setAttribute('data-aos', 'fade-up');
+            child.style.setProperty('--aos-order', index);
+        });
+    });
+</script>
+
+
     </body>
 </html>
