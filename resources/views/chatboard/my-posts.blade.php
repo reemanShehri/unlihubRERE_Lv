@@ -23,7 +23,8 @@
                     <!-- الصورة -->
                     @if ($post->image_path)
                         <img src="{{ asset('images/' . $post->image_path) }}" alt="Post Image"
-                             class="my-3 rounded max-w-full h-auto max-h-80" />
+                             class="my-3 rounded max-w-full h-auto max-h-80"
+                              loading="lazy" />
                     @endif
 
                     <!-- الملف -->

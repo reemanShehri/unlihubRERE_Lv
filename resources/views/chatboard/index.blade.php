@@ -1,5 +1,7 @@
 <x-app-layout>
 
+
+
        <!-- Tailwind CSS CDN -->
        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.tailwindcss.com"></script>
@@ -53,7 +55,12 @@
     </div>
 
 
+
+
  <!-- Main Content -->
+
+
+
 <div class="flex-1 flex flex-col overflow-hidden">
     <!-- Top Bar -->
     <div class="bg-white shadow-sm px-6 py-4 flex justify-between items-center border-b">
@@ -79,11 +86,30 @@
         <div class="text-sm text-gray-500">{{ now()->format('l, F j, Y') }}</div>
       </div>
       <div>
-
+{{--
         <a href="{{ route('posts.mine') }}"
         class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm">
          My Posts
-     </a>
+     </a> --}}
+
+
+     <a href="{{ route('posts.mine') }}"
+   class="relative overflow-hidden inline-flex items-center px-6 py-3 font-medium text-white transition-all duration-500 ease-out rounded-lg group bg-gradient-to-br from-gray-900 via-purple-900 to-violet-600 hover:from-gray-800 hover:via-purple-800 hover:to-violet-500 shadow-lg hover:shadow-xl hover:ring-2 hover:ring-purple-500/50">
+
+   <!-- النص مع تأثير التوهج -->
+   <span class="relative z-10 flex items-center group-hover:text-white/90">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2 transition-transform duration-300 group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+      </svg>
+      My Posts
+   </span>
+
+
+   <span class="absolute inset-0 bg-gradient-to-r from-purple-600 to-violet-400 opacity-0 group-hover:opacity-30 blur-md group-hover:blur-lg transition-all duration-700"></span>
+
+
+   <span class="absolute inset-0 bg-gradient-to-br from-white/10 via-white/5 to-transparent rounded-lg"></span>
+</a>
 
     </div>
 
@@ -194,10 +220,37 @@
             {{ $post->content }}
           </div>
 
+          {{--  --}}
+
+
+          {{-- <div class="max-w-2xl mx-auto my-6 overflow-hidden bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out">
+    <!-- Card Header -->
+    <div class="px-6 py-4 border-b border-gray-200">
+        <h3 class="text-xl font-semibold text-gray-800">{{ $post->title }}</h3>
+        <p class="text-sm text-gray-500">By {{ $post->user->name }} • {{ $post->created_at->diffForHumans() }}</p>
+    </div> --}}
+{{--
           @if ($post->image_path)
           <img src="{{ asset('images/' . $post->image_path) }}" alt="Post Image"
-            class="mb-5 rounded max-w-full h-auto max-h-80" />
-          @endif
+            class="mb-5 rounded max-w-full h-auto max-h-80"
+             loading="lazy" />
+          @endif --}}
+
+
+    @if($post->image_path)
+<div class="relative group my-4">  <!-- Added group class for hover effects -->
+    <div class="overflow-hidden rounded-lg shadow-sm transition-all duration-300 group-hover:shadow-md">
+        <img
+            src="{{ asset('images/' . $post->image_path) }}"
+            alt="Post Image"
+            class="w-full h-auto object-contain max-h-[500px] mx-auto transition-transform duration-300 group-hover:brightness-95"
+            loading="lazy"
+        />
+    </div>
+    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-5 transition-all duration-300 pointer-events-none rounded-lg"></div>
+</div>
+@endif
+
 
           @if ($post->file_path)
           <p class="mb-5">
