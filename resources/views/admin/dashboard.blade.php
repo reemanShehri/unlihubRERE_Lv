@@ -7,20 +7,20 @@
         </h2>
     </x-slot>
 
-    <div class="py-10">
+    <div class="py-10 relative z-0">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
 
             {{-- Welcome --}}
             {{-- <div class="bg-white shadow-sm sm:rounded-lg p-6 text-gray-900"> --}}
 
-                <div class="shadow-sm sm:rounded-lg p-6 text-gray-900"
-     style="
-        background-color: #a3b6ce; /* Tailwind gray-700 */
-        background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png
-'');
-        background-repeat: repeat;
-        color: white;
-    ">
+        {{-- Welcome Section --}}
+            <div class="shadow-sm sm:rounded-lg p-6 text-gray-900"
+                style="
+                    background-color: #a3b6ce;
+                    background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
+                    background-repeat: repeat;
+                    color: white;
+                ">
                 <p class="text-lg font-medium mb-4">
                     Welcome, {{ Auth::user()->name }} 👨‍💻!
                 </p>

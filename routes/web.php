@@ -33,6 +33,7 @@ use App\Http\Controllers\Admin\AdminController;
 
 
 use App\Http\Controllers\CommentLikeController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\User\Course2Controller;
 use App\Http\Controllers\StudentDetailController;
 use App\Http\Controllers\User\Comment2Controller;
@@ -278,6 +279,17 @@ Route::get('language/{lang}', function ($lang) {
     App::setLocale($lang);
     return back();
 })->name('language');
+
+
+
+
+Route::get('send',[NotificationController::class,'send']);
+
+
+
+// routes/web.php
+Route::get('/notification', [NotificationController::class,'send2'])
+    ->name('notification.read');
 
 
 require __DIR__.'/auth.php';
