@@ -290,7 +290,7 @@
         </div>
         <h3 class="font-semibold text-lg mb-2" x-text="currentLang === 'ar' ? 'مجتمع جامعي' : 'University Community'"></h3>
         <p class="text-gray-500 dark:text-gray-400"
-           x-text="currentLang === 'ar' ? 'تواصل مع زملائك في التخصص، شارك الملاحظات، وناقش المواضيع الأكاديمية.' : 'Connect with peers in your major, share notes, and discuss academic topics.'">
+           x-text="currentLang === 'ar' ? 'تواصل مع زملائك في التخصص، شارك الملاحظات، وناقش المواضيع الأكاديمية. ' : 'Connect with peers in your major, share notes, and discuss academic topics.'">
         </p>
     </div>
 
