@@ -160,6 +160,21 @@
                         'An integrated system for managing university life, connecting students with academic content and student activities in one place.'">
                     </p>
 
+
+                    {{-- <div class="text-center mb-6">
+    <h1 class="text-3xl lg:text-4xl font-bold mb-4">
+        <span class="unihub-text-gradient">UniHub</span> -
+        <span x-text="currentLang === 'ar' ? 'منصتك الجامعية الشاملة' : 'Your Comprehensive University Platform'"></span>
+    </h1>
+
+    <p class="text-lg text-gray-600 dark:text-gray-300"
+       x-text="currentLang === 'ar' ?
+           'نظام متكامل لإدارة الحياة الجامعية، ربط الطلاب بالمحتوى الأكاديمي والأنشطة الطلابية في مكان واحد.' :
+           'An integrated system for managing university life, connecting students with academic content and student activities in one place.'">
+    </p>
+</div>
+ --}}
+
                     <div class="space-y-4 mb-8">
                         <div class="flex items-start gap-3">
                             <svg class="w-6 h-6 text-indigo-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -3,7 +3,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
     <div x-data="{ sidebarOpen: false }" class="flex h-screen">
         <!-- Sidebar -->
-        <div
+        {{-- <div
             :class="sidebarOpen ? 'w-48' : 'w-16'"
             class="bg-gray-800 text-white transition-all duration-300 flex flex-col items-center py-4 space-y-6 overflow-hidden"
  style="background-color: #391473"
@@ -47,7 +47,72 @@
                     <span>📖</span> <span x-show="sidebarOpen">Free Courses</span>
                 </a>
             </nav>
-        </div>
+        </div> --}}
+
+
+
+        <!-- Sidebar as Overlay -->
+<div
+    x-show="sidebarOpen"
+    @click.away="sidebarOpen = false"
+    class="fixed top-0 left-0 z-50 w-64 h-full bg-gray-800 text-white transition-transform duration-300 transform"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="-translate-x-full"
+    x-transition:enter-end="translate-x-0"
+    x-transition:leave="transition ease-in duration-300"
+    x-transition:leave-start="translate-x-0"
+    x-transition:leave-end="-translate-x-full"
+    style="background-color: #391473"
+>
+    <div class="p-4 space-y-6">
+
+    <br>
+        <!-- Close Button -->
+<div class="flex flex-row-reverse items-center justify-between w-full px-4">
+    <button @click="sidebarOpen = false" class="text-white hover:text-red-400 text-2xl font-bold">
+        &larr;
+    </button>
+
+    <h2 class="text-xl font-bold text-white">UniHub</h2>
+</div>
+
+
+        <nav class="flex flex-col space-y-4">
+            <a href="{{ route('dashboard') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
+                <span>📊</span><span>Dashboard</span>
+            </a>
+            <a href="{{ route('user.courses.index') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
+                <span>📚</span><span>Courses</span>
+            </a>
+            <a href="{{ route('users.index') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
+                <span>👥</span><span>Users</span>
+            </a>
+
+            @if($registeredCourses && $registeredCourses->isNotEmpty())
+            <a href="{{ route('user.courses.lectures', $registeredCourses->first()->id) }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
+                <span>🎥</span><span x-show="sidebarOpen">Lectures</span>
+            @else
+     <a href="#" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2 disabled">
+              @endif
+
+              
+            <a href="{{ route('chatboard.index') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
+                <span>💬</span><span>Chat</span>
+            </a>
+            <a href="{{ route('user.settings.index') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
+                <span>⚙️</span><span>Settings</span>
+            </a>
+            <a href="{{ route('uni') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
+                <span>🏫</span><span>Universities</span>
+            </a>
+            <a href="{{ route('Free') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
+                <span>📖</span><span>Free Courses</span>
+            </a>
+        </nav>
+    </div>
+</div>
+
+
 
         <!-- Main Content -->
         <div class="flex-1 flex flex-col overflow-y-auto">
