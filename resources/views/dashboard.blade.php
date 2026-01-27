@@ -9,8 +9,8 @@
         style="background-color: #391473"
     >
 
-     <title>Dashboard- UniHub</title>
-        <h2 x-show="sidebarOpen" class="text-xl font-bold">UniHub</h2>
+     <title>Dashboard- UniLink</title>
+        <h2 x-show="sidebarOpen" class="text-xl font-bold">UniLink</h2>
         <nav class="flex flex-col space-y-4 w-full items-center">
             <a href=" {{ route('dashboard') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                 <span>📊</span> <span x-show="sidebarOpen">Dashboard</span>
@@ -80,7 +80,7 @@
         &larr;
     </button>
 
-    <h2 class="text-xl font-bold text-white">UniHub</h2>
+    <h2 class="text-xl font-bold text-white">UniLink</h2>
 </div>
 
 

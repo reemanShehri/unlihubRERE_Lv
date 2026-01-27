@@ -23,7 +23,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title x-text="currentLang === 'ar' ? 'UniHub - منصة الطلاب الجامعيين' : 'UniHub - University Students Platform'"></title>
+        <title x-text="currentLang === 'ar' ? 'UniLink - منصة الطلاب الجامعيين' : 'UniLink - University Students Platform'"></title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -46,10 +46,10 @@
 
 
             [x-cloak] { display: none !important; }
-            .unihub-gradient {
+            .UniLink-gradient {
                 background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #9333ea 100%);
             }
-            .unihub-text-gradient {
+            .UniLink-text-gradient {
                 background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #9333ea 100%);
                 -webkit-background-clip: text;
                 background-clip: text;
@@ -151,7 +151,7 @@
                 <!-- Content Section -->
                 <div class="flex-1 p-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
                     <h1 class="text-3xl lg:text-4xl font-bold mb-4">
-                        <span class="unihub-text-gradient">UniHub</span> -
+                        <span class="UniLink-text-gradient">UniLink</span> -
                         <span x-text="currentLang === 'ar' ? 'منصتك الجامعية الشاملة' : 'Your Comprehensive University Platform'"></span>
                     </h1>
 
@@ -163,7 +163,7 @@
 
                     {{-- <div class="text-center mb-6">
     <h1 class="text-3xl lg:text-4xl font-bold mb-4">
-        <span class="unihub-text-gradient">UniHub</span> -
+        <span class="UniLink-text-gradient">UniLink</span> -
         <span x-text="currentLang === 'ar' ? 'منصتك الجامعية الشاملة' : 'Your Comprehensive University Platform'"></span>
     </h1>
 
@@ -214,7 +214,7 @@
                     </div>
 
                     <div class="flex flex-col sm:flex-row gap-3">
-                        <a href="{{ route('register') }}" class="px-6 py-3 unihub-gradient text-white rounded-lg font-medium text-center hover:opacity-90 transition-opacity"
+                        <a href="{{ route('register') }}" class="px-6 py-3 UniLink-gradient text-white rounded-lg font-medium text-center hover:opacity-90 transition-opacity"
                            x-text="currentLang === 'ar' ? 'ابدأ الآن مجانًا' : 'Start Now for Free'">
                         </a>
                         <a href="#features" class="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-lg font-medium text-center hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
@@ -237,7 +237,7 @@
         <!-- Features Section -->
         <div id="features" class="w-full lg:max-w-6xl py-12 px-4 sm:px-6 lg:px-8"   data-aos="fade-up" data-aos-delay="100">
             <div class="text-center mb-12">
-                <h2 class="text-2xl lg:text-3xl font-bold mb-4" x-text="currentLang === 'ar' ? 'مميزات منصة UniHub' : 'UniHub Platform Features'"></h2>
+                <h2 class="text-2xl lg:text-3xl font-bold mb-4" x-text="currentLang === 'ar' ? 'مميزات منصة UniLink' : 'UniLink Platform Features'"></h2>
                 <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
                    x-text="currentLang === 'ar' ? 'كل ما تحتاجه لتحقيق النجاح الأكاديمي في مكان واحد' : 'Everything you need for academic success in one place'">
                 </p>
@@ -245,7 +245,7 @@
 
             {{-- <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay-auto >
                 <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 rounded-lg unihub-gradient flex items-center justify-center mb-4">
+                    <div class="w-12 h-12 rounded-lg UniLink-gradient flex items-center justify-center mb-4">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                         </svg>
@@ -257,7 +257,7 @@
                 </div>
 
                 <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 rounded-lg unihub-gradient flex items-center justify-center mb-4">
+                    <div class="w-12 h-12 rounded-lg UniLink-gradient flex items-center justify-center mb-4">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                         </svg>
@@ -269,7 +269,7 @@
                 </div>
 
                 <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 rounded-lg unihub-gradient flex items-center justify-center mb-4">
+                    <div class="w-12 h-12 rounded-lg UniLink-gradient flex items-center justify-center mb-4">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                         </svg>
@@ -285,7 +285,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center" data-aos="fade-up" data-aos-delay-auto>
     <!-- البطاقة الأولى -->
     <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow flex flex-col items-center">
-        <div class="w-12 h-12 rounded-lg unihub-gradient flex items-center justify-center mb-4">
+        <div class="w-12 h-12 rounded-lg UniLink-gradient flex items-center justify-center mb-4">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
             </svg>
@@ -298,7 +298,7 @@
 
     <!-- البطاقة الثانية -->
     <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow flex flex-col items-center">
-        <div class="w-12 h-12 rounded-lg unihub-gradient flex items-center justify-center mb-4">
+        <div class="w-12 h-12 rounded-lg UniLink-gradient flex items-center justify-center mb-4">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
             </svg>
@@ -311,7 +311,7 @@
 
     <!-- البطاقة الثالثة -->
     <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow flex flex-col items-center">
-        <div class="w-12 h-12 rounded-lg unihub-gradient flex items-center justify-center mb-4">
+        <div class="w-12 h-12 rounded-lg UniLink-gradient flex items-center justify-center mb-4">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
             </svg>
@@ -329,9 +329,9 @@
             <div class="w-full lg:max-w-6xl px-4 sm:px-6 lg:px-8 mx-auto">
                 <div class="flex flex-col md:flex-row justify-between items-center">
                     <div class="mb-4 md:mb-0">
-                        <span class="text-xl font-bold unihub-text-gradient">UniHub</span>
+                        <span class="text-xl font-bold UniLink-text-gradient">UniLink</span>
                         <p class="text-sm text-gray-500 dark:text-gray-400 mt-1"
-                           x-text="currentLang === 'ar' ? 'منصة الطلاب الجامعيين © 2025' : 'University Students Platform © 2025R'">
+                           x-text="currentLang === 'ar' ? 'منصة الطلاب الجامعيين © 2025' : 'University Students Platform © 2026'">
                         </p>
                     </div>
                     <div class="flex gap-4">

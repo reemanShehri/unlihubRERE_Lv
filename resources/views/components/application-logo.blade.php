@@ -16,11 +16,11 @@
     <circle cx="65" cy="80" r="1.5" fill="#1E88E5"/>
 
     <!-- Text -->
-    <text x="50%" y="95%" text-anchor="middle" fill="#0D47A1" font-size="20" font-family="Arial" font-weight="bold" dy=".3em">UniHub</text>
+    <text x="50%" y="95%" text-anchor="middle" fill="#0D47A1" font-size="20" font-family="Arial" font-weight="bold" dy=".3em">UniLink</text>
 </svg> --}}
 
 <div class="logo">
     {{-- <a href="/"> --}}
-        <img src="{{ asset('image.png') }}" alt="UniHub Logo" class="h-12 w-auto">
+        <img src="{{ asset('image.png') }}" alt="UniLink Logo" class="h-12 w-auto">
     </a>
 </div>

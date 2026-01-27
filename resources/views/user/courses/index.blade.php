@@ -8,7 +8,7 @@
             class="bg-gray-800 text-white transition-all duration-300 flex flex-col items-center py-4 space-y-6 overflow-hidden"
  style="background-color: #391473"
             >
-            <h2 x-show="sidebarOpen" class="text-xl font-bold">UniHub</h2>
+            <h2 x-show="sidebarOpen" class="text-xl font-bold">UniLink</h2>
 
             <nav class="flex flex-col space-y-4 w-full items-center">
                 <a href="{{ route('dashboard') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
@@ -73,7 +73,7 @@
         &larr;
     </button>
 
-    <h2 class="text-xl font-bold text-white">UniHub</h2>
+    <h2 class="text-xl font-bold text-white">UniLink</h2>
 </div>
 
 
@@ -95,7 +95,7 @@
      <a href="#" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2 disabled">
               @endif
 
-              
+
             <a href="{{ route('chatboard.index') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                 <span>💬</span><span>Chat</span>
             </a>
