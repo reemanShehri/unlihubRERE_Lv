@@ -58,7 +58,7 @@
         <div class="container mx-auto px-6 py-4">
           <div class="flex items-center justify-between">
 
-            <!-- القسم الأيسر: UniHub + Logo -->
+            <!-- القسم الأيسر: UniLink + Logo -->
             <div class="flex items-center gap-4 mb-6">
                 <a href="{{ route('admin.dashboard') }}">
                     <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
@@ -239,7 +239,7 @@
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-xl font-bold mb-4">UniHub</h3>
+                    <h3 class="text-xl font-bold mb-4">UniLink</h3>
                     <p class="text-gray-400">
                         Connecting you with professional solutions for all your business needs.
                     </p>

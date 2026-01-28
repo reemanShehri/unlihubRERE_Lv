@@ -48,7 +48,7 @@
         <div class="container mx-auto px-6 py-4">
           <div class="flex items-center justify-between">
 
-            <!-- القسم الأيسر: UniHub + Logo -->
+            <!-- القسم الأيسر: UniLink + Logo -->
             <div class="flex items-center gap-4 mb-6">
                 <a href="{{ route('admin.dashboard') }}">
                     <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
@@ -168,7 +168,7 @@
       </div>
       <p class="text-gray-700 text-lg leading-relaxed">
         If you have any questions about this Privacy Policy or wish to make a request, please contact us at:
-        <br><strong class="text-indigo-600">admin@unihub.com</strong>
+        <br><strong class="text-indigo-600">admin@UniLink.com</strong>
       </p>
     </section>
   </main>
@@ -218,7 +218,7 @@
   <footer class="bg-white border-t py-6 text-center text-sm text-gray-500">
 
 
-    © 2025 UniHub. All rights reserved.
-  </footer> 
+    © 2025 UniLink. All rights reserved.
+  </footer>
 </body>
 </html>

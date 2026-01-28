@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terms & Conditions | UniHub</title>
+  <title>Terms & Conditions | UniLink</title>
   <script src="https://cdn.tailwindcss.com"></script>
 
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -95,7 +95,7 @@
     <div class="container mx-auto px-6 py-4">
       <div class="flex items-center justify-between">
 
-        <!-- القسم الأيسر: UniHub + Logo -->
+        <!-- القسم الأيسر: UniLink + Logo -->
         <div class="flex items-center gap-4 mb-6">
             <a href="{{ route('admin.dashboard') }}">
                 <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
@@ -146,7 +146,7 @@
           <div>
             <h3 class="text-lg font-semibold text-dark mb-2">Important Notice</h3>
             <p class="text-gray-700">
-              By accessing or using UniHub, you agree to be bound by these Terms & Conditions and our Privacy Policy. If you do not agree, please do not use the platform.
+              By accessing or using UniLink, you agree to be bound by these Terms & Conditions and our Privacy Policy. If you do not agree, please do not use the platform.
             </p>
           </div>
         </div>
@@ -162,7 +162,7 @@
           </div>
           <div class="pl-12">
             <p class="text-gray-700 mb-4">
-              These Terms & Conditions ("Terms") govern your access to and use of UniHub's services, website, and applications ("Platform"). By accessing or using the Platform, you agree to comply with and be bound by these Terms.
+              These Terms & Conditions ("Terms") govern your access to and use of UniLink's services, website, and applications ("Platform"). By accessing or using the Platform, you agree to comply with and be bound by these Terms.
             </p>
             <p class="text-gray-700">
               If you are using the Platform on behalf of an organization, you are agreeing to these Terms for that organization and representing that you have the authority to bind that organization to these Terms.
@@ -178,7 +178,7 @@
           </div>
           <div class="pl-12">
             <p class="text-gray-700 mb-4">
-              UniHub is designed for academic collaboration, communication, and resource sharing among students and faculty members.
+              UniLink is designed for academic collaboration, communication, and resource sharing among students and faculty members.
             </p>
             <ul class="term-list text-gray-700 mb-4">
               <li>You must be a registered student, faculty member, or authorized staff to access certain features</li>
@@ -234,7 +234,7 @@
               You retain all ownership rights to the content you submit, post, or display on or through the Platform ("Your Content").
             </p>
             <p class="text-gray-700 mb-4">
-              By submitting Your Content, you grant UniHub a worldwide, non-exclusive, royalty-free license (with the right to sublicense) to use, copy, reproduce, process, adapt, modify, publish, transmit, display, and distribute Your Content in any and all media or distribution methods.
+              By submitting Your Content, you grant UniLink a worldwide, non-exclusive, royalty-free license (with the right to sublicense) to use, copy, reproduce, process, adapt, modify, publish, transmit, display, and distribute Your Content in any and all media or distribution methods.
             </p>
             <p class="text-gray-700">
               This license is solely for the purpose of operating, developing, providing, and improving the Platform and researching and developing new services.
@@ -304,7 +304,7 @@
     <div class="container mx-auto px-6">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
-          <h3 class="text-xl font-bold mb-4">UniHub</h3>
+          <h3 class="text-xl font-bold mb-4">UniLink</h3>
           <p class="text-gray-400">
             The leading academic collaboration platform for universities and students worldwide.
           </p>
@@ -343,7 +343,7 @@
         </div>
       </div>
       <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-        <p>&copy; 2025 UniHub. All rights reserved.</p>
+        <p>&copy; 2025 UniLink. All rights reserved.</p>
       </div>
     </div>
   </footer>
