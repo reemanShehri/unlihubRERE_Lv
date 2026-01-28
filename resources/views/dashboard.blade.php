@@ -106,9 +106,9 @@
             <a href="{{ route('chatboard.index') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                 <span>💬</span><span>Chat</span>
             </a>
-            <a href="{{ route('user.settings.index') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
+            {{-- <a href="{{ route('user.settings.index') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                 <span>⚙️</span><span>Settings</span>
-            </a>
+            </a> --}}
             <a href="{{ route('uni') }}" class="hover:bg-gray-700 w-full text-center py-2 rounded flex items-center justify-center space-x-2">
                 <span>🏫</span><span>Universities</span>
             </a>
