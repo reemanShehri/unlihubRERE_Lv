@@ -73,7 +73,7 @@
     <div class="container mx-auto px-6 py-4">
       <div class="flex items-center justify-between">
         <a href="{{ url('/') }}" class="text-2xl font-bold text-primary">
-          <span class="text-dark">Uni</span>Hub
+          <span class="text-dark">Uni</span>UniLink
         </a>
 
 
@@ -101,7 +101,7 @@
                 <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
               </a>
           <a href="{{ url('/') }}" class="text-2xl font-bold text-primary mt-3">
-            <span class="text-dark">Uni</span>Hub
+            <span class="text-dark">Uni</span>Link
           </a>
 
         </div>
