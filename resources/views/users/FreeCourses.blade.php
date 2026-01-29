@@ -217,7 +217,7 @@
 
                 </div>
                 <div class="container mx-auto flex flex-col items-center justify-center px-4">
-                    <p class="text-sm text-center">&copy; 2025 UniHub. All rights reserved.</p>
+                    <p class="text-sm text-center">&copy; 2026 UniLink. All rights reserved.</p>
                 </div>
 
 

@@ -331,7 +331,7 @@
                     <div class="mb-4 md:mb-0">
                         <span class="text-xl font-bold UniLink-text-gradient">UniLink</span>
                         <p class="text-sm text-gray-500 dark:text-gray-400 mt-1"
-                           x-text="currentLang === 'ar' ? 'منصة الطلاب الجامعيين © 2025' : 'University Students Platform © 2026'">
+                           x-text="currentLang === 'ar' ? 'منصة الطلاب الجامعيين © 2026' : 'University Students Platform © 2026'">
                         </p>
                     </div>
                     <div class="flex gap-4">
