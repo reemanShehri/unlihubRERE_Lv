@@ -1,45 +1,44 @@
 <?php
 
-use App\Models\Message;
-use App\Http\Middleware\IsAdmin;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\APIController;
-use App\Http\Controllers\ParController;
-use App\Http\Controllers\ChatController;
-use App\Http\Controllers\FreeController;
-use App\Http\Controllers\LikeController;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\MajorController;
-use App\Http\Controllers\ReplyController;
-use App\Http\Controllers\User2Controller;
-use App\Http\Controllers\CourseController;
-use App\Http\Controllers\ChatGPTController;
-
-use App\Http\Controllers\CollegeController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\LectureController;
-
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\showUsersController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\PostController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Auth\Page2Controller;
-use App\Http\Controllers\CourseChatController;
-use App\Http\Controllers\User\Post2Controller;
-use App\Http\Controllers\Admin\AdminController;
-
-
-use App\Http\Controllers\CommentLikeController;
-use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\User\Course2Controller;
-use App\Http\Controllers\StudentDetailController;
-use App\Http\Controllers\User\Comment2Controller;
-use App\Http\Controllers\User\Lecture2Controller;
-use App\Http\Controllers\User\SettingsController;
 use App\Http\Controllers\Admin\UniversityController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\APIController;
+use App\Http\Controllers\Auth\Page2Controller;
+use App\Http\Controllers\ChatController;
+use App\Http\Controllers\ChatGPTController;
+use App\Http\Controllers\CollegeController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CommentLikeController;
+use App\Http\Controllers\CourseChatController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FreeController;
+use App\Http\Controllers\LectureController;
+use App\Http\Controllers\LikeController;
+use App\Http\Controllers\MajorController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\ParController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReplyController;
+use App\Http\Controllers\showUsersController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudentDetailController;
+use App\Http\Controllers\User2Controller;
+use App\Http\Controllers\User\Comment2Controller;
+use App\Http\Controllers\User\Course2Controller;
+use App\Http\Controllers\User\Lecture2Controller;
+use App\Http\Controllers\User\Post2Controller;
+use App\Http\Controllers\User\SettingsController;
+use App\Http\Middleware\IsAdmin;
+use App\Models\Message;
+use App\Models\User;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 Route::get('/', function () {
     return view('welcome');
